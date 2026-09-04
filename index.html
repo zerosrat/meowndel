@@ -1,0 +1,781 @@
+<title>猫色溯源</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+SC:wght@600;700&display=swap">
+<style>
+:root{
+  --bg:#E8EBEC; --surface:#F7F8F8; --sunken:#DDE1E3; --line:#C6CDD1; --line-soft:#D8DDE0;
+  --ink:#1B2226; --ink-2:#4B565C; --ink-3:#78848B;
+  --accent:#B85714; --accent-ink:#8C420F; --accent-soft:#F2DECB;
+  --cat-line:rgba(27,34,38,.32); --cat-plate:#FDFDFC;
+  --mark-certain:#1B2226; --mark-maybe:#8B979D;
+  --shadow:0 1px 2px rgba(27,34,38,.06), 0 8px 24px -12px rgba(27,34,38,.18);
+  --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --serif:"Noto Serif SC","Songti SC","SimSun",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15181A; --surface:#1D2225; --sunken:#101315; --line:#333B3F; --line-soft:#282F33;
+    --ink:#E9ECED; --ink-2:#A6B0B5; --ink-3:#77838A;
+    --accent:#E8873A; --accent-ink:#F0A163; --accent-soft:#3A2919;
+    --cat-line:rgba(233,236,237,.34); --cat-plate:#252B2E;
+    --mark-certain:#E9ECED; --mark-maybe:#77838A;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15181A; --surface:#1D2225; --sunken:#101315; --line:#333B3F; --line-soft:#282F33;
+  --ink:#E9ECED; --ink-2:#A6B0B5; --ink-3:#77838A;
+  --accent:#E8873A; --accent-ink:#F0A163; --accent-soft:#3A2919;
+  --cat-line:rgba(233,236,237,.34); --cat-plate:#252B2E;
+  --mark-certain:#E9ECED; --mark-maybe:#77838A;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;
+  -webkit-font-smoothing:antialiased;padding:0 20px 72px}
+.wrap{max-width:1200px;margin:0 auto}
+
+/* ---------- header ---------- */
+header.top{padding:44px 0 26px;border-bottom:1px solid var(--line);margin-bottom:30px}
+.brandline{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
+h1{font-family:var(--serif);font-weight:700;font-size:clamp(30px,4.6vw,44px);letter-spacing:.06em;
+  margin:0;line-height:1.15;text-wrap:balance}
+.tagline{font-size:13.5px;color:var(--ink-2);max-width:62ch;margin:12px 0 0;line-height:1.7}
+.tagline b{color:var(--ink);font-weight:600}
+.loci{display:flex;gap:6px;flex-wrap:wrap;margin-top:16px}
+.locus{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink-3);
+  border:1px solid var(--line-soft);padding:2px 7px;border-radius:2px}
+.locus b{color:var(--accent);font-weight:500}
+
+/* ---------- layout ---------- */
+main.lab{display:grid;grid-template-columns:326px minmax(0,1fr);gap:34px;align-items:start}
+@media (max-width:940px){main.lab{grid-template-columns:1fr;gap:26px}}
+
+/* ---------- console ---------- */
+.console{background:var(--surface);border:1px solid var(--line);border-radius:3px;
+  padding:20px 20px 22px;position:sticky;top:16px;box-shadow:var(--shadow)}
+@media (max-width:940px){.console{position:static}}
+.eyebrow{font-size:10.5px;letter-spacing:.2em;color:var(--ink-3);text-transform:uppercase;
+  font-weight:600;margin:0 0 12px;display:flex;align-items:center;gap:8px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--line-soft)}
+
+.picks{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:20px}
+.pick{background:none;border:1px solid transparent;border-radius:3px;padding:5px 2px 4px;
+  cursor:pointer;font-family:inherit;color:var(--ink-2);display:flex;flex-direction:column;
+  align-items:center;gap:2px;transition:background .12s,border-color .12s}
+.pick:hover{background:var(--sunken)}
+.pick[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);color:var(--ink)}
+.pick span{font-size:10.5px;line-height:1.3;letter-spacing:.01em}
+.pick svg{display:block}
+.pick:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+
+.row{padding:11px 0;border-top:1px solid var(--line-soft)}
+.row:first-of-type{border-top:1px solid var(--line)}
+.rowhead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:7px}
+.rowlabel{font-size:12.5px;font-weight:600;letter-spacing:.03em;color:var(--ink)}
+.rowhint{font-size:10.5px;color:var(--ink-3);text-align:right;line-height:1.4}
+.seg{display:flex;gap:0;border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.seg button{flex:1;background:var(--surface);border:none;border-left:1px solid var(--line-soft);
+  padding:6px 4px;font-family:inherit;font-size:12px;color:var(--ink-2);cursor:pointer;
+  transition:background .12s,color .12s;line-height:1.4}
+.seg button:first-child{border-left:none}
+.seg button:hover:not(:disabled){background:var(--sunken);color:var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg);font-weight:600}
+.seg button:disabled{opacity:.42;cursor:not-allowed}
+.seg button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.note{font-size:11px;color:var(--accent-ink);margin-top:7px;line-height:1.55;
+  padding-left:9px;border-left:2px solid var(--accent)}
+
+.whitescale{display:flex;gap:3px}
+.wstep{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:2px;
+  padding:5px 0 4px;cursor:pointer;font-family:inherit;display:flex;flex-direction:column;
+  align-items:center;gap:3px;transition:background .12s}
+.wstep:hover{background:var(--sunken)}
+.wstep[aria-pressed="true"]{background:var(--ink);border-color:var(--ink)}
+.wstep[aria-pressed="true"] .wlabel{color:var(--bg)}
+.wbar{width:14px;height:14px;border-radius:2px;border:1px solid var(--cat-line);overflow:hidden;
+  display:flex;flex-direction:column;justify-content:flex-end}
+.wbar i{display:block;background:#F7F5F1;width:100%}
+.wstep[aria-pressed="true"] .wbar{border-color:rgba(255,255,255,.5)}
+.wlabel{font-size:9.5px;color:var(--ink-3);letter-spacing:.02em}
+.wstep:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+
+/* ---------- dossier ---------- */
+.dossier{display:flex;flex-direction:column;gap:20px;min-width:0}
+section.panel{background:var(--surface);border:1px solid var(--line);border-radius:3px;
+  padding:22px 24px 24px;box-shadow:var(--shadow)}
+.paneltop{display:flex;align-items:center;gap:9px;margin-bottom:18px}
+.dir{font-family:var(--mono);font-size:15px;color:var(--accent);line-height:1}
+.paneltitle{font-size:11px;letter-spacing:.2em;font-weight:600;color:var(--ink-3);text-transform:uppercase}
+.panelrule{flex:1;height:1px;background:var(--line-soft)}
+
+/* specimen */
+.specimen{display:flex;gap:26px;align-items:flex-start;flex-wrap:wrap}
+.plate{background:var(--cat-plate);border:1px solid var(--line);border-radius:3px;
+  padding:14px 20px 10px;color:var(--cat-line);flex:0 0 auto}
+.plate svg{display:block}
+.platecap{font-family:var(--mono);font-size:10px;color:var(--ink-3);text-align:center;
+  margin-top:6px;letter-spacing:.06em}
+.spec-info{flex:1;min-width:230px}
+.catname{font-family:var(--serif);font-weight:700;font-size:29px;line-height:1.25;margin:0 0 6px;
+  letter-spacing:.03em;text-wrap:balance}
+.catsub{font-size:12.5px;color:var(--ink-2);margin:0 0 16px;font-family:var(--mono);letter-spacing:.02em}
+.carry{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px}
+.carry li{display:flex;gap:9px;align-items:flex-start;font-size:13.5px;line-height:1.6;color:var(--ink-2)}
+.carry li b{color:var(--ink);font-weight:600}
+details.geno{margin-top:16px;border-top:1px solid var(--line-soft);padding-top:12px}
+details.geno summary{cursor:pointer;font-size:11.5px;color:var(--ink-3);letter-spacing:.04em;
+  list-style:none;display:flex;align-items:center;gap:6px;width:fit-content}
+details.geno summary::-webkit-details-marker{display:none}
+details.geno summary::before{content:"▸";font-family:var(--mono);transition:transform .15s;display:inline-block}
+details.geno[open] summary::before{transform:rotate(90deg)}
+details.geno summary:hover{color:var(--ink)}
+.gtable{display:grid;grid-template-columns:auto auto 1fr;gap:5px 14px;margin-top:12px;
+  font-size:12px;align-items:baseline}
+.gtable .gk{font-family:var(--mono);color:var(--ink-3);font-size:11px;letter-spacing:.04em}
+.gtable .gv{font-family:var(--mono);color:var(--accent);font-weight:500;white-space:nowrap}
+.gtable .gd{color:var(--ink-2);font-size:12px}
+
+/* assertions */
+.claims{display:flex;flex-direction:column;gap:0;margin:0 0 22px}
+.claim{display:flex;gap:14px;padding:13px 0;border-top:1px solid var(--line-soft);align-items:flex-start}
+.claim:first-child{border-top:none;padding-top:0}
+.badge{flex:0 0 auto;font-size:10px;letter-spacing:.12em;font-weight:600;padding:3px 7px;
+  border-radius:2px;margin-top:5px;white-space:nowrap;line-height:1.4}
+.badge.certain{background:var(--mark-certain);color:var(--bg)}
+.badge.maybe{background:none;color:var(--mark-maybe);border:1px solid var(--mark-maybe)}
+.claimtext{font-family:var(--serif);font-weight:600;font-size:16.5px;line-height:1.75;
+  letter-spacing:.01em;margin:0;text-wrap:pretty}
+.claimtext em{font-style:normal;color:var(--accent);border-bottom:2px solid var(--accent-soft);
+  padding-bottom:1px}
+.claimwhy{font-family:var(--sans);font-weight:400;font-size:12.5px;color:var(--ink-3);
+  margin:5px 0 0;line-height:1.65;letter-spacing:0}
+
+/* cat rows */
+.gallery{margin-top:6px}
+.gallabel{font-size:11.5px;color:var(--ink-3);letter-spacing:.05em;margin:0 0 9px;font-weight:600}
+.catrow{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.catchip{background:var(--cat-plate);border:1px solid var(--line-soft);border-radius:3px;
+  padding:7px 8px 5px;display:flex;flex-direction:column;align-items:center;gap:3px;
+  color:var(--cat-line);min-width:66px}
+.catchip .cname{font-size:10.5px;color:var(--ink-2);letter-spacing:.01em;line-height:1.3}
+.catchip.no{position:relative;opacity:.5}
+.catchip.no svg{filter:grayscale(1)}
+.catchip.no::after{content:"";position:absolute;inset:8px 6px auto 6px;height:0;
+  border-top:1.5px solid var(--ink-3);transform:rotate(-24deg);transform-origin:center;top:44%}
+.catchip.no .cname{color:var(--ink-3);text-decoration:line-through;text-decoration-thickness:1px}
+
+/* mate tabs */
+.tabs{display:flex;gap:4px;flex-wrap:wrap;margin:4px 0 16px}
+.tab{background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:6px 11px 6px 7px;
+  cursor:pointer;font-family:inherit;font-size:12.5px;color:var(--ink-2);display:flex;
+  align-items:center;gap:6px;transition:background .12s;line-height:1.4}
+.tab:hover{background:var(--sunken);color:var(--ink)}
+.tab[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.tab:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.tab svg{display:block;color:var(--cat-line)}
+.tab[aria-pressed="true"] svg{color:rgba(255,255,255,.45)}
+.mateout{border-left:2px solid var(--accent);padding-left:16px}
+.mateline{font-size:13.5px;color:var(--ink-2);margin:0 0 11px;line-height:1.7}
+.mateline b{color:var(--ink);font-weight:600}
+.nope{font-size:12.5px;color:var(--ink-3);margin:12px 0 0;line-height:1.7}
+.nope s{color:var(--ink-3);text-decoration-thickness:1px}
+
+footer.edge{margin-top:34px;padding-top:20px;border-top:1px solid var(--line);
+  font-size:12px;color:var(--ink-3);line-height:1.8;max-width:76ch}
+footer.edge b{color:var(--ink-2);font-weight:600}
+footer.edge code{font-family:var(--mono);font-size:11px;color:var(--accent)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+<header class="top">
+  <div class="brandline">
+    <h1>猫色溯源</h1>
+  </div>
+  <p class="tagline">描述你在街上看到的那只猫，这里推回它的<b>基因型</b>、它<b>爸妈可能长什么样</b>、它<b>孩子会长什么样</b>。所有结论只说「必然 / 可能 / 不可能」——不编概率。</p>
+  <div class="loci">
+    <span class="locus"><b>O</b> 橘色 · X连锁</span>
+    <span class="locus"><b>D</b> 稀释</span>
+    <span class="locus"><b>A</b> 虎斑开关</span>
+    <span class="locus"><b>S</b> 白斑</span>
+    <span class="locus"><b>L</b> 毛长</span>
+    <span class="locus">公猫 <b>162</b> 型 · 母猫 <b>243</b> 型 · 配对 <b>39,366</b> 组</span>
+  </div>
+</header>
+
+<main class="lab">
+  <aside class="console">
+    <p class="eyebrow">常见花色</p>
+    <div class="picks" id="picks"></div>
+    <p class="eyebrow">逐项描述</p>
+    <div id="controls"></div>
+  </aside>
+
+  <div class="dossier">
+    <section class="panel" id="p-self">
+      <div class="paneltop"><span class="dir">●</span><span class="paneltitle">这一只</span><span class="panelrule"></span></div>
+      <div id="self-body"></div>
+    </section>
+
+    <section class="panel" id="p-par">
+      <div class="paneltop"><span class="dir">↑</span><span class="paneltitle">上一代</span><span class="panelrule"></span></div>
+      <div id="par-body"></div>
+    </section>
+
+    <section class="panel" id="p-kid">
+      <div class="paneltop"><span class="dir">↓</span><span class="paneltitle">下一代</span><span class="panelrule"></span></div>
+      <div id="kid-body"></div>
+    </section>
+  </div>
+</main>
+
+<footer class="edge">
+  <b>这个模型的边界。</b>它只算五个位点（<code>O D A S L</code>），覆盖中国街猫绝大多数花色，但<b>对纯血猫会给出错误答案</b>——暹罗和布偶的重点色（<code>C</code> 位点）、英短金渐层的宽带基因、银虎斑的抑制基因、巧克力色（<code>B</code> 位点）都不在模型里。<br>
+  白斑（<code>S</code>）在教科书里被简化成三态，实际是半显性且变异极大：同样是 <code>Ss</code>，可以是一只白袜黑猫，也可以是一只奶牛猫。<b>「三花」和「玳瑁」的区别只是白斑多少，不是不同的基因。</b>所以白斑相关的反推结论天然比其他位点模糊——这是事实，不是 bug。<br>
+  猫图是占位示意，不是写实图鉴：同一个基因型每次都会 roll 出不同的白斑分布，因为<b>白斑的具体位置由胚胎期色素细胞迁移的随机性决定，基因只管量级</b>。
+</footer>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ============ 一、基因常量 ============ */
+var A_GENOS = { d:["DD","Dd","dd"], a:["AA","Aa","aa"], s:["SS","Ss","ss"], l:["LL","Ll","ll"] };
+var WHITE_S = { 0:["ss"], 1:["Ss"], 2:["Ss","SS"], 3:["Ss","SS"], 4:["SS"] };
+var WHITE_LABEL = ["无白","零星白","约一半","大部分","几乎全白"];
+var WHITE_FRAC  = [0, .18, .48, .72, .92];
+
+function norm(a,b){ if(a===b) return a+a; return a===a.toUpperCase() ? a+b : b+a; }
+function crossAuto(g1,g2){
+  var out={}, r=[];
+  for(var i=0;i<2;i++) for(var j=0;j<2;j++){ var k=norm(g1[i],g2[j]); if(!out[k]){out[k]=1;r.push(k);} }
+  return r;
+}
+function crossO(fx,mg){
+  var mAll = mg[0]===mg[1] ? [mg[0]] : [mg[0],mg[1]];
+  var F={}, fr=[];
+  for(var i=0;i<mAll.length;i++){ var k=norm(fx,mAll[i]); if(!F[k]){F[k]=1;fr.push(k);} }
+  return { M:mAll, F:fr };
+}
+function setOf(arr){ var s={}; for(var i=0;i<arr.length;i++) s[arr[i]]=1; return s; }
+function keys(o){ return Object.keys(o); }
+function inter(setObj, list){ for(var i=0;i<list.length;i++) if(setObj[list[i]]) return true; return false; }
+
+/* ============ 二、表型与命名 ============ */
+function seriesOf(o){ return (o==="O"||o==="OO") ? "orange" : (o==="Oo" ? "tortie" : "black"); }
+
+function baseName(series,dilute,tabby){
+  if(series==="orange") return dilute ? "奶油" : "橘";
+  if(series==="black"){
+    if(tabby) return dilute ? "蓝虎斑" : "狸花";
+    return dilute ? "蓝" : "黑";
+  }
+  if(tabby) return dilute ? "淡玳瑁虎斑" : "玳瑁虎斑";
+  return dilute ? "淡玳瑁" : "玳瑁";
+}
+function coatName(series,dilute,tabby,white){
+  var b = baseName(series,dilute,tabby);
+  if(series==="tortie") return white>=2 ? (dilute?"淡三花猫":"三花猫") : b+"猫";
+  if(white<=1) return b+"猫";
+  if(white===4) return "高白"+b+"猫";
+  if(series==="black" && !dilute && !tabby) return "奶牛猫";
+  return b+"白猫";
+}
+function specOf(o,d,a,s,white,long){
+  var series = seriesOf(o);
+  return { series:series, dilute:d==="dd", tabby: series==="orange" ? true : a!=="aa",
+           white:white, long:!!long };
+}
+
+/* ============ 三、SVG 画猫 ============ */
+var COAT = {
+  blackSolid:{ D:"#38332E", d:"#7F8990" },
+  blackGround:{ D:"#907B5B", d:"#9DA6AB" },
+  blackStripe:{ D:"#37312A", d:"#5D6971" },
+  orangeGround:{ D:"#E09E51", d:"#F0D5A8" },
+  orangeStripe:{ D:"#BC661F", d:"#D9AF77" },
+  white:"#F8F6F2", eye:"#DFB149", pupil:"#2A2622", nose:"#D6928E"
+};
+var GEO = {
+  earL:"M32,45 L25,12 L53,32 Z", earR:"M88,45 L95,12 L67,32 Z",
+  body:"M36,64 C25,80 23,114 27,126 L93,126 C97,114 95,80 84,64 Z",
+  tail:"M90,126 C119,124 121,86 103,77 C111,92 109,115 87,117 Z",
+  head:{cx:60,cy:48,rx:31,ry:27}
+};
+var UID=0;
+function mulberry(seed){ var t=seed>>>0; return function(){ t+=0x6D2B79F5; var r=t; r=Math.imul(r^r>>>15,r|1); r^=r+Math.imul(r^r>>>7,r|61); return ((r^r>>>14)>>>0)/4294967296; }; }
+function shapes(fill,attr){
+  return '<path d="'+GEO.tail+'" fill="'+fill+'" '+attr+'/>'
+       + '<path d="'+GEO.earL+'" fill="'+fill+'" '+attr+'/>'
+       + '<path d="'+GEO.earR+'" fill="'+fill+'" '+attr+'/>'
+       + '<path d="'+GEO.body+'" fill="'+fill+'" '+attr+'/>'
+       + '<ellipse cx="'+GEO.head.cx+'" cy="'+GEO.head.cy+'" rx="'+GEO.head.rx+'" ry="'+GEO.head.ry+'" fill="'+fill+'" '+attr+'/>';
+}
+function waveTop(y,rng){
+  var d="M-8,140 L-8,"+y.toFixed(1), x=-8;
+  while(x<132){ var nx=x+18+rng()*16, cy=y+(rng()*16-8), ey=y+(rng()*9-4.5);
+    d+=" Q"+((x+nx)/2).toFixed(1)+","+cy.toFixed(1)+" "+nx.toFixed(1)+","+ey.toFixed(1); x=nx; }
+  return d+" L140,140 Z";
+}
+function catSVG(spec,seed,size){
+  var id="c"+(++UID), rng=mulberry((seed||1)*2654435761%2147483647);
+  var dk = spec.dilute?"d":"D", ground, stripe=null;
+  if(spec.series==="orange"){ ground=COAT.orangeGround[dk]; stripe=COAT.orangeStripe[dk]; }
+  else if(spec.series==="black"){
+    if(spec.tabby){ ground=COAT.blackGround[dk]; stripe=COAT.blackStripe[dk]; }
+    else ground=COAT.blackSolid[dk];
+  } else {
+    ground = spec.tabby ? COAT.blackGround[dk] : COAT.blackSolid[dk];
+    stripe = spec.tabby ? COAT.blackStripe[dk] : null;
+  }
+  var s='<svg viewBox="0 0 132 134" width="'+size+'" height="'+Math.round(size*134/132)+'" role="img" aria-label="'+coatName(spec.series,spec.dilute,spec.tabby,spec.white)+'">';
+  s+='<defs><clipPath id="clip'+id+'">'+shapes("#000","")+'</clipPath>';
+  if(spec.long) s+='<filter id="f'+id+'" x="-25%" y="-25%" width="150%" height="150%"><feTurbulence type="fractalNoise" baseFrequency="0.075" numOctaves="2" seed="'+(seed%97)+'" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="8" xChannelSelector="R" yChannelSelector="G"/></filter>';
+  s+='</defs>';
+  if(spec.long) s+='<g filter="url(#f'+id+')" opacity=".85" transform="translate(60,72) scale(1.10) translate(-60,-72)">'+shapes(ground,"")+'</g>';
+  s+='<g stroke="currentColor" stroke-width="1.4" stroke-linejoin="round">'+shapes(ground,"")+'</g>';
+  s+='<g clip-path="url(#clip'+id+')">';
+  if(spec.series==="tortie"){
+    var oc=COAT.orangeGround[dk];
+    for(var i=0;i<9;i++){
+      var cx=14+rng()*104, cy=14+rng()*112, r=9+rng()*15;
+      s+='<ellipse cx="'+cx.toFixed(1)+'" cy="'+cy.toFixed(1)+'" rx="'+r.toFixed(1)+'" ry="'+(r*(.65+rng()*.7)).toFixed(1)+'" fill="'+oc+'" transform="rotate('+(rng()*180).toFixed(0)+' '+cx.toFixed(1)+' '+cy.toFixed(1)+')"/>';
+    }
+  }
+  if(stripe){
+    var st = spec.series==="tortie" ? 'stroke="rgba(30,24,18,.42)"' : 'stroke="'+stripe+'"';
+    s+='<g fill="none" '+st+' stroke-width="4.6" stroke-linecap="round">'
+     + '<path d="M25,68 Q60,80 95,68"/><path d="M24,83 Q60,95 96,83"/>'
+     + '<path d="M24,98 Q60,110 96,98"/><path d="M26,113 Q60,124 94,113"/>'
+     + '<path d="M46,25 Q51,35 47,44"/><path d="M60,21 Q60,33 60,40"/><path d="M74,25 Q69,35 73,44"/>'
+     + '<path d="M96,88 L114,92"/><path d="M98,104 L116,104"/></g>';
+  }
+  if(spec.white>0){
+    if(spec.white===1){
+      s+='<g fill="'+COAT.white+'"><ellipse cx="60" cy="90" rx="13" ry="17"/>'
+       + '<rect x="30" y="112" width="19" height="16" rx="7"/><rect x="71" y="112" width="19" height="16" rx="7"/>'
+       + '<ellipse cx="60" cy="66" rx="9" ry="6"/></g>';
+    } else {
+      var y = 132 - WHITE_FRAC[spec.white]*132;
+      s+='<path d="'+waveTop(y,rng)+'" fill="'+COAT.white+'"/>';
+      if(spec.white>=3) s+='<path d="M53,16 Q60,44 55,64 L66,64 Q62,42 68,16 Z" fill="'+COAT.white+'"/>';
+    }
+  }
+  s+='</g>';
+  s+='<g><ellipse cx="48.5" cy="49" rx="6.2" ry="7" fill="'+COAT.eye+'"/><ellipse cx="71.5" cy="49" rx="6.2" ry="7" fill="'+COAT.eye+'"/>'
+   + '<ellipse cx="48.5" cy="49" rx="1.9" ry="6" fill="'+COAT.pupil+'"/><ellipse cx="71.5" cy="49" rx="1.9" ry="6" fill="'+COAT.pupil+'"/>'
+   + '<path d="M56,60 L64,60 L60,64.5 Z" fill="'+COAT.nose+'"/></g>';
+  return s+'</svg>';
+}
+
+/* ============ 四、常见花色表 ============ */
+var CANON = [
+  {name:"黑猫",     series:"black",  d:["DD","Dd"], a:["aa"],      white:0},
+  {name:"狸花猫",   series:"black",  d:["DD","Dd"], a:["AA","Aa"], white:0},
+  {name:"蓝猫",     series:"black",  d:["dd"],      a:["aa"],      white:0},
+  {name:"蓝虎斑猫", series:"black",  d:["dd"],      a:["AA","Aa"], white:0},
+  {name:"橘猫",     series:"orange", d:["DD","Dd"], a:null,        white:0},
+  {name:"奶油猫",   series:"orange", d:["dd"],      a:null,        white:0},
+  {name:"玳瑁猫",   series:"tortie", d:["DD","Dd"], a:["aa"],      white:0},
+  {name:"三花猫",   series:"tortie", d:["DD","Dd"], a:["aa"],      white:2},
+  {name:"奶牛猫",   series:"black",  d:["DD","Dd"], a:["aa"],      white:2},
+  {name:"蓝白猫",   series:"black",  d:["dd"],      a:["aa"],      white:2},
+  {name:"橘白猫",   series:"orange", d:["DD","Dd"], a:null,        white:2},
+  {name:"狸花白猫", series:"black",  d:["DD","Dd"], a:["AA","Aa"], white:2}
+];
+function canonSpec(c){
+  return { series:c.series, dilute:c.d[0]==="dd", tabby: c.a ? c.a[0]!=="aa" : true, white:c.white, long:false };
+}
+function oForSeries(series,sex){
+  if(sex==="M") return series==="orange"?"O":(series==="black"?"o":null);
+  return series==="orange"?"OO":(series==="black"?"oo":"Oo");
+}
+
+/* ============ 五、约束求解 ============ */
+function buildTarget(ui){
+  var t={ sexes:[], o:{M:{},F:{}}, d:{}, a:{}, s:{}, l:{} }, i;
+  var sexes = ui.series==="tortie" ? ["F"] : (ui.sex==="?" ? ["M","F"] : [ui.sex]);
+  t.sexes = sexes;
+  for(i=0;i<sexes.length;i++){
+    var g = oForSeries(ui.series, sexes[i]);
+    if(g) t.o[sexes[i]][g]=1;
+  }
+  (ui.dilute?["dd"]:["DD","Dd"]).forEach(function(x){t.d[x]=1;});
+  (ui.series==="orange" ? A_GENOS.a : (ui.tabby?["AA","Aa"]:["aa"])).forEach(function(x){t.a[x]=1;});
+  WHITE_S[ui.white].forEach(function(x){t.s[x]=1;});
+  (ui.long?["ll"]:["LL","Ll"]).forEach(function(x){t.l[x]=1;});
+  return t;
+}
+/* 位点独立 + 目标是乘积集 ⇒ 父母配对的合法性可逐位点分解，与穷举 39,366 组完全等价 */
+function solveParents(t){
+  var res={pairs:{},f:{},m:{}}, L=["d","a","s","l"], i,j,k;
+  for(k=0;k<L.length;k++){
+    var loc=L[k], list=A_GENOS[loc], pairs=[], fs={}, ms={};
+    for(i=0;i<3;i++) for(j=0;j<3;j++){
+      var kids=crossAuto(list[i],list[j]), ok=false;
+      for(var q=0;q<kids.length;q++) if(t[loc][kids[q]]){ ok=true; break; }
+      if(ok){ pairs.push([list[i],list[j]]); fs[list[i]]=1; ms[list[j]]=1; }
+    }
+    res.pairs[loc]=pairs; res.f[loc]=fs; res.m[loc]=ms;
+  }
+  var oPairs=[], fo={}, mo={};
+  for(i=0;i<2;i++) for(j=0;j<3;j++){
+    var fx=["O","o"][i], mg=["OO","Oo","oo"][j], kid=crossO(fx,mg), ok2=false;
+    for(var z=0;z<t.sexes.length;z++){
+      var sx=t.sexes[z], cand=sx==="M"?kid.M:kid.F;
+      for(var y=0;y<cand.length;y++) if(t.o[sx][cand[y]]){ ok2=true; break; }
+      if(ok2) break;
+    }
+    if(ok2){ oPairs.push([fx,mg]); fo[fx]=1; mo[mg]=1; }
+  }
+  res.pairs.o=oPairs; res.f.o=fo; res.m.o=mo;
+  return res;
+}
+function hasPair(pairs,a,b){ for(var i=0;i<pairs.length;i++) if(pairs[i][0]===a&&pairs[i][1]===b) return true; return false; }
+function canonAsParent(c,role,res){
+  var sex = role==="father"?"M":"F";
+  var o = oForSeries(c.series,sex);
+  if(!o || !(role==="father"?res.f.o:res.m.o)[o]) return false;
+  var side = role==="father"?res.f:res.m;
+  if(!inter(side.d,c.d)) return false;
+  if(!inter(side.a, c.a||A_GENOS.a)) return false;
+  if(!inter(side.s, WHITE_S[c.white])) return false;
+  return true;
+}
+
+/* ============ 六、断言 ============ */
+function C(level,text,why){ return {level:level,text:text,why:why||""}; }
+
+function parentClaims(ui,t,res){
+  var out=[], branches=[];
+  for(var i=0;i<t.sexes.length;i++){
+    var sx=t.sexes[i], og=keys(t.o[sx])[0];
+    branches.push({sex:sx,o:og});
+  }
+  var multi = branches.length>1;
+  for(var b=0;b<branches.length;b++){
+    var pre = multi ? (branches[b].sex==="M" ? "如果它是公猫，" : "如果它是母猫，") : "";
+    var o=branches[b].o, sx=branches[b].sex, txt, why;
+    if(sx==="M" && o==="O"){
+      txt = pre+"<em>它妈妈身上一定带橘色</em>——只可能是橘猫、奶油猫、玳瑁或三花。而<em>它爸爸的花色完全不受限制</em>，什么色都行。";
+      why = "橘色基因长在 X 染色体上。公猫只有一条 X，只能来自妈妈；爸爸给的是 Y，不携带任何毛色信息。";
+    } else if(sx==="M" && o==="o"){
+      txt = pre+"<em>它妈妈一定带着非橘的等位基因</em>——不可能是纯橘猫或纯奶油猫，但完全可以是玳瑁或三花。<em>它爸爸的花色不受任何限制</em>。";
+      why = "它唯一那条 X 上带的是非橘等位基因，只能来自妈妈。爸爸给的 Y 不携带毛色信息。";
+    } else if(sx==="F" && o==="OO"){
+      txt = pre+"<em>它爸爸必然是橘色系</em>——橘猫或奶油猫，没有别的可能。妈妈也一定带橘色。";
+      why = "母猫两条 X，一条来自爸爸一条来自妈妈。两条都带橘色，说明爸爸那条 X 就带橘——而公猫只有一条 X，它自己就必然显橘。";
+    } else if(sx==="F" && o==="Oo"){
+      txt = pre+"<em>爸妈必然一方带橘、一方带非橘</em>：爸爸要是橘猫，妈妈就一定带非橘；爸爸要不是橘猫，妈妈就一定带橘色。";
+      why = "玳瑁和三花是两条 X 一橘一非橘的结果，两条分别来自父母。这也是三花几乎只能是母猫的原因——公猫只有一条 X，装不下两种颜色。";
+    } else if(sx==="F" && o==="oo"){
+      txt = pre+"<em>它爸爸绝不可能是橘猫或奶油猫</em>。妈妈也一定带着非橘等位基因。";
+      why = "它两条 X 都不带橘色，其中一条来自爸爸。爸爸唯一的那条 X 若带橘，它自己就是橘猫，女儿也就不会是这样。";
+    }
+    if(txt) out.push(C("certain",txt,why));
+  }
+  if(!res.f.d["DD"] && !res.m.d["DD"])
+    out.push(C("certain","<em>爸妈双方都携带稀释基因</em>——哪怕它们自己看上去是浓色的黑猫或橘猫。",
+      "稀释是隐性的：只有从双方各拿到一份 d，颜色才会从黑变蓝、从橘变奶油。"));
+  if(!res.f.l["LL"] && !res.m.l["LL"])
+    out.push(C("certain","<em>爸妈双方都携带长毛基因</em>——它们自己可能都是短毛。",
+      "长毛是隐性的，必须双份才显现。所以两只短毛猫完全可能生出长毛后代。"));
+  if(!res.f.a["AA"] && !res.m.a["AA"] && ui.series!=="orange")
+    out.push(C("certain","<em>爸妈双方都携带非虎斑基因</em>，即使它们自己是狸花。",
+      "纯色（无虎斑纹）是隐性的 aa，两份 a 分别来自父母。"));
+  if(ui.white===0){
+    if(!res.f.s["SS"] && !res.m.s["SS"])
+      out.push(C("certain","<em>爸妈都不可能是几乎全白的猫</em>。",""));
+  } else {
+    if(!hasPair(res.pairs.s,"ss","ss"))
+      out.push(C("certain","<em>爸妈至少有一方身上带白</em>。","白斑基因 S 是显性的，凭空长不出来。"));
+  }
+  if(!ui.dilute && !hasPair(res.pairs.d,"dd","dd"))
+    out.push(C("certain","爸妈<em>至少有一方是浓色</em>——两只蓝猫生不出黑猫。",""));
+  if(!ui.long && !hasPair(res.pairs.l,"ll","ll"))
+    out.push(C("certain","爸妈<em>至少有一方是短毛</em>——两只长毛猫生不出短毛猫。",""));
+  return out;
+}
+
+function kidClaims(ui,t){
+  var out=[], multi=t.sexes.length>1, i;
+  for(i=0;i<t.sexes.length;i++){
+    var sx=t.sexes[i], o=keys(t.o[sx])[0];
+    var pre = multi ? (sx==="M"?"如果它是公猫：":"如果它是母猫：") : "";
+    var txt,why;
+    if(sx==="M"&&o==="O"){
+      txt=pre+"它的<em>女儿会全部带橘色</em>——橘猫、玳瑁或三花，一只都跑不掉。而它<em>儿子橘不橘，跟它毫无关系</em>，完全由母方决定。";
+      why="它唯一那条带橘的 X 必然传给每一个女儿；儿子拿到的是它的 Y。";
+    } else if(sx==="M"&&o==="o"){
+      txt=pre+"它的<em>女儿永远不可能是纯橘猫</em>，最多是玳瑁或三花。儿子的颜色则完全由母方决定。";
+      why="女儿必得它那条非橘的 X，另一条来自妈妈——两条都带橘才会是纯橘猫。";
+    } else if(sx==="F"&&o==="OO"){
+      txt=pre+"它的<em>儿子全部是橘色系</em>——橘猫或奶油猫，一个例外都没有。女儿也一定带橘色。";
+      why="儿子唯一的 X 必来自它，而它两条 X 都带橘。";
+    } else if(sx==="F"&&o==="Oo"){
+      txt=pre+"它的<em>儿子会分成两拨</em>：一部分橘、一部分不橘。这正是它身上两种颜色各传一半的直接结果。";
+      why="它一条 X 带橘、一条不带，儿子随机拿走其中一条。";
+    } else if(sx==="F"&&o==="oo"){
+      txt=pre+"它的<em>儿子永远不可能是橘猫</em>。女儿橘不橘，全看爸爸。";
+      why="儿子唯一的 X 来自它，而它两条 X 都不带橘。";
+    }
+    if(txt) out.push(C("certain",txt,why));
+  }
+  if(ui.long) out.push(C("certain","它的<em>每个孩子都会拿到一份长毛基因</em>，即使孩子自己是短毛。",""));
+  if(ui.dilute) out.push(C("certain","它的<em>每个孩子都会拿到一份稀释基因</em>。",""));
+  if(ui.white===0) out.push(C("certain","它自己不带白斑基因，孩子<em>有没有白，完全取决于对方</em>。",""));
+  if(!ui.tabby && ui.series!=="orange") out.push(C("certain","它的<em>每个孩子都会拿到一份非虎斑基因</em>。",""));
+  return out;
+}
+
+/* ============ 七、配偶推演 ============ */
+var MATES = [
+  {name:"黑猫",   series:"black",  d:["DD","Dd"], a:["aa"],      white:0},
+  {name:"狸花猫", series:"black",  d:["DD","Dd"], a:["AA","Aa"], white:0},
+  {name:"橘猫",   series:"orange", d:["DD","Dd"], a:null,        white:0},
+  {name:"三花猫", series:"tortie", d:["DD","Dd"], a:["aa"],      white:2},
+  {name:"奶牛猫", series:"black",  d:["DD","Dd"], a:["aa"],      white:2}
+];
+function mateList(t){
+  var canF = t.sexes.indexOf("M")>=0;   // 猫是公 → 配偶是母 → 三花可行
+  return canF ? [MATES[0],MATES[1],MATES[2],MATES[3]] : [MATES[0],MATES[1],MATES[2],MATES[4]];
+}
+function unionCross(setA,listB){
+  var out={}, ka=keys(setA), i,j,k;
+  for(i=0;i<ka.length;i++) for(j=0;j<listB.length;j++){
+    var kids=crossAuto(ka[i],listB[j]);
+    for(k=0;k<kids.length;k++) out[kids[k]]=1;
+  }
+  return out;
+}
+function childrenWith(t,mate){
+  var kidO={M:{},F:{}}, i,j,z;
+  for(i=0;i<t.sexes.length;i++){
+    var catSex=t.sexes[i], mateSex = catSex==="M"?"F":"M";
+    var mateO = oForSeries(mate.series, mateSex);
+    if(!mateO) continue;
+    var catO = keys(t.o[catSex]);
+    for(j=0;j<catO.length;j++){
+      var fx = catSex==="M" ? catO[j] : mateO;
+      var mg = catSex==="M" ? mateO   : catO[j];
+      var r = crossO(fx,mg);
+      for(z=0;z<r.M.length;z++) kidO.M[r.M[z]]=1;
+      for(z=0;z<r.F.length;z++) kidO.F[r.F[z]]=1;
+    }
+  }
+  if(!keys(kidO.M).length && !keys(kidO.F).length) return null;
+  var kd=unionCross(t.d,mate.d),
+      ka=unionCross(t.a, mate.a||A_GENOS.a),
+      ks=unionCross(t.s, WHITE_S[mate.white]),
+      kl=unionCross(t.l,["LL","Ll"]);
+  var names={}, order=[], SW={ss:0,Ss:2,SS:3};
+  ["M","F"].forEach(function(sx){
+    keys(kidO[sx]).forEach(function(o){
+      keys(kd).forEach(function(d){ keys(ka).forEach(function(a){ keys(ks).forEach(function(s){
+        var sp=specOf(o,d,a,s,SW[s],false), n=coatName(sp.series,sp.dilute,sp.tabby,sp.white);
+        if(!names[n]){ names[n]=sp; order.push(n); }
+      });});});
+    });
+  });
+  var longPossible = !!kl["ll"];
+  var nope=[];
+  CANON.forEach(function(c){ if(!names[c.name]) nope.push(c.name); });
+  return { names:order, specs:names, longPossible:longPossible, nope:nope };
+}
+
+/* ============ 八、界面 ============ */
+var QUICK = [
+  {label:"狸花",   ui:{series:"black", dilute:false,tabby:true, white:0,long:false,sex:"?"}},
+  {label:"黑猫",   ui:{series:"black", dilute:false,tabby:false,white:0,long:false,sex:"?"}},
+  {label:"橘猫",   ui:{series:"orange",dilute:false,tabby:true, white:0,long:false,sex:"?"}},
+  {label:"长毛橘", ui:{series:"orange",dilute:false,tabby:true, white:0,long:true, sex:"M"}},
+  {label:"奶牛",   ui:{series:"black", dilute:false,tabby:false,white:2,long:false,sex:"?"}},
+  {label:"三花",   ui:{series:"tortie",dilute:false,tabby:false,white:2,long:false,sex:"F"}},
+  {label:"玳瑁",   ui:{series:"tortie",dilute:false,tabby:false,white:0,long:false,sex:"F"}},
+  {label:"蓝猫",   ui:{series:"black", dilute:true, tabby:false,white:0,long:false,sex:"?"}},
+  {label:"蓝白",   ui:{series:"black", dilute:true, tabby:false,white:2,long:false,sex:"?"}},
+  {label:"橘白",   ui:{series:"orange",dilute:false,tabby:true, white:2,long:false,sex:"?"}},
+  {label:"奶油",   ui:{series:"orange",dilute:true, tabby:true, white:0,long:false,sex:"?"}},
+  {label:"狸花白", ui:{series:"black", dilute:false,tabby:true, white:2,long:false,sex:"?"}}
+];
+
+var ui = {series:"orange", dilute:false, tabby:true, white:0, long:true, sex:"M"};
+var mateIdx = 0, seed = 7;
+var $ = function(id){ return document.getElementById(id); };
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+
+function specFromUI(){ return {series:ui.series,dilute:ui.dilute,tabby:ui.series==="orange"?true:ui.tabby,white:ui.white,long:ui.long}; }
+
+function renderPicks(){
+  var h="";
+  QUICK.forEach(function(q,i){
+    var sp={series:q.ui.series,dilute:q.ui.dilute,tabby:q.ui.series==="orange"?true:q.ui.tabby,white:q.ui.white,long:q.ui.long};
+    var on = q.ui.series===ui.series && q.ui.dilute===ui.dilute && q.ui.white===ui.white &&
+             q.ui.long===ui.long && (q.ui.series==="orange"||q.ui.tabby===ui.tabby);
+    h+='<button class="pick" data-q="'+i+'" aria-pressed="'+(on?"true":"false")+'" style="color:var(--cat-line)">'
+      + catSVG(sp,i+3,34)+'<span>'+q.label+'</span></button>';
+  });
+  $("picks").innerHTML=h;
+}
+function segRow(label,hint,name,opts,cur,disabled){
+  var h='<div class="row"><div class="rowhead"><span class="rowlabel">'+label+'</span>'
+      + (hint?'<span class="rowhint">'+hint+'</span>':'')+'</div><div class="seg">';
+  opts.forEach(function(o){
+    h+='<button data-set="'+name+'" data-val="'+o.v+'" aria-pressed="'+(String(cur)===String(o.v)?"true":"false")+'"'
+     + (disabled?" disabled":"")+'>'+o.t+'</button>';
+  });
+  return h+'</div>';
+}
+function renderControls(){
+  var h="";
+  h+=segRow("底色系","决定色素类型","series",
+      [{v:"black",t:"黑色系"},{v:"orange",t:"橘色系"},{v:"tortie",t:"玳瑁"}],ui.series)+"</div>";
+  h+=segRow("浓淡","淡色＝黑变灰蓝<br>橘变奶油","dilute",
+      [{v:"0",t:"浓色"},{v:"1",t:"淡色"}],ui.dilute?"1":"0")+"</div>";
+
+  var orange = ui.series==="orange";
+  h+=segRow(orange?"虎斑纹":(ui.series==="tortie"?"黑色部分有虎斑纹吗":"有虎斑纹吗"),"","tabby",
+      [{v:"1",t:"有"},{v:"0",t:"无"}], orange?"1":(ui.tabby?"1":"0"), orange);
+  if(orange) h+='<p class="note">橘猫必然带虎斑纹。红色素无法被「纯色」基因关掉，所以世界上不存在纯色的橘猫——这一项对它没有意义。</p>';
+  h+="</div>";
+
+  h+='<div class="row"><div class="rowhead"><span class="rowlabel">白色占多少</span>'
+   + '<span class="rowhint">位置随机，基因只管量级</span></div><div class="whitescale">';
+  for(var w=0;w<5;w++){
+    h+='<button class="wstep" data-set="white" data-val="'+w+'" aria-pressed="'+(ui.white===w?"true":"false")+'">'
+     + '<span class="wbar"><i style="height:'+Math.round(WHITE_FRAC[w]*100)+'%"></i></span>'
+     + '<span class="wlabel">'+WHITE_LABEL[w]+'</span></button>';
+  }
+  h+='</div></div>';
+
+  h+=segRow("毛长","","long",[{v:"0",t:"短毛"},{v:"1",t:"长毛"}],ui.long?"1":"0")+"</div>";
+
+  var lockSex = ui.series==="tortie";
+  h+=segRow("性别","","sex",[{v:"M",t:"公"},{v:"F",t:"母"},{v:"?",t:"不知道"}],
+      lockSex?"F":ui.sex, lockSex);
+  if(lockSex) h+='<p class="note">玳瑁和三花<b>几乎必然是母猫</b>——两种毛色需要两条 X 染色体才装得下。极少数例外是 XXY 的克氏综合征公猫，通常不育。已自动锁定为母猫。</p>';
+  h+="</div>";
+  $("controls").innerHTML=h;
+}
+
+function renderSelf(t){
+  var sp=specFromUI();
+  var name=(ui.long?"长毛":"短毛")+coatName(sp.series,sp.dilute,sp.tabby,sp.white);
+  var sexTxt = ui.series==="tortie" ? "母猫" : (ui.sex==="M"?"公猫":ui.sex==="F"?"母猫":"性别未知");
+  var carry=[];
+  if(ui.long) carry.push(["它身上藏着<b>两份长毛基因</b>","长毛是隐性的，必须双份才显现"]);
+  else carry.push(["它<b>可能悄悄携带长毛基因</b>","短毛是显性的，看不出来它是不是携带者"]);
+  if(ui.dilute) carry.push(["它<b>一定是两份稀释基因</b>","所以颜色从黑变蓝、从橘变奶油"]);
+  else carry.push(["它<b>可能携带稀释基因</b>","浓色是显性的，藏得住一份 d"]);
+  if(ui.white===0) carry.push(["它<b>完全不带白斑基因</b>","一点白都没有，说明两份都是无白斑等位基因"]);
+  else carry.push(["它<b>至少带一份白斑基因</b>","白斑是显性的，有白就一定带 S"]);
+  if(ui.series==="orange") carry.push(["它的<b>虎斑基因状态无法判断</b>","橘猫无论带不带纯色基因，看上去都有虎斑纹"]);
+
+  var oRow = ui.series==="tortie" ? "X<sup>O</sup>X<sup>o</sup>"
+    : ui.series==="orange" ? (ui.sex==="M"?"X<sup>O</sup>Y":ui.sex==="F"?"X<sup>O</sup>X<sup>O</sup>":"X<sup>O</sup>Y 或 X<sup>O</sup>X<sup>O</sup>")
+    : (ui.sex==="M"?"X<sup>o</sup>Y":ui.sex==="F"?"X<sup>o</sup>X<sup>o</sup>":"X<sup>o</sup>Y 或 X<sup>o</sup>X<sup>o</sup>");
+  var g=[
+    ["O","橘色 · X连锁",oRow,ui.series==="tortie"?"一橘一非橘，所以两色相间":(ui.series==="orange"?"带橘色等位基因":"不带橘色等位基因")],
+    ["D","稀释",ui.dilute?"d/d":"D/D 或 D/d",ui.dilute?"两份稀释，颜色被冲淡":"至少一份浓色"],
+    ["A","虎斑开关",ui.series==="orange"?"无法判断":(ui.tabby?"A/A 或 A/a":"a/a"),ui.series==="orange"?"被橘色掩盖":(ui.tabby?"至少一份虎斑基因":"两份纯色基因")],
+    ["S","白斑",WHITE_S[ui.white].map(function(x){return x[0]+"/"+x[1];}).join(" 或 "),WHITE_LABEL[ui.white]],
+    ["L","毛长",ui.long?"l/l":"L/L 或 L/l",ui.long?"两份长毛基因":"至少一份短毛基因"]
+  ];
+  var gh="";
+  g.forEach(function(r){ gh+='<span class="gk">'+r[0]+' '+r[1]+'</span><span class="gv">'+r[2]+'</span><span class="gd">'+r[3]+'</span>'; });
+
+  var h='<div class="specimen"><div class="plate">'+catSVG(sp,seed,190)
+   + '<div class="platecap">'+WHITE_LABEL[ui.white]+' · seed '+seed+'</div></div>'
+   + '<div class="spec-info"><p class="catname">'+name+'</p>'
+   + '<p class="catsub">'+sexTxt+' · '+(sp.dilute?"淡色":"浓色")+' · '+(sp.tabby?"有虎斑纹":"无虎斑纹")+' · '+WHITE_LABEL[ui.white]+'</p>'
+   + '<ul class="carry">';
+  carry.forEach(function(c){ h+='<li><span>'+c[0]+'<span style="color:var(--ink-3)"> —— '+c[1]+'</span></span></li>'; });
+  h+='</ul><details class="geno"><summary>展开基因型符号</summary><div class="gtable">'+gh+'</div></details></div></div>';
+  $("self-body").innerHTML=h;
+}
+
+function catChip(spec,name,no,sd){
+  return '<div class="catchip'+(no?" no":"")+'">'+catSVG(spec,sd,46)+'<span class="cname">'+name+'</span></div>';
+}
+function renderClaims(list){
+  var h='<div class="claims">';
+  list.forEach(function(c){
+    h+='<div class="claim"><span class="badge '+(c.level==="certain"?"certain":"maybe")+'">'
+     + (c.level==="certain"?"必然":"可能")+'</span><div><p class="claimtext">'+c.text+'</p>'
+     + (c.why?'<p class="claimwhy">'+c.why+'</p>':'')+'</div></div>';
+  });
+  return h+'</div>';
+}
+function renderParents(t,res){
+  var h=renderClaims(parentClaims(ui,t,res));
+  var roles=[["mother","它妈妈可能是这些"],["father","它爸爸可能是这些"]];
+  h+='<div class="gallery">';
+  roles.forEach(function(r,ri){
+    var yes=[],no=[],sd=11;
+    CANON.forEach(function(c,ci){
+      var ok=canonAsParent(c,r[0],res);
+      (ok?yes:no).push(catChip(canonSpec(c),c.name,!ok,ci*7+ri*3+5));
+    });
+    h+='<p class="gallabel">'+r[1]+'</p><div class="catrow">'+yes.slice(0,6).join("")+'</div>';
+    if(no.length){
+      h+='<p class="gallabel" style="color:var(--ink-3)">'+(r[0]==="mother"?"这些不可能是它妈妈":"这些不可能是它爸爸")+'</p>'
+       + '<div class="catrow">'+no.slice(0,5).join("")+'</div>';
+    }
+  });
+  h+='</div><p class="nope">公猫不可能是玳瑁或三花，所以这两项从「爸爸」里直接排除了——不是算出来的结论，是 X 染色体只有一条的必然结果。</p>';
+  $("par-body").innerHTML=h;
+}
+function renderKids(t){
+  var h=renderClaims(kidClaims(ui,t));
+  var list=mateList(t);
+  if(mateIdx>=list.length) mateIdx=0;
+  h+='<p class="gallabel">要是让它配一只……</p><div class="tabs">';
+  list.forEach(function(m,i){
+    h+='<button class="tab" data-mate="'+i+'" aria-pressed="'+(i===mateIdx?"true":"false")+'">'
+     + catSVG(canonSpec(m),i*13+2,26)+m.name+'</button>';
+  });
+  h+='</div>';
+  var r=childrenWith(t,list[mateIdx]);
+  if(!r){ h+='<p class="mateline">这个组合不成立。</p>'; }
+  else{
+    h+='<div class="mateout"><p class="mateline">和一只<b>'+list[mateIdx].name+'</b>配，孩子可能出现这 <b>'+r.names.length+'</b> 种花色'
+      + (r.longPossible?'（长毛短毛都可能）':'（都会是短毛）')+'：</p><div class="catrow">';
+    r.names.slice(0,14).forEach(function(n,i){ h+=catChip(r.specs[n],n,false,i*5+31); });
+    h+='</div>';
+    if(r.nope.length) h+='<p class="nope">不会出现：'+r.nope.map(function(n){return "<s>"+n+"</s>";}).join(" ")+'</p>';
+    h+='</div>';
+  }
+  $("kid-body").innerHTML=h;
+}
+
+function render(){
+  if(ui.series==="tortie") ui.sex="F";
+  if(ui.series==="orange") ui.tabby=true;
+  var t=buildTarget(ui), res=solveParents(t);
+  renderPicks(); renderControls(); renderSelf(t); renderParents(t,res); renderKids(t);
+}
+
+document.addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b) return;
+  if(b.dataset.q!==undefined){
+    var q=QUICK[+b.dataset.q]; for(var k in q.ui) ui[k]=q.ui[k]; seed=(seed*7+13)%9973; render(); return;
+  }
+  if(b.dataset.mate!==undefined){ mateIdx=+b.dataset.mate; var t=buildTarget(ui); renderKids(t); return; }
+  var set=b.dataset.set; if(!set) return;
+  var v=b.dataset.val;
+  if(set==="series") ui.series=v;
+  else if(set==="dilute") ui.dilute=v==="1";
+  else if(set==="tabby") ui.tabby=v==="1";
+  else if(set==="white") ui.white=+v;
+  else if(set==="long") ui.long=v==="1";
+  else if(set==="sex") ui.sex=v;
+  render();
+});
+render();
+})();
+</script>
