@@ -11,7 +11,11 @@
 ## 当前状态
 
 阶段 1A / 1B 完成：已迁移为 Vite + React + TypeScript 工程，遗传引擎抽为
-零 DOM 依赖的纯模块并有全量测试覆盖；spec 第 12 节的 7 项缺陷已修复。
+零 DOM 依赖的纯模块并有全量测试覆盖；[总体规划](docs/plans/2026-09-06-cat-color-v2-design.md)第 12 节的 7 项缺陷已修复。
+
+规划文档入口见 [docs/plans/README.md](docs/plans/README.md)。
+
+单猫视觉样板：启动开发服务后访问 `/?preview=cat`，可试用底色、浓淡、虎斑、白斑和毛长控件。不带参数仍进入当前主界面；样板尚未接入亲缘节点。构建产物也支持在 `index.html` 后加 `?preview=cat` 打开样板。
 
 - 环境：Node 24 LTS（见 `.nvmrc`）
 - 开发：`pnpm run dev`
