@@ -76,10 +76,10 @@
 mkdir -p legacy src tests tools
 git mv index.html legacy/index.legacy.html
 
-# 钉死 Node 版本
+# 钉死 Node 版本——失败必须中断，不能带着别的版本往下装依赖
 echo "24" > .nvmrc
-nvm use 24 || echo "请先 nvm install 24"
-node -v   # 必须是 v24.x
+nvm install 24 && nvm use 24 || { echo "Node 24 未就绪，停止"; exit 1; }
+node -v | grep -q '^v24\.' || { echo "当前不是 Node 24，停止"; exit 1; }
 
 npm init -y
 npm i react@^19 react-dom@^19
@@ -96,6 +96,7 @@ npm i -D vite@^7 @vitejs/plugin-react@^5 typescript@^5.7 \
 `vite.config.ts`：
 
 ```ts
+/// <reference types="vitest/config" />
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { viteSingleFile } from "vite-plugin-singlefile";
@@ -108,6 +109,8 @@ export default defineConfig({
   test: { environment: "node", include: ["tests/**/*.test.{ts,tsx}"] },
 });
 ```
+
+**顶部那行 `/// <reference types="vitest/config" />` 不能省。** `vite` 导出的 `defineConfig` 类型里没有 `test` 属性，少了这行 `npm run typecheck` 会直接在配置文件上报错。
 
 `tsconfig.json`——注意 `include` 必须覆盖 `tools`，否则生成器脚本不受类型检查：
 
@@ -136,7 +139,7 @@ export default defineConfig({
 ```json
 {
   "type": "module",
-  "engines": { "node": ">=24" },
+  "engines": { "node": ">=24 <25" },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -1497,9 +1500,13 @@ git commit -m "refactor: UI 迁移到 React 组件，行为与视觉保持不变
 | 概念 | 文件 | 规则 |
 |---|---|---|
 | **冻结基线** | `tests/fixtures/legacy-golden.json` | 由 legacy 引擎生成，**此后任何任务都不得重新生成** |
-| **允许漂移清单** | `tests/fixtures/allowed-drift.ts` | 每项修复**显式声明**：哪些状态的哪个字段允许变 |
+| **漂移归一化器** | `tests/fixtures/allowed-drift.ts` | 每项修复**声明它引入的确切变换**，测试把这个变换抹掉后再与基线比 |
 
-然后由一个测试守住：**未被清单覆盖的状态×字段，必须与冻结基线逐字节相同**。
+然后由一个测试守住：**把所有已声明的变换抹掉之后，必须与冻结基线逐字节相同**。
+
+**为什么不是「允许清单」而是「归一化器」**：如果规则只是「gallery 这个字段允许变」，那从此以后任何 gallery 的改动都会被放过——某次改动把某个状态的候选清空了，测试照样绿。放行粒度是整个字段，等于把防线拆了。
+
+归一化器不一样：它要求你写出**这次修复到底把数据变成了什么样**，然后把它变回去。变回不去的部分就是未授权的回归。
 
 这个测试同时干两件事——**1A 阶段清单为空，它就是「行为完全保持」的证明；1B 阶段每加一条规则，它就是回归防线。**
 
@@ -1513,7 +1520,7 @@ git commit -m "refactor: UI 迁移到 React 组件，行为与视觉保持不变
 - Produces:
   - `buildStates(): GoldenState[]` —— 由**新引擎**实时算出全部 360 个状态，测试与生成器共用
   - `FIELDS: Field[]` —— 参与比对的 7 个字段名
-  - `ALLOWED_DRIFT: DriftRule[]` —— 1B 各任务往里追加
+  - `NORMALIZERS: DriftNormalizer[]` / `INVARIANTS: DriftInvariant[]` —— 1B 各任务往里追加
 
 - [ ] **Step 1: 抽出共享的状态构造器**
 
@@ -1588,7 +1595,7 @@ export function buildStates(): GoldenState[] {
 }
 ```
 
-- [ ] **Step 2: 写允许漂移清单（1A 阶段为空）**
+- [ ] **Step 2: 写漂移归一化器（1A 阶段为空）**
 
 `tests/fixtures/allowed-drift.ts`：
 
@@ -1596,17 +1603,35 @@ export function buildStates(): GoldenState[] {
 import type { UiState } from "../../src/genetics";
 import type { Field } from "../../tools/build-states";
 
-export interface DriftRule {
-  /** 哪个任务引入的，出问题时好追溯 */
+/**
+ * 归一化器：把「本次修复引入的预期变化」从当前值里抹掉，
+ * 使其能与冻结基线直接比较。抹不掉的差异 = 未授权的回归。
+ */
+export interface DriftNormalizer {
   task: string;
   field: Field;
   reason: string;
-  /** 返回 true 表示：这个状态的这个字段，允许与冻结基线不同 */
-  applies: (raw: UiState) => boolean;
+  /** 只处理 applies 为真的状态；其余原样返回 */
+  applies?: (raw: UiState) => boolean;
+  normalize: (current: any, raw: UiState) => any;
 }
 
-// 1A 阶段必须为空。1B 每项修复往这里追加一条，并在该任务的提交里一并说明。
-export const ALLOWED_DRIFT: DriftRule[] = [];
+/**
+ * 少数修复会真正改变数值而非结构（比如白斑集合变宽），无法用归一化抹掉。
+ * 这类必须给出**精确不变量**，而不是笼统放行整个字段。
+ */
+export interface DriftInvariant {
+  task: string;
+  field: Field;
+  reason: string;
+  applies: (raw: UiState) => boolean;
+  /** 差异必须满足这个断言，否则视为回归 */
+  holds: (baseline: any, current: any, raw: UiState) => boolean;
+}
+
+// 1A 阶段两个数组都必须为空。
+export const NORMALIZERS: DriftNormalizer[] = [];
+export const INVARIANTS: DriftInvariant[] = [];
 ```
 
 - [ ] **Step 3: 写漂移测试**
@@ -1616,42 +1641,65 @@ export const ALLOWED_DRIFT: DriftRule[] = [];
 ```ts
 import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
-import { buildStates, FIELDS } from "../tools/build-states";
-import { ALLOWED_DRIFT } from "./fixtures/allowed-drift";
+import { buildStates, FIELDS, type Field, type GoldenState } from "../tools/build-states";
+import { NORMALIZERS, INVARIANTS } from "./fixtures/allowed-drift";
 
 const baseline = JSON.parse(readFileSync("tests/fixtures/legacy-golden.json", "utf8"));
 const current = buildStates();
 
-describe("未获显式许可的状态×字段，必须与冻结基线逐字节相同", () => {
+/** 依次施加该字段上所有归一化器，把预期变化抹回基线形态 */
+function normalized(cur: GoldenState, field: Field) {
+  let v = cur[field];
+  for (const n of NORMALIZERS) {
+    if (n.field !== field) continue;
+    if (n.applies && !n.applies(cur.raw)) continue;
+    v = n.normalize(v, cur.raw);
+  }
+  return v;
+}
+
+describe("抹掉已声明的变换后，必须与冻结基线逐字节相同", () => {
   it.each(FIELDS)("字段 %s", (field) => {
     const violations: string[] = [];
     current.forEach((cur, i) => {
-      const base = baseline.states[i];
-      const same = JSON.stringify(cur[field]) === JSON.stringify(base[field]);
-      const allowed = ALLOWED_DRIFT.some((r) => r.field === field && r.applies(cur.raw));
-      if (!same && !allowed) violations.push(`#${i} ${JSON.stringify(cur.raw)}`);
+      const base = baseline.states[i][field];
+      if (JSON.stringify(normalized(cur, field)) === JSON.stringify(base)) return;
+      // 归一化抹不掉，那就必须有一条精确不变量兜底
+      const ok = INVARIANTS.some(
+        (inv) => inv.field === field && inv.applies(cur.raw) &&
+                 inv.holds(base, cur[field], cur.raw)
+      );
+      if (!ok) violations.push(`#${i} ${JSON.stringify(cur.raw)}`);
     });
-    expect(violations, `这些状态的 ${field} 变了，但允许清单里没有对应规则`).toEqual([]);
+    expect(violations, `这些状态的 ${field} 出现了未授权的变化`).toEqual([]);
   });
 });
 
-describe("允许清单里不得有僵尸规则", () => {
-  it.each(ALLOWED_DRIFT.map((r) => ({ r })))("$r.task / $r.field", ({ r }) => {
-    const hit = current.some((cur, i) =>
-      r.applies(cur.raw) &&
-      JSON.stringify(cur[r.field]) !== JSON.stringify(baseline.states[i][r.field])
+describe("归一化器与不变量都不得成为僵尸", () => {
+  it.each(NORMALIZERS.map((n) => ({ n })))("归一化器 $n.task / $n.field", ({ n }) => {
+    const hit = current.some(
+      (cur) => (!n.applies || n.applies(cur.raw)) &&
+        JSON.stringify(n.normalize(cur[n.field], cur.raw)) !== JSON.stringify(cur[n.field])
     );
-    expect(hit, `规则「${r.task} / ${r.field}」匹配不到任何真实差异，说明已过期，应删除`).toBe(true);
+    expect(hit, `「${n.task} / ${n.field}」没有抹掉任何东西，说明已过期，应删除`).toBe(true);
+  });
+
+  it.each(INVARIANTS.map((inv) => ({ inv })))("不变量 $inv.task / $inv.field", ({ inv }) => {
+    const hit = current.some((cur, i) =>
+      inv.applies(cur.raw) &&
+      JSON.stringify(cur[inv.field]) !== JSON.stringify(baseline.states[i][inv.field])
+    );
+    expect(hit, `「${inv.task} / ${inv.field}」匹配不到任何真实差异，应删除`).toBe(true);
   });
 });
 ```
 
-第二个 describe 同样重要：它防止清单里堆积**过宽或已失效的豁免**。一条规则如果不再对应任何真实差异，就必须删掉，否则它会默默豁免掉未来的真回归。
+第二个 describe 防止清单里堆积**已失效的豁免**——一条规则如果不再对应任何真实变化，就必须删掉，否则它会默默放过未来的真回归。
 
 - [ ] **Step 4: 跑测试——这是 1A 的验收证明**
 
 Run: `npm run typecheck && npm run test -- tests/drift.test.ts`
-Expected: **7 个字段全部 PASS，且允许清单为空**
+Expected: **7 个字段全部 PASS，且 `NORMALIZERS` 与 `INVARIANTS` 都为空**
 
 这一刻的含义是：**新引擎在全部 360 个状态、全部 7 个字段上，与 legacy 引擎逐字节相同。** 这比人眼对着两个浏览器窗口比可靠得多。
 
@@ -1722,11 +1770,11 @@ spec 第 12 节列了 **7 项**缺陷，这里对应 **7 个任务**，一项一
 
 1. 写一个测试，声明**修复后应有的正确行为**（修复前它必须失败）
 2. 改实现
-3. 往 `allowed-drift.ts` 追加一条规则，**精确框定**允许变化的状态与字段
-4. `npm run drift` 看实际差异是否与规则一致
+3. 往 `allowed-drift.ts` 追加一个**归一化器**——写出这次修复引入的**确切变换**，并把它抹回基线形态
+4. `npm run drift` 看实际差异是否与声明一致
 5. `npm run check` 三门全过
 
-**第 3 步是关键**：规则写宽了等于自我放行。比如「白斑修复只影响 `white >= 1` 的状态」就必须写成 `raw.white >= 1`，而不是 `() => true`。
+**第 3 步不能偷懒。** 「这个字段允许变」不是合格的声明——那等于永久拆掉该字段的防线。合格的声明是「去掉新增的这两个条目之后，其余部分必须与基线一模一样」。只有真正改变数值而非结构的修复（Task 15 白斑）才走 `INVARIANTS`，且也必须给出精确断言。
 
 ---
 
@@ -1810,18 +1858,32 @@ export function canonSpec(c: CanonEntry): CoatSpec {
 Run: `npm run test -- tests/bugfix/gallery-longhair.test.ts`
 Expected: PASS（2 passed）
 
-- [ ] **Step 5: 追加漂移规则**
+- [ ] **Step 5: 追加归一化器——写出确切变换**
 
-`tests/fixtures/allowed-drift.ts` 的 `ALLOWED_DRIFT` 追加：
+`tests/fixtures/allowed-drift.ts` 的 `NORMALIZERS` 追加：
 
 ```ts
   {
     task: "Task 11",
     field: "gallery",
-    reason: "CANON 新增两个长毛条目，画廊候选名单变长",
-    applies: () => true,   // 新条目对所有状态都会出现在 yes 或 no 里
+    reason: "CANON 新增两个长毛条目",
+    normalize: (g: any) => {
+      const ADDED = ["长毛狸花猫", "长毛橘猫"];
+      const out: any = {};
+      for (const role of ["mother", "father"]) {
+        out[role] = {
+          yes: g[role].yes.filter((n: string) => !ADDED.includes(n)),
+          no: g[role].no.filter((n: string) => !ADDED.includes(n)),
+          shownYes: g[role].shownYes,
+          shownNo: g[role].shownNo,
+        };
+      }
+      return out;
+    },
   },
 ```
+
+**这不是「gallery 允许变」，而是「去掉这两个新条目之后必须一模一样」。** 如果某次改动顺带把「蓝猫」从候选里弄丢了，过滤后的数组仍然对不上基线，测试会失败。
 
 - [ ] **Step 6: 看实际差异是否与规则一致**
 
@@ -1874,10 +1936,9 @@ ll × LL → 全部 Ll  （短毛，携带者）
 
 ```ts
 import { describe, it, expect } from "vitest";
-import { readFileSync } from "node:fs";
 import { buildTarget, solveParents, canonAsParent } from "../../src/genetics/solve";
 import { crossAuto } from "../../src/genetics/punnett";
-import { CANON } from "../../src/genetics/catalog";
+import { CANON, type CanonEntry } from "../../src/genetics/catalog";
 import type { UiState } from "../../src/genetics";
 
 const shortHair: UiState = {
@@ -1911,19 +1972,29 @@ describe("L 位点的边缘约束语义", () => {
     expect(canonAsParent(shortCat, "mother", res)).toBe(true);
   });
 
-  it("canonAsParent 确实读了 l 字段（防止位点被静默忽略）", () => {
-    const src = readFileSync("src/genetics/solve.ts", "utf8");
-    expect(src).toMatch(/inter\(\s*side\.l\s*,\s*c\.l\s*\)/);
+  it("确知纯合短毛（l:['LL']）的猫，不可能是长毛后代的亲本", () => {
+    const res = solveParents(buildTarget(longHair));
+    // 合成一个条目：它的 L 基因型确知为 LL。现实的 CANON 里没有这种花色
+    // （肉眼分不出 LL 和 Ll），但用它可以直接观测 canonAsParent
+    // 有没有真的把 l 位点算进去。
+    const syntheticLL: CanonEntry = {
+      name: "（测试用）确知纯合短毛猫", series: "black",
+      d: ["DD", "Dd"], a: ["AA", "Aa"], l: ["LL"], white: 0,
+    };
+    // 修复前：l 被忽略 → 返回 true（错）
+    // 修复后：长毛后代要求亲本至少带一份 l → 返回 false
+    expect(canonAsParent(syntheticLL, "mother", res)).toBe(false);
+    expect(canonAsParent(syntheticLL, "father", res)).toBe(false);
   });
 });
 ```
 
-最后一个用例是无奈之举——因为这个修复对当前数据是行为中性的，没有可观察的输出变化可断言。它只保证代码路径存在；**真正的语义由前四个用例守住**。
+最后一个用例用**合成条目**而不是 grep 源码。这个修复对现有 `CANON` 是行为中性的（没有哪个花色能确知是 `LL`），但构造一个确知 `LL` 的条目就能直接观测行为差异——重命名或等价重构都不会误报。
 
 - [ ] **Step 2: 运行确认失败**
 
 Run: `npm run test -- tests/bugfix/l-locus-parent-filter.test.ts`
-Expected: 前四个用例 PASS（它们描述的是本来就正确的行为），**最后一个 FAIL**
+Expected: 前四个用例 PASS（它们描述的是本来就正确的行为），**最后一个 FAIL**——`expected true to be false`，因为 l 位点被忽略了
 
 - [ ] **Step 3: 写实现**
 
@@ -1945,7 +2016,7 @@ Expected: PASS（5 passed）
 Run: `npm run drift`
 Expected: **全部字段相对基线的差异，与 Task 11 之后完全相同**——本任务不该引入任何新的状态变化。
 
-因此 `allowed-drift.ts` **不需要新增规则**。若 drift 增加了，说明这个检查排除了不该排除的条目，回去看是不是把联合约束写进了边缘集。
+因此 `allowed-drift.ts` **不需要新增归一化器**。若 drift 增加了，说明这个检查排除了不该排除的条目，回去看是不是把联合约束写进了边缘集。
 
 - [ ] **Step 6: 全量验证并提交**
 
@@ -1981,6 +2052,7 @@ git commit -m "fix: canonAsParent 补上 L 位点检查
 ```ts
 import { describe, it, expect } from "vitest";
 import { buildTarget } from "../../src/genetics/solve";
+import { crossAuto } from "../../src/genetics/punnett";
 import { childrenWith, mateList, MATES } from "../../src/genetics/children";
 import type { UiState } from "../../src/genetics";
 
@@ -1995,6 +2067,7 @@ describe("可以和长毛猫配种", () => {
   });
 
   it("长毛 × 长毛 → 后代必然全长毛", () => {
+    expect(crossAuto("ll", "ll")).toEqual(["ll"]);   // 期望值来自引擎，不是直觉
     const longMate = MATES.find((m) => m.l[0] === "ll")!;
     const r = childrenWith(buildTarget(longCat), longMate)!;
     expect(r.longPossible).toBe(true);
@@ -2007,16 +2080,23 @@ describe("可以和长毛猫配种", () => {
     expect(r.shortPossible).toBe(true);
   });
 
-  it("短毛 × 长毛 → 后代都是短毛（携带一份长毛基因）", () => {
+  it("短毛 × 长毛 → 长短毛都可能（因为'短毛'是 LL 或 Ll 的集合）", () => {
+    // 期望值不靠直觉，直接从引擎的杂交结果推：
+    expect(crossAuto("LL", "ll")).toEqual(["Ll"]);        // 不携带 → 全短毛
+    expect(crossAuto("Ll", "ll")).toEqual(["Ll", "ll"]);  // 携带   → 一半长毛
+    // 肉眼看到的"短毛"无法区分这两种，引擎携带的是 {LL, Ll} 全集，
+    // 所以并集是 {Ll, ll}，长毛是可能的。
     const longMate = MATES.find((m) => m.l[0] === "ll")!;
     const r = childrenWith(buildTarget(shortCat), longMate)!;
     expect(r.shortPossible).toBe(true);
-    expect(r.longPossible).toBe(false);
+    expect(r.longPossible).toBe(true);
   });
 });
 ```
 
-第四个用例是教学价值最高的一条：短毛 × 长毛，孩子全短毛但**全部是携带者**。
+**这一条要特别小心，这里踩过坑。** 直觉容易写成「短毛 × 长毛 → 后代都是短毛」——那只在短毛方是 `LL` 时成立。而**肉眼分不出 `LL` 和 `Ll`**，引擎携带的是 `{LL, Ll}` 全集，所以长毛后代是可能的。
+
+由此定下一条纪律：**凡是断言孟德尔结果的测试，期望值必须先用 `crossAuto` 算出来写在断言里，不能凭表型直觉写。** 「短毛」「浓色」「有虎斑」这些显性表型在引擎里都是**集合**而非单一基因型，靠直觉推理必错。
 
 - [ ] **Step 2: 运行确认失败**
 
@@ -2080,16 +2160,28 @@ const hairText = r.longPossible && r.shortPossible ? "（长毛短毛都可能�
 Run: `npm run test -- tests/bugfix/long-hair-mate.test.ts`
 Expected: PASS（4 passed）
 
-- [ ] **Step 5: 追加漂移规则**
+- [ ] **Step 5: 追加归一化器——写出确切变换**
+
+`NORMALIZERS` 追加：
 
 ```ts
   {
     task: "Task 13",
     field: "mates",
     reason: "配偶列表新增长毛狸花猫；ChildrenResult 新增 shortPossible 字段",
-    applies: () => true,
+    normalize: (mates: any[]) =>
+      mates
+        .filter((m) => m.name !== "长毛狸花猫")
+        .map((m) => {
+          if (!m.result) return m;
+          // 解构去掉新字段，其余键的插入顺序保持不变
+          const { shortPossible, ...rest } = m.result;
+          return { ...m, result: rest };
+        }),
   },
 ```
+
+**这个归一化器是精确的**：抹掉新配偶和新字段之后，**原有四个配偶的每一项结果都必须与基线一模一样**。若某次改动顺带弄坏了黑猫配偶的后代花色列表，抹不回去，测试立刻失败。
 
 - [ ] **Step 6: 核对差异范围**
 
@@ -2200,18 +2292,36 @@ function gallery(res: ParentSolution) {
 Run: `npm run test -- tests/ui/parents-panel.test.tsx`
 Expected: PASS（3 passed）
 
-- [ ] **Step 5: 漂移规则已被 Task 11 覆盖**
-
-`gallery` 字段的漂移规则 Task 11 已经加过（`applies: () => true`），这里只需把 reason 补一句：
+- [ ] **Step 5: 追加归一化器（这一条必须排在 gallery 归一化器的最后）**
 
 ```ts
+  // ⚠️ gallery 的归一化器里，这一条必须排在最后：
+  //    前面的归一化器只处理 yes / no，由它统一重建截断字段。
   {
-    task: "Task 11 + 14",
+    task: "Task 14",
     field: "gallery",
-    reason: "Task 11 新增长毛条目；Task 14 去掉 shownYes/shownNo 截断字段",
-    applies: () => true,
+    reason: "去掉 shownYes / shownNo 两个截断字段",
+    normalize: (g: any) => {
+      const out: any = {};
+      for (const role of ["mother", "father"]) {
+        const { yes, no } = g[role];
+        out[role] = { yes, no, shownYes: yes.slice(0, 6), shownNo: no.slice(0, 5) };
+      }
+      return out;
+    },
   },
 ```
+
+同时把 Task 11 那条归一化器里透传 `shownYes` / `shownNo` 的两行删掉——它们由这条统一重建：
+
+```ts
+        out[role] = {
+          yes: g[role].yes.filter((n: string) => !ADDED.includes(n)),
+          no: g[role].no.filter((n: string) => !ADDED.includes(n)),
+        };
+```
+
+**注意这条归一化器守住的是**：`yes` / `no` 的内容必须与基线完全一致，只有截断字段可以消失。
 
 - [ ] **Step 6: 核对差异范围并提交**
 
@@ -2318,32 +2428,53 @@ export const WHITE_TENDENCY: Record<number, string> = {
 Run: `npm run test -- tests/bugfix/white-spotting-range.test.ts`
 Expected: PASS（4 passed）
 
-- [ ] **Step 5: 追加漂移规则——这条要写得精确**
+- [ ] **Step 5: 追加精确不变量（这是唯一走 INVARIANTS 的任务）**
+
+这次修复真正改变了数值而非结构，归一化抹不掉，所以走 `INVARIANTS`。但**不能笼统放行**，必须给出可检验的断言：
 
 ```ts
   {
     task: "Task 15",
     field: "target",
-    reason: "白斑等级 1–4 改为多对多映射，目标集合变宽",
+    reason: "白斑等级 1–4 改为 {Ss,SS} 全集：s 位点只放宽，其余位点必须完全不变",
     applies: (raw) => raw.white >= 1,
+    holds: (base: any, cur: any) => {
+      const strip = (t: any) => JSON.stringify({ ...t, s: null });
+      if (strip(base) !== strip(cur)) return false;              // 其余位点一字不动
+      return Object.keys(base.s).every((g) => cur.s[g] === 1);   // s 只增不减
+    },
   },
   {
     task: "Task 15",
     field: "parents",
-    reason: "目标集合变宽，合法亲代配对随之变多",
+    reason: "目标变宽 ⇒ 合法亲代配对只增不减；o/d/a/l 三个位点必须完全不变",
     applies: (raw) => raw.white >= 1,
+    holds: (base: any, cur: any) => {
+      for (const loc of ["o", "d", "a", "l"]) {
+        if (JSON.stringify(base.pairs[loc]) !== JSON.stringify(cur.pairs[loc])) return false;
+        if (JSON.stringify(base.f[loc]) !== JSON.stringify(cur.f[loc])) return false;
+        if (JSON.stringify(base.m[loc]) !== JSON.stringify(cur.m[loc])) return false;
+      }
+      const has = (ps: [string, string][], a: string, b: string) =>
+        ps.some(([x, y]) => x === a && y === b);
+      return base.pairs.s.every(([a, b]: [string, string]) => has(cur.pairs.s, a, b));
+    },
   },
   {
     task: "Task 15",
     field: "parentClaims",
-    reason: "白斑相关断言的触发条件随之改变",
+    reason: "白斑断言的触发条件收紧，只允许断言消失，不允许凭空冒出新断言",
     applies: (raw) => raw.white >= 1,
+    holds: (base: any[], cur: any[]) => {
+      const baseTexts = new Set(base.map((c) => c.text));
+      return cur.every((c) => baseTexts.has(c.text));
+    },
   },
 ```
 
-**注意 `applies` 写的是 `raw.white >= 1` 而不是 `() => true`。** `white === 0` 的 72 个状态必须完全不变——这是这次修复正确性的关键检查点：如果连无白的猫都变了，说明改动溢出了。
+三条断言各自守住一件事：**其余位点一字不动**、**配对只增不减**、**不冒出新断言**。这比「white>=1 允许变」强得多——后者会放过「把 d 位点也算坏了」这种回归。
 
-`gallery` 与 `mates` 的规则 Task 11 / 13 已经用 `() => true` 覆盖。
+`applies` 用 `raw.white >= 1` 而非 `() => true`：**`white === 0` 的 72 个状态必须完全不变**，这是本次修复正确性最关键的检查点。
 
 - [ ] **Step 6: 核对差异范围**
 
@@ -2435,14 +2566,50 @@ Expected: PASS（3 passed）
 
 若第二个用例对某个**既有**条目失败，说明发现了一处原有的名实不符——单独记录，不要在本任务里顺手改，它需要自己的任务。
 
-- [ ] **Step 5: 漂移规则已被覆盖，核对范围**
+- [ ] **Step 5: 追加归一化器**
 
-`gallery` 与 `mates`（`nope` 列表）的规则已由 Task 11 / 13 覆盖。
+⚠️ **gallery 这条必须插在 Task 14 那条之前**（数组顺序即施加顺序，Task 14 的 `shownYes` / `shownNo` 重建必须排最后）：
+
+```ts
+  const ADDED_16 = ["淡玳瑁猫", "淡三花猫"];
+
+  {
+    task: "Task 16",
+    field: "gallery",
+    reason: "CANON 新增淡玳瑁猫、淡三花猫",
+    normalize: (g: any) => {
+      const out: any = {};
+      for (const role of ["mother", "father"]) {
+        out[role] = {
+          yes: g[role].yes.filter((n: string) => !ADDED_16.includes(n)),
+          no: g[role].no.filter((n: string) => !ADDED_16.includes(n)),
+        };
+      }
+      return out;
+    },
+  },
+  {
+    task: "Task 16",
+    field: "mates",
+    reason: "新增的两个花色会出现在后代结果的 nope 列表里",
+    normalize: (mates: any[]) =>
+      mates.map((m) =>
+        m.result
+          ? { ...m, result: { ...m.result, nope: m.result.nope.filter((n: string) => !ADDED_16.includes(n)) } }
+          : m
+      ),
+  },
+```
+
+- [ ] **Step 6: 核对差异范围**
 
 Run: `npm run drift && npm run check`
-Expected: `gallery` / `mates` / `target` / `parents` / `parentClaims` 有变化，`kidClaims` 与 `selfSvg` 为 0。
 
-- [ ] **Step 6: 提交**
+Expected: 只有 `gallery` 与 `mates` 相对上一任务有新增差异。
+
+**`target` / `parents` / `parentClaims` / `kidClaims` / `selfSvg` 不该有任何新增变化**——往 `CANON` 里加条目只影响展示用的候选名单，不进求解器。若它们变了，说明改错地方了。
+
+- [ ] **Step 7: 提交**
 
 ```bash
 git add -A
@@ -2463,6 +2630,7 @@ coatName 能生成这两个名字，但画廊里没有条目。
 - Create: `src/genetics/joint.ts`
 - Modify: `src/ui/ParentsPanel.tsx`, `src/genetics/index.ts`
 - Test: `tests/bugfix/joint-constraint.test.ts`, `tests/ui/joint-linkage.test.tsx`
+- 注意：`ParentsPanel` 需要 `useState` 与 `useEffect`，记得补 import
 
 **Interfaces:**
 - Consumes: `ParentSolution` / `hasPair` / `canonAsParent`、`CANON` / `oForSeries`
@@ -2626,6 +2794,26 @@ describe("点选一边，另一边不兼容的候选灰掉", () => {
     await user.click(chipFor("橘猫", 0));
     expect(chipFor("橘猫", 1).className).not.toMatch(/\bno\b/);
   });
+
+  it("主体猫变了，旧选择必须清空", async () => {
+    const user = userEvent.setup();
+    const t1 = buildTarget(tortie);
+    const { rerender } = render(
+      <ParentsPanel ui={tortie} target={t1} res={solveParents(t1)} />
+    );
+    await user.click(chipFor("橘猫", 0));
+    expect(chipFor("橘猫", 1).className).toMatch(/\bno\b/);
+
+    // 切换到一只完全不同的猫
+    const black: UiState = {
+      series: "black", dilute: false, tabby: false, white: 0, long: false, sex: "M",
+    };
+    const t2 = buildTarget(black);
+    rerender(<ParentsPanel ui={black} target={t2} res={solveParents(t2)} />);
+
+    // 上一只猫的选择不得残留，继续灰化新结果
+    expect(chipFor("橘猫", 1).className).not.toMatch(/\bno\b/);
+  });
 });
 ```
 
@@ -2652,6 +2840,13 @@ function dimmed(role: "mother" | "father", c: CanonEntry): boolean {
 function toggle(role: "mother" | "father", name: string) {
   setPicked((p) => (p && p.role === role && p.name === name ? null : { role, name }));
 }
+
+// 主体猫一变，旧选择就失效了——必须清空，否则上一只猫的选择
+// 会继续参与新结果的灰化，误导用户。
+// 依赖列表写具体字段而不是 ui 对象：ui 每次渲染都是新对象，会无限重置。
+useEffect(() => {
+  setPicked(null);
+}, [ui.series, ui.dilute, ui.tabby, ui.white, ui.long, ui.sex]);
 ```
 
 候选条目改成可点击（`<button className="catchip …">`，键盘可达）。画廊上方加一行提示：`点一只看另一边还剩哪些可能`。
@@ -2734,19 +2929,19 @@ git commit -m "docs: 更新 README 与 spec，标记阶段 1 完成"
 ## 完成标准
 
 **环境与工程：**
-- [ ] `.nvmrc` 为 24，`package.json` 有 `engines.node >= 24`，`package-lock.json` 已提交
+- [ ] `.nvmrc` 为 24，`package.json` 有 `engines.node: ">=24 <25"`，`package-lock.json` 已提交
 - [ ] `npm run typecheck` 通过，且 `tsconfig.include` 覆盖 `src` / `tests` / `tools` / config
 - [ ] `npm run build` 产出单个 `dist/index.html`，无本地 JS/CSS 资源文件
 - [ ] 产物中除 Google Fonts 外无任何外部引用，且字体外链确实保留
 
 **1A：**
 - [ ] `src/genetics/**` 与 `src/render/**` 无任何 `document` / `window` 引用
-- [ ] `tests/drift.test.ts` 在**允许清单为空**的前提下全绿——即新引擎与 legacy 在 360 个状态 × 7 个字段上逐字节相同
+- [ ] `tests/drift.test.ts` 在 **`NORMALIZERS` 与 `INVARIANTS` 均为空**的前提下全绿——即新引擎与 legacy 在 360 个状态 × 7 个字段上逐字节相同
 - [ ] 6 个人工对照状态视觉与文字完全一致
 
 **1B：**
 - [ ] spec 第 12 节 7 项缺陷各有一个独立任务、独立提交、独立测试，且该测试在修复前会失败
-- [ ] 每项修复在 `allowed-drift.ts` 里有**精确框定**的规则（不得用 `() => true` 掩盖本可限定的范围）
-- [ ] 「僵尸规则」检查通过——清单里每条规则都对应真实差异
+- [ ] 每项修复在 `allowed-drift.ts` 里有**写出确切变换**的归一化器（不得用「该字段允许变」这种整字段放行）
+- [ ] 「僵尸规则」检查通过——每个归一化器都确实抹掉了东西，每条不变量都对应真实差异
 - [ ] UI 缺陷（截断、联合约束联动）由**真实渲染的组件测试**验收，不靠 grep 源码
 - [ ] `npm run check` 全绿
