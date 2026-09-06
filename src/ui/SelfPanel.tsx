@@ -1,6 +1,6 @@
 import { Fragment, type ReactNode } from "react";
 import type { CoatSpec, UiState } from "../genetics";
-import { coatName, WHITE_LABEL, WHITE_S } from "../genetics";
+import { coatName, WHITE_LABEL, WHITE_S, WHITE_TENDENCY } from "../genetics";
 import { catSVG } from "../render/catSVG";
 
 // legacy 666-700: renderSelf(t) —— 注意 t（Target）在 legacy 里实际未被使用。
@@ -40,7 +40,7 @@ export default function SelfPanel({ ui, seed }: { ui: UiState; seed: number }) {
     ["O", "橘色 · X连锁", oRow, ui.series === "tortie" ? "一橘一非橘，所以两色相间" : (ui.series === "orange" ? "带橘色等位基因" : "不带橘色等位基因")],
     ["D", "稀释", ui.dilute ? "d/d" : "D/D 或 D/d", ui.dilute ? "两份稀释，颜色被冲淡" : "至少一份浓色"],
     ["A", "虎斑开关", ui.series === "orange" ? "无法判断" : (ui.tabby ? "A/A 或 A/a" : "a/a"), ui.series === "orange" ? "被橘色掩盖" : (ui.tabby ? "至少一份虎斑基因" : "两份纯色基因")],
-    ["S", "白斑", WHITE_S[ui.white].map((x) => x[0] + "/" + x[1]).join(" 或 "), WHITE_LABEL[ui.white]],
+    ["S", "白斑", WHITE_S[ui.white].map((x) => x[0] + "/" + x[1]).join(" 或 "), WHITE_LABEL[ui.white] + " · " + WHITE_TENDENCY[ui.white]],
     ["L", "毛长", ui.long ? "l/l" : "L/L 或 L/l", ui.long ? "两份长毛基因" : "至少一份短毛基因"],
   ];
 
