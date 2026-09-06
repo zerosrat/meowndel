@@ -6,3 +6,4 @@ export * from "./catalog";
 export * from "./solve";
 export * from "./claims";
 export * from "./children";
+export * from "./joint";
