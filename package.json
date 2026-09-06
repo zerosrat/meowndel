@@ -1,0 +1,52 @@
+{
+  "name": "meowndel",
+  "version": "1.0.0",
+  "description": "**猫色溯源实验室。**一个猫毛色遗传的交互式科普工具：给定一只猫的花色，反推它爸妈可能长什么样、它孩子会长什么样。",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check": "npm run typecheck && npm run test && npm run build",
+    "golden": "node tools/generate-golden.mjs",
+    "drift": "tsx tools/diff-current.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zerosrat/meowndel.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "engines": { "node": ">=24 <25" },
+  "bugs": {
+    "url": "https://github.com/zerosrat/meowndel/issues"
+  },
+  "homepage": "https://github.com/zerosrat/meowndel#readme",
+  "dependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.7",
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^5.2.0",
+    "jsdom": "^26.1.0",
+    "tsx": "^4.23.13",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.6",
+    "vite-plugin-singlefile": "^2.3.3",
+    "vitest": "^3.2.7"
+  }
+}
