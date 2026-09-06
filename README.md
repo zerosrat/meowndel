@@ -5,7 +5,8 @@
 起因：楼下有一只长毛橘色狸花猫和一只灰白相间的短毛狸花猫，好奇它们的来历。顺带发现一件事——**「狸花」不是品种，是花色**。
 
 - 线上版本：https://claude.ai/code/artifact/f20cf7ef-cbea-431b-8407-839790051725
-- 本地：直接用浏览器打开 `index.html`，零依赖、零构建、零后端
+- 本地开发：`npm install && npm run dev`
+- 单文件产物：`npm run build` 生成的 `dist/index.html` 可直接用浏览器打开，仍是零依赖、零后端（字体走 Google Fonts 外链）
 
 ## 当前状态
 
