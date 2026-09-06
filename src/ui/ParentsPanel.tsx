@@ -34,7 +34,7 @@ export default function ParentsPanel({
             <Fragment key={role}>
               <p className="gallabel">{label}</p>
               <div className="catrow">
-                {yes.slice(0, 6).map(({ c, ci }) => (
+                {yes.map(({ c, ci }) => (
                   <CatChip key={c.name} spec={canonSpec(c)} name={c.name} no={false} seed={ci * 7 + ri * 3 + 5} />
                 ))}
               </div>
@@ -42,7 +42,7 @@ export default function ParentsPanel({
                 <>
                   <p className="gallabel" style={{ color: "var(--ink-3)" }}>{role === "mother" ? "这些不可能是它妈妈" : "这些不可能是它爸爸"}</p>
                   <div className="catrow">
-                    {no.slice(0, 5).map(({ c, ci }) => (
+                    {no.map(({ c, ci }) => (
                       <CatChip key={c.name} spec={canonSpec(c)} name={c.name} no={true} seed={ci * 7 + ri * 3 + 5} />
                     ))}
                   </div>

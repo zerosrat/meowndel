@@ -26,7 +26,6 @@ function specFromUI(ui: UiState) {
   };
 }
 
-// 与 legacy renderParents 一致，含 slice 截断（Task 14 会去掉）
 function gallery(res: ParentSolution) {
   const out: Record<string, unknown> = {};
   for (const role of ["mother", "father"] as const) {
@@ -34,7 +33,7 @@ function gallery(res: ParentSolution) {
     CANON.forEach((c) => {
       (canonAsParent(c, role, res) ? yes : no).push(c.name);
     });
-    out[role] = { yes, no, shownYes: yes.slice(0, 6), shownNo: no.slice(0, 5) };
+    out[role] = { yes, no };
   }
   return out;
 }

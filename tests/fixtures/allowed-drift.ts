@@ -40,7 +40,7 @@ export const NORMALIZERS: DriftNormalizer[] = [
       for (const role of ["mother", "father"]) {
         const yes = g[role].yes.filter((n: string) => !ADDED_11.includes(n));
         const no = g[role].no.filter((n: string) => !ADDED_11.includes(n));
-        out[role] = { yes, no, shownYes: yes.slice(0, 6), shownNo: no.slice(0, 5) };
+        out[role] = { yes, no };
       }
       return out;
     },
@@ -69,6 +69,21 @@ export const NORMALIZERS: DriftNormalizer[] = [
           const { shortPossible, ...rest } = m.result;
           return { ...m, result: rest };
         }),
+  },
+  // ⚠️ gallery 的归一化器里，这一条必须排在最后：
+  //    前面的归一化器只处理 yes / no，由它统一重建截断字段。
+  {
+    task: "Task 14",
+    field: "gallery",
+    reason: "去掉 shownYes / shownNo 两个截断字段",
+    normalize: (g: any) => {
+      const out: any = {};
+      for (const role of ["mother", "father"]) {
+        const { yes, no } = g[role];
+        out[role] = { yes, no, shownYes: yes.slice(0, 6), shownNo: no.slice(0, 5) };
+      }
+      return out;
+    },
   },
 ];
 export const INVARIANTS: DriftInvariant[] = [];
