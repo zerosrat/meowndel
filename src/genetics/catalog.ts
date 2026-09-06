@@ -24,6 +24,8 @@ export const CANON: CanonEntry[] = [
   { name: "狸花白猫", series: "black",  d: ["DD","Dd"], a: ["AA","Aa"], l: ["LL","Ll"], white: 2 },
   { name: "长毛狸花猫", series: "black",  d: ["DD","Dd"], a: ["AA","Aa"], l: ["ll"], white: 0 },
   { name: "长毛橘猫",   series: "orange", d: ["DD","Dd"], a: null,        l: ["ll"], white: 0 },
+  { name: "淡玳瑁猫", series: "tortie", d: ["dd"], a: ["aa"], l: ["LL","Ll"], white: 0 },
+  { name: "淡三花猫", series: "tortie", d: ["dd"], a: ["aa"], l: ["LL","Ll"], white: 2 },
 ];
 
 export function canonSpec(c: CanonEntry): CoatSpec {

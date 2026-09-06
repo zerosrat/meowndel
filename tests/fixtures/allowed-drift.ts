@@ -29,6 +29,11 @@ export interface DriftInvariant {
 
 // Task 11 新增：CANON 里新加的两个长毛条目，多处归一化器都要用到。
 const ADDED_11 = ["长毛狸花猫", "长毛橘猫"];
+// Task 16 新增：CANON 里新加的两个淡色玳瑁系条目，多处归一化器都要用到。
+const ADDED_16 = ["淡玳瑁猫", "淡三花猫"];
+// 基线录制之后新增的全部花色名。Task 15 的不变量要拿它把新条目排除掉，
+// 才能和基线的花色集合对齐比较。
+const ADDED_SINCE_BASELINE = [...ADDED_11, ...ADDED_16];
 
 export const NORMALIZERS: DriftNormalizer[] = [
   {
@@ -69,6 +74,32 @@ export const NORMALIZERS: DriftNormalizer[] = [
           const { shortPossible, ...rest } = m.result;
           return { ...m, result: rest };
         }),
+  },
+  {
+    task: "Task 16",
+    field: "gallery",
+    reason: "CANON 新增淡玳瑁猫、淡三花猫",
+    normalize: (g: any) => {
+      const out: any = {};
+      for (const role of ["mother", "father"]) {
+        out[role] = {
+          yes: g[role].yes.filter((n: string) => !ADDED_16.includes(n)),
+          no: g[role].no.filter((n: string) => !ADDED_16.includes(n)),
+        };
+      }
+      return out;
+    },
+  },
+  {
+    task: "Task 16",
+    field: "mates",
+    reason: "新增的两个花色会出现在后代结果的 nope 列表里",
+    normalize: (mates: any[]) =>
+      mates.map((m) =>
+        m.result
+          ? { ...m, result: { ...m.result, nope: m.result.nope.filter((n: string) => !ADDED_16.includes(n)) } }
+          : m
+      ),
   },
   // ⚠️ gallery 的归一化器里，这一条必须排在最后：
   //    前面的归一化器只处理 yes / no，由它统一重建截断字段。
@@ -121,8 +152,8 @@ export const INVARIANTS: DriftInvariant[] = [
     applies: (raw) => raw.white === 4,
     holds: (base: any, cur: any) => {
       for (const role of ["mother", "father"]) {
-        const cy = cur[role].yes.filter((n: string) => !ADDED_11.includes(n));
-        const cn = cur[role].no.filter((n: string) => !ADDED_11.includes(n));
+        const cy = cur[role].yes.filter((n: string) => !ADDED_SINCE_BASELINE.includes(n));
+        const cn = cur[role].no.filter((n: string) => !ADDED_SINCE_BASELINE.includes(n));
         // 基线里是候选的，现在必须还是候选（只增不减）
         if (!base[role].yes.every((n: string) => cy.includes(n))) return false;
         // 现在被判不可能的，基线里必须也是不可能（no 只减不增）
@@ -147,7 +178,7 @@ export const INVARIANTS: DriftInvariant[] = [
         if (!b !== !c) return false;                          // null 与非 null 的对应关系不变
         if (!b) continue;
         if (!b.names.every((n: string) => c.names.includes(n))) return false;   // 后代花色只增不减
-        const cn = c.nope.filter((n: string) => !ADDED_11.includes(n));
+        const cn = c.nope.filter((n: string) => !ADDED_SINCE_BASELINE.includes(n));
         if (!cn.every((n: string) => b.nope.includes(n))) return false;         // nope 只减不增
         if (c.longPossible !== b.longPossible) return false;                    // 毛长结论与 S 位点无关，必须不变
       }
