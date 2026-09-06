@@ -15,6 +15,8 @@
 
 规划文档入口见 [docs/plans/README.md](docs/plans/README.md)。
 
+单猫视觉样板：启动开发服务后访问 `/?preview=cat`，可试用底色、浓淡、虎斑、白斑和毛长控件。不带参数仍进入当前主界面；样板尚未接入亲缘节点。构建产物也支持在 `index.html` 后加 `?preview=cat` 打开样板。
+
 - 环境：Node 24 LTS（见 `.nvmrc`）
 - 开发：`npm run dev`
 - 构建：`npm run build` → 单个 `dist/index.html`（字体走 Google Fonts 外链，与迁移前一致）
