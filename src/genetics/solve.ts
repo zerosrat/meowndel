@@ -97,6 +97,6 @@ export function canonAsParent(
   if (!inter(side.d, c.d)) return false;
   if (!inter(side.a, c.a || A_GENOS.a)) return false;
   if (!inter(side.s, WHITE_S[c.white])) return false;
-  // 注意：这里故意不检查 l 位点——这是已知缺陷，1B Task 11 修
+  if (!inter(side.l, c.l)) return false;
   return true;
 }
