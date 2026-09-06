@@ -39,7 +39,7 @@ export default function KidsPanel({
         <p className="mateline">这个组合不成立。</p>
       ) : (
         <div className="mateout">
-          <p className="mateline">和一只<b>{list[idx].name}</b>配，孩子可能出现这 <b>{r.names.length}</b> 种花色{r.longPossible ? "（长毛短毛都可能）" : "（都会是短毛）"}：</p>
+          <p className="mateline">和一只<b>{list[idx].name}</b>配，孩子可能出现这 <b>{r.names.length}</b> 种花色{r.longPossible && r.shortPossible ? "（长毛短毛都可能）" : r.longPossible ? "（都会是长毛）" : "（都会是短毛）"}：</p>
           <div className="catrow">
             {r.names.slice(0, 14).map((n, i) => (
               <CatChip key={n} spec={r.specs[n]} name={n} no={false} seed={i * 5 + 31} />

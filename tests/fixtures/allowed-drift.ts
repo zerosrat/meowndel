@@ -56,5 +56,19 @@ export const NORMALIZERS: DriftNormalizer[] = [
           : m
       ),
   },
+  {
+    task: "Task 13",
+    field: "mates",
+    reason: "配偶列表新增长毛狸花猫；ChildrenResult 新增 shortPossible 字段",
+    normalize: (mates: any[]) =>
+      mates
+        .filter((m) => m.name !== "长毛狸花猫")
+        .map((m) => {
+          if (!m.result) return m;
+          // 解构去掉新字段，其余键的插入顺序保持不变
+          const { shortPossible, ...rest } = m.result;
+          return { ...m, result: rest };
+        }),
+  },
 ];
 export const INVARIANTS: DriftInvariant[] = [];

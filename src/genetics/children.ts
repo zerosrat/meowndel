@@ -13,14 +13,16 @@ export const MATES: MateEntry[] = [
   { name: "橘猫",   series: "orange", d: ["DD","Dd"], a: null,        l: ["LL","Ll"], white: 0 },
   { name: "三花猫", series: "tortie", d: ["DD","Dd"], a: ["aa"],      l: ["LL","Ll"], white: 2 },
   { name: "奶牛猫", series: "black",  d: ["DD","Dd"], a: ["aa"],      l: ["LL","Ll"], white: 2 },
+  { name: "长毛狸花猫", series: "black", d: ["DD","Dd"], a: ["AA","Aa"], l: ["ll"], white: 0 },
 ];
 
 export function mateList(t: Target): MateEntry[] {
   // 猫是公 → 配偶是母 → 三花可行；否则用奶牛替换
   const canF = t.sexes.indexOf("M") >= 0;
-  return canF
+  const base = canF
     ? [MATES[0], MATES[1], MATES[2], MATES[3]]
     : [MATES[0], MATES[1], MATES[2], MATES[4]];
+  return [...base, MATES[5]];
 }
 
 export function unionCross(setA: GenoSet, listB: string[]): GenoSet {
@@ -37,6 +39,7 @@ export interface ChildrenResult {
   names: string[];
   specs: Record<string, CoatSpec>;
   longPossible: boolean;
+  shortPossible: boolean;
   nope: string[];
 }
 
@@ -59,8 +62,7 @@ export function childrenWith(t: Target, mate: MateEntry): ChildrenResult | null 
   const kd = unionCross(t.d, mate.d);
   const ka = unionCross(t.a, mate.a || A_GENOS.a);
   const ks = unionCross(t.s, WHITE_S[mate.white]);
-  // 配偶的 L 写死为短毛——这是已知缺陷，1B Task 12 修
-  const kl = unionCross(t.l, ["LL", "Ll"]);
+  const kl = unionCross(t.l, mate.l);
 
   const specs: Record<string, CoatSpec> = {};
   const names: string[] = [];
@@ -81,5 +83,10 @@ export function childrenWith(t: Target, mate: MateEntry): ChildrenResult | null 
   }
 
   const nope = CANON.filter((c) => !specs[c.name]).map((c) => c.name);
-  return { names, specs, longPossible: !!kl["ll"], nope };
+  return {
+    names, specs,
+    longPossible: !!kl["ll"],
+    shortPossible: !!kl["LL"] || !!kl["Ll"],
+    nope,
+  };
 }
