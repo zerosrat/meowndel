@@ -21,7 +21,9 @@ export default function ParentsPanel({
   const [picked, setPicked] = useState<{ role: "mother" | "father"; name: string } | null>(null);
 
   function dimmed(role: "mother" | "father", c: CanonEntry): boolean {
+    // 灰化表达「与已选的那只不兼容」；同一行（role）的条目不构成配对，所以自己永远不灰化自己
     if (!picked || picked.role === role) return false;
+    // picked.name 只可能来自 CANON（通过 toggle 调用），所以 find 必然命中
     const other = CANON.find((x) => x.name === picked.name)!;
     return picked.role === "mother"
       ? !canonPairAllowed(c, other, res)

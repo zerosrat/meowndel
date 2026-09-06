@@ -60,8 +60,8 @@ export default function SelfPanel({ ui, seed }: { ui: UiState; seed: number }) {
           <p className="catname">{name}</p>
           <p className="catsub">{catsub}</p>
           <ul className="carry">
-            {carry.map((c, i) => (
-              <li key={i}><span>{c.head}<span style={{ color: "var(--ink-3)" }}> —— {c.why}</span></span></li>
+            {carry.map((c) => (
+              <li key={c.why}><span>{c.head}<span style={{ color: "var(--ink-3)" }}> —— {c.why}</span></span></li>
             ))}
           </ul>
           <details className="geno">

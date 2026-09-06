@@ -63,3 +63,12 @@ describe("归一化器与不变量都不得成为僵尸", () => {
     });
   }
 });
+
+describe("归一化器的顺序契约", () => {
+  it("Task 14 的 gallery 归一化器必须排在所有 gallery 归一化器的最后", () => {
+    const gallery = NORMALIZERS.filter((n) => n.field === "gallery");
+    // 前提：确实有多条 gallery 归一化器，这个契约才有意义
+    expect(gallery.length).toBeGreaterThan(1);
+    expect(gallery[gallery.length - 1].task).toBe("Task 14");
+  });
+});
