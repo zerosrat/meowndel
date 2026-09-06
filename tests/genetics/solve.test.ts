@@ -1,7 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
-import { buildTarget, solveParents, canonAsParent } from "../../src/genetics/solve";
-import { CANON } from "../../src/genetics/catalog";
+import { buildTarget, solveParents } from "../../src/genetics/solve";
 
 const golden = JSON.parse(readFileSync("tests/fixtures/legacy-golden.json", "utf8"));
 
@@ -16,14 +15,5 @@ describe("buildTarget / solveParents 与旧引擎逐字一致", () => {
   });
 });
 
-describe("canonAsParent 画廊判定与旧引擎一致（比对未截断的完整集合）", () => {
-  it.each(cases)("state #$i", ({ s }) => {
-    const res = solveParents(buildTarget(s.ui));
-    for (const role of ["mother", "father"] as const) {
-      const yes = CANON.filter((c) => canonAsParent(c, role, res)).map((c) => c.name);
-      const no = CANON.filter((c) => !canonAsParent(c, role, res)).map((c) => c.name);
-      expect(yes).toEqual(s.gallery[role].yes);
-      expect(no).toEqual(s.gallery[role].no);
-    }
-  });
-});
+// 画廊判定的状态级特征化断言已由 tests/drift.test.ts 接管（见 Task 10）——
+// 它带归一化器机制，能表达 1B 各次修复引入的预期变化。

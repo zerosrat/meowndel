@@ -27,6 +27,34 @@ export interface DriftInvariant {
   holds: (baseline: any, current: any, raw: UiState) => boolean;
 }
 
-// 1A 阶段两个数组都必须为空。
-export const NORMALIZERS: DriftNormalizer[] = [];
+// Task 11 新增：CANON 里新加的两个长毛条目，多处归一化器都要用到。
+const ADDED_11 = ["长毛狸花猫", "长毛橘猫"];
+
+export const NORMALIZERS: DriftNormalizer[] = [
+  {
+    task: "Task 11",
+    field: "gallery",
+    reason: "CANON 新增两个长毛条目",
+    normalize: (g: any) => {
+      const out: any = {};
+      for (const role of ["mother", "father"]) {
+        const yes = g[role].yes.filter((n: string) => !ADDED_11.includes(n));
+        const no = g[role].no.filter((n: string) => !ADDED_11.includes(n));
+        out[role] = { yes, no, shownYes: yes.slice(0, 6), shownNo: no.slice(0, 5) };
+      }
+      return out;
+    },
+  },
+  {
+    task: "Task 11",
+    field: "mates",
+    reason: "CANON 新增的两个长毛条目会恒定出现在后代结果的 nope 列表里",
+    normalize: (mates: any[]) =>
+      mates.map((m) =>
+        m.result
+          ? { ...m, result: { ...m.result, nope: m.result.nope.filter((n: string) => !ADDED_11.includes(n)) } }
+          : m
+      ),
+  },
+];
 export const INVARIANTS: DriftInvariant[] = [];

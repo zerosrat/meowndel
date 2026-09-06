@@ -8,11 +8,11 @@ import type { GenoSet, Target } from "./solve";
 export type MateEntry = CanonEntry;
 
 export const MATES: MateEntry[] = [
-  { name: "黑猫",   series: "black",  d: ["DD","Dd"], a: ["aa"],      white: 0 },
-  { name: "狸花猫", series: "black",  d: ["DD","Dd"], a: ["AA","Aa"], white: 0 },
-  { name: "橘猫",   series: "orange", d: ["DD","Dd"], a: null,        white: 0 },
-  { name: "三花猫", series: "tortie", d: ["DD","Dd"], a: ["aa"],      white: 2 },
-  { name: "奶牛猫", series: "black",  d: ["DD","Dd"], a: ["aa"],      white: 2 },
+  { name: "黑猫",   series: "black",  d: ["DD","Dd"], a: ["aa"],      l: ["LL","Ll"], white: 0 },
+  { name: "狸花猫", series: "black",  d: ["DD","Dd"], a: ["AA","Aa"], l: ["LL","Ll"], white: 0 },
+  { name: "橘猫",   series: "orange", d: ["DD","Dd"], a: null,        l: ["LL","Ll"], white: 0 },
+  { name: "三花猫", series: "tortie", d: ["DD","Dd"], a: ["aa"],      l: ["LL","Ll"], white: 2 },
+  { name: "奶牛猫", series: "black",  d: ["DD","Dd"], a: ["aa"],      l: ["LL","Ll"], white: 2 },
 ];
 
 export function mateList(t: Target): MateEntry[] {
