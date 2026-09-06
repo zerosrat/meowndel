@@ -18,6 +18,7 @@
 - 构建：`pnpm run build` → 单个 `dist/index.html`（字体走 Google Fonts 外链，与迁移前一致）
 - 验证：`pnpm run check`（类型检查 + 测试 + 构建）
 - 行为基线：`tests/fixtures/legacy-golden.json` 已冻结；`pnpm run drift` 查看当前引擎相对基线的差异
+- `pnpm-workspace.yaml`：声明允许 `esbuild` 跑安装脚本——pnpm 默认拦截依赖的 postinstall（安全默认值），Vite 构建要靠这一步生效；删掉这个文件会让全新 clone 的 `pnpm install` 直接失败
 
 `legacy/index.legacy.html` 是迁移前的原始单文件，保留作为行为参照，不再维护。
 
