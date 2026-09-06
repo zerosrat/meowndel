@@ -14,7 +14,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "check": "npm run typecheck && npm run test && npm run build",
+    "check": "pnpm run typecheck && pnpm run test && pnpm run build",
     "golden": "node tools/generate-golden.mjs",
     "drift": "tsx tools/diff-current.ts"
   },
@@ -27,6 +27,7 @@
   "license": "ISC",
   "type": "module",
   "engines": { "node": ">=24 <25" },
+  "packageManager": "pnpm@11.5.2",
   "bugs": {
     "url": "https://github.com/zerosrat/meowndel/issues"
   },

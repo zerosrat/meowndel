@@ -10,7 +10,7 @@ const FONT_ALLOWLIST = [
 
 describe("单文件交付", () => {
   it("build 产出单个 index.html，无任何本地 JS/CSS 资源", () => {
-    execSync("npm run build", { stdio: "pipe" });
+    execSync("pnpm run build", { stdio: "pipe" });
     expect(existsSync("dist/index.html")).toBe(true);
 
     const files = readdirSync("dist", { recursive: true }) as string[];

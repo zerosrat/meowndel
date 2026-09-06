@@ -5,8 +5,8 @@
 起因：楼下有一只长毛橘色狸花猫和一只灰白相间的短毛狸花猫，好奇它们的来历。顺带发现一件事——**「狸花」不是品种，是花色**。
 
 - 线上版本：https://claude.ai/code/artifact/f20cf7ef-cbea-431b-8407-839790051725
-- 本地开发：`npm install && npm run dev`
-- 单文件产物：`npm run build` 生成的 `dist/index.html` 可直接用浏览器打开，仍是零依赖、零后端（字体走 Google Fonts 外链）
+- 本地开发：`pnpm install && pnpm run dev`
+- 单文件产物：`pnpm run build` 生成的 `dist/index.html` 可直接用浏览器打开，仍是零依赖、零后端（字体走 Google Fonts 外链）
 
 ## 当前状态
 
@@ -14,14 +14,14 @@
 零 DOM 依赖的纯模块并有全量测试覆盖；spec 第 12 节的 7 项缺陷已修复。
 
 - 环境：Node 24 LTS（见 `.nvmrc`）
-- 开发：`npm run dev`
-- 构建：`npm run build` → 单个 `dist/index.html`（字体走 Google Fonts 外链，与迁移前一致）
-- 验证：`npm run check`（类型检查 + 测试 + 构建）
-- 行为基线：`tests/fixtures/legacy-golden.json` 已冻结；`npm run drift` 查看当前引擎相对基线的差异
+- 开发：`pnpm run dev`
+- 构建：`pnpm run build` → 单个 `dist/index.html`（字体走 Google Fonts 外链，与迁移前一致）
+- 验证：`pnpm run check`（类型检查 + 测试 + 构建）
+- 行为基线：`tests/fixtures/legacy-golden.json` 已冻结；`pnpm run drift` 查看当前引擎相对基线的差异
 
 `legacy/index.legacy.html` 是迁移前的原始单文件，保留作为行为参照，不再维护。
 
-**遗留项**：阶段 1A 的验收还差一项人工步骤：用浏览器对照迁移前后的页面。自动化验证覆盖了引擎输出与主图 SVG（360 状态 × 7 字段逐字节比对），但**不覆盖 React 渲染出的 DOM**——画廊 chip、控件布局、页头页脚只能靠人眼确认。`legacy/index.legacy.html` 可直接用浏览器打开与 `npm run dev` 对照。
+**遗留项**：阶段 1A 的验收还差一项人工步骤：用浏览器对照迁移前后的页面。自动化验证覆盖了引擎输出与主图 SVG（360 状态 × 7 字段逐字节比对），但**不覆盖 React 渲染出的 DOM**——画廊 chip、控件布局、页头页脚只能靠人眼确认。`legacy/index.legacy.html` 可直接用浏览器打开与 `pnpm run dev` 对照。
 
 （更正：迁移计划里的人工核对清单曾写「点三花 → 在妈妈行点橘猫 → 爸爸行的黑猫、狸花猫应正常」，实测有误——三花的亲代必须至少一方带白，黑猫与狸花猫都不带白，同样会被灰掉；正确应为「奶牛猫、狸花白猫仍正常」。）
 
