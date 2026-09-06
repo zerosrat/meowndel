@@ -53,7 +53,7 @@ export const NORMALIZERS: DriftNormalizer[] = [
   {
     task: "Task 11",
     field: "mates",
-    reason: "CANON 新增的两个长毛条目会恒定出现在后代结果的 nope 列表里",
+    reason: "基线录制时 CANON 里没有这两个名字，比对前需剔除",
     normalize: (mates: any[]) =>
       mates.map((m) =>
         m.result

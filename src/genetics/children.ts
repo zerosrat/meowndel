@@ -1,6 +1,6 @@
 import { A_GENOS, WHITE_S } from "./loci";
 import { crossAuto, crossO } from "./punnett";
-import { CANON, oForSeries, type CanonEntry } from "./catalog";
+import { CANON, canonSpec, oForSeries, type CanonEntry } from "./catalog";
 import { specOf, type CoatSpec } from "./phenotype";
 import { coatName } from "./naming";
 import type { GenoSet, Target } from "./solve";
@@ -64,8 +64,14 @@ export function childrenWith(t: Target, mate: MateEntry): ChildrenResult | null 
   const ks = unionCross(t.s, WHITE_S[mate.white]);
   const kl = unionCross(t.l, mate.l);
 
-  const specs: Record<string, CoatSpec> = {};
-  const names: string[] = [];
+  const longPossible = !!kl["ll"];
+  const shortPossible = !!kl["LL"] || !!kl["Ll"];
+  // 只有「必然长毛」时才把后代画成长毛并冠以「长毛」前缀；
+  // 长短毛都可能时保持一格，顶部文案已说明两者都可能。
+  const chipLong = longPossible && !shortPossible;
+
+  const bareSpecs: Record<string, CoatSpec> = {};
+  const bareNames: string[] = [];
   const SW: Record<string, number> = { ss: 0, Ss: 2, SS: 3 };
 
   for (const sx of ["M", "F"] as const) {
@@ -73,20 +79,28 @@ export function childrenWith(t: Target, mate: MateEntry): ChildrenResult | null 
       for (const d of Object.keys(kd)) {
         for (const a of Object.keys(ka)) {
           for (const s of Object.keys(ks)) {
-            const sp = specOf(o, d, a, s, SW[s], false);
-            const n = coatName(sp.series, sp.dilute, sp.tabby, sp.white);
-            if (!specs[n]) { specs[n] = sp; names.push(n); }
+            const sp = specOf(o, d, a, s, SW[s], chipLong);
+            const key = coatName(sp.series, sp.dilute, sp.tabby, sp.white);
+            if (!bareSpecs[key]) { bareSpecs[key] = sp; bareNames.push(key); }
           }
         }
       }
     }
   }
 
-  const nope = CANON.filter((c) => !specs[c.name]).map((c) => c.name);
-  return {
-    names, specs,
-    longPossible: !!kl["ll"],
-    shortPossible: !!kl["LL"] || !!kl["Ll"],
-    nope,
-  };
+  const prefix = chipLong ? "长毛" : "";
+  const names = bareNames.map((n) => prefix + n);
+  const specs: Record<string, CoatSpec> = {};
+  for (const n of bareNames) specs[prefix + n] = bareSpecs[n];
+
+  // nope 必须把毛长算进去：一个花色「不会出现」，要么是颜色本身出不来，
+  // 要么是它的毛长在这一窝里不可能。
+  const nope = CANON.filter((c) => {
+    const sp = canonSpec(c);
+    const key = coatName(sp.series, sp.dilute, sp.tabby, sp.white);
+    if (!bareSpecs[key]) return true;
+    return sp.long ? !longPossible : !shortPossible;
+  }).map((c) => c.name);
+
+  return { names, specs, longPossible, shortPossible, nope };
 }
