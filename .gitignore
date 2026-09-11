@@ -6,3 +6,8 @@ node_modules/
 dist/
 legacy/engine.legacy.mjs
 /.worktree/
+# Local visual-validation assets, restored by tools/link-visual-assets.mjs.
+/art
+/references
+/src/preview2d/assets
+/src/preview3d/assets
