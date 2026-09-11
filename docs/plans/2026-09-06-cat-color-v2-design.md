@@ -378,7 +378,7 @@ oriental（暹罗）随后续品种一起加。
 
 以下均为已定位的实现缺陷，非设计问题，在阶段 1B 逐项修复：
 
-> 全部 7 项已于阶段 1B 修复，各带独立测试。见 `docs/superpowers/plans/2026-09-06-stage-1-engine-extraction.md`。
+> 全部 7 项已于阶段 1B 修复，各带独立测试。见 `docs/plans/2026-09-06-stage-1-engine-extraction.md`。
 
 | 缺陷 | 位置（当前 index.html） |
 |---|---|

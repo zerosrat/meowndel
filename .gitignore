@@ -5,3 +5,6 @@ node_modules/
 .idea/
 dist/
 legacy/engine.legacy.mjs
+/.worktree/
+# Local reference images are archived outside the repository.
+/docs/references/cat-visual/*.png

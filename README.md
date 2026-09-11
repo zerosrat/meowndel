@@ -11,7 +11,7 @@
 ## 当前状态
 
 阶段 1A / 1B 完成：已迁移为 Vite + React + TypeScript 工程，遗传引擎抽为
-零 DOM 依赖的纯模块并有全量测试覆盖；spec 第 12 节的 7 项缺陷已修复。
+零 DOM 依赖的纯模块并有全量测试覆盖；[总体规划](docs/plans/2026-09-06-cat-color-v2-design.md)第 12 节的 7 项缺陷已修复。
 
 - 环境：Node 24 LTS（见 `.nvmrc`）
 - 开发：`pnpm run dev`
