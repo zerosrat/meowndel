@@ -10,7 +10,7 @@
 
 > 这台机器上装了 11 个 nvm Node 版本（v0.12 到 v26），不同 shell 解析到的默认版本不一样（实测过 v26.5.1 与 v23.3.0 两种）。所以**不写「本机是 X」，直接钉死 Node 24 LTS**（v23 已 EOL，不能作基线），用 `.nvmrc` + `engines` 约束，依赖全部锁定主版本并提交 lockfile。
 
-**Spec:** `docs/superpowers/specs/2026-09-06-cat-color-v2-design.md`
+**总体规划：** `docs/plans/2026-09-06-cat-color-v2-design.md`
 
 ## Global Constraints
 
@@ -2887,7 +2887,7 @@ git commit -m "fix: 爸妈画廊体现联合约束
 ### Task 18: 更新文档并归档 legacy
 
 **Files:**
-- Modify: `README.md`, `docs/superpowers/specs/2026-09-06-cat-color-v2-design.md`
+- Modify: `README.md`, `docs/plans/2026-09-06-cat-color-v2-design.md`
 
 - [ ] **Step 1: 更新 README 的「当前状态」一节**
 
@@ -2909,7 +2909,7 @@ git commit -m "fix: 爸妈画廊体现联合约束
 - [ ] **Step 2: 在 spec 第 12 节表格上方加一行**
 
 ```markdown
-> 全部 7 项已于阶段 1B 修复，各带独立测试。见 `docs/superpowers/plans/2026-09-06-stage-1-engine-extraction.md`。
+> 全部 7 项已于阶段 1B 修复，各带独立测试。见 `docs/plans/2026-09-06-stage-1-engine-extraction.md`。
 ```
 
 - [ ] **Step 3: 最终验证**

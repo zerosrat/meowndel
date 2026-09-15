@@ -1,0 +1,69 @@
+html[data-preview="cat3d"] { background: #f7f6f2; color: #373e35; color-scheme: light; }
+html[data-preview="cat3d"] body { margin: 0; padding: 0; background: #f7f6f2; }
+.cat-study { max-width: 1160px; margin: auto; padding: 28px 36px; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; }
+.cat-study * { box-sizing: border-box; }
+.cat-study a { color: inherit; text-decoration: none; }
+.study-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 24px; border-bottom: 1px solid #e4e4d9; }
+.study-brand { font-weight: 650; letter-spacing: .18em; }
+.study-brand span { display: inline-grid; place-items: center; background: #576d50; color: white; border-radius: 11px; width: 34px; height: 34px; font-family: Georgia, serif; font-size: 30px; margin-right: 10px; letter-spacing: -.09em; }
+.study-header nav { display: flex; gap: 24px; font-size: 11px; letter-spacing: .09em; color: #7c8476; }
+.study-header nav a { text-decoration: underline; text-underline-offset: 4px; }
+.study-intro { margin: 42px 0 30px; }
+.study-eyebrow { font-size: 11px; letter-spacing: .22em; color: #74876b; }
+.study-intro h1 { margin: 13px 0 12px; font-family: Georgia, "Songti SC", serif; font-size: clamp(28px, 4vw, 40px); font-weight: 550; letter-spacing: .03em; }
+.study-intro > p:last-child { color: #818675; font-size: 13px; }
+.study-layout { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(270px, .85fr); gap: 56px; align-items: center; }
+.study-stage { position: relative; border: 1px solid #e6e3d6; border-radius: 28px; overflow: hidden; background: radial-gradient(ellipse at 45% 40%, #fffdf6, #eee9db); }
+.study-stage-top { position: absolute; top: 22px; left: 22px; right: 22px; display: flex; justify-content: space-between; gap: 10px; font-size: 10px; color: #8a8b7b; z-index: 1; pointer-events: none; }
+.study-live::before { content: ""; display: inline-block; width: 5px; height: 5px; border-radius: 50%; margin-right: 6px; background: #82966e; }
+.study-canvas { display: block; width: 100%; height: 550px; touch-action: pan-y; cursor: grab; }
+.study-canvas:active { cursor: grabbing; }
+.study-canvas-help { text-align: center; font-size: 10px; letter-spacing: .05em; color: #858873; margin: -8px 12px 14px; }
+.study-view-controls { display: flex; justify-content: center; gap: 8px; padding: 0 8px 22px; }
+.cat-study button { font: inherit; cursor: pointer; color: inherit; }
+.study-view-controls button { border: 1px solid #dfdecf; background: #fffcf5b0; border-radius: 30px; padding: 8px 12px; font-size: 11px; min-height: 44px; min-width: 44px; flex-shrink: 0; white-space: nowrap; }
+.cat-study button:focus-visible, .cat-study a:focus-visible { outline: 3px solid #718960; outline-offset: 4px; }
+.cat-study button:disabled { opacity: .45; cursor: default; }
+.study-panel h2 { font-family: Georgia, "Songti SC", serif; font-size: 24px; font-weight: 550; line-height: 1.55; margin: 15px 0 10px; }
+.study-description { font-size: 12px; line-height: 1.9; color: #818676; max-width: 280px; }
+.study-coats { display: grid; gap: 12px; margin-top: 30px; }
+.study-coats button { display: flex; align-items: center; text-align: left; gap: 14px; border-radius: 15px; border: 1px solid #e2e1d8; background: #fffef9; padding: 18px; font-size: 13px; }
+.study-coats button[aria-pressed="true"] { background: #eaf0e4; border-color: #829473; box-shadow: inset 0 0 0 .5px #829473; }
+.study-coats small { display: block; font-size: 10px; font-weight: 400; color: #96998a; margin-top: 6px; }
+.study-swatch { display: block; flex-shrink: 0; width: 39px; height: 39px; border-radius: 50%; }
+.study-swatch-tuxedo { background: conic-gradient(from 155deg, #eeeade 0 35%, #303a33 35% 100%); box-shadow: inset 0 0 0 1px #29392a20; }
+.study-swatch-black { background: radial-gradient(at 35% 25%, #60636b, #303440); }
+.study-selected { margin-left: auto; color: #687f58; }
+.study-pet { margin-top: 22px; display: flex; align-items: center; justify-content: space-between; width: 100%; background: #536a4c; color: #fffdf5 !important; border: none; border-radius: 13px; min-height: 48px; padding: 13px 18px; font-size: 12px !important; }
+.study-pet:hover:not(:disabled) { background: #425c3a; }
+.study-notice { min-height: 40px; font-size: 11px; color: #7f8d73; line-height: 1.8; margin: 14px 0 25px; }
+.study-boundary { border-top: 1px solid #e2e3d7; padding-top: 18px; color: #929685; font-size: 10px; line-height: 1.9; }
+.study-boundary p { color: #77826c; margin: 0 0 7px; }
+.study-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; border-top: 1px solid #e4e4d9; margin-top: 38px; padding-top: 20px; font-size: 10px; color: #979b8b; }
+.study-attribution { font-size: 10px; line-height: 1.9; color: #77816e; margin-top: 16px; }
+.study-attribution a { text-decoration: underline; text-underline-offset: 3px; }
+.study-overlay { position: absolute; inset: 0; background: #f5f2e8ee; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 18px; font-size: 13px; padding: 20px; text-align: center; }
+.study-overlay a { text-decoration: underline; }
+.study-overlay button { border: 1px solid #bac5ae; background: #f7faef; border-radius: 9px; padding: 12px 18px; }
+@media (max-width: 740px) {
+  .cat-study { padding: 20px; }
+  .study-header { padding-bottom: 17px; }
+  .study-header nav { gap: 12px; font-size: 9px; }
+  .study-intro { margin: 28px 0 22px; }
+  .study-intro > p:last-child { font-size: 11px; }
+  .study-layout { display: block; }
+  .study-canvas { height: clamp(230px, 36svh, 310px); }
+  .study-stage { position: sticky; top: 8px; z-index: 2; border-radius: 22px; }
+  .study-panel { margin-top: 26px; }
+  .study-panel h2 { font-size: 23px; }
+  .study-description { max-width: none; }
+  .study-coats { margin-top: 18px; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .study-coats button { gap: 9px; padding: 12px 10px; font-size: 12px; }
+  .study-coats small { font-size: 9px; }
+  .study-swatch { width: 26px; height: 26px; }
+  .study-selected { display: none; }
+  .study-stage-top { left: 17px; right: 17px; top: 18px; font-size: 9px; }
+  .study-view-controls { gap: 4px; }
+  .study-view-controls button { padding: 8px; }
+}
+@media (max-width: 360px) { .cat-study { padding: 14px; } .study-canvas { height: 235px; } .study-coats small { font-size: 8px; } }
