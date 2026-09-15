@@ -5,8 +5,8 @@
 起因：楼下有一只长毛橘色狸花猫和一只灰白相间的短毛狸花猫，好奇它们的来历。顺带发现一件事——**「狸花」不是品种，是花色**。
 
 - 线上版本：https://claude.ai/code/artifact/f20cf7ef-cbea-431b-8407-839790051725
-- 本地开发：`npm install && npm run dev`
-- 单文件产物：`npm run build` 生成的 `dist/index.html` 可直接用浏览器打开，仍是零依赖、零后端（字体走 Google Fonts 外链）
+- 本地开发：`pnpm install && pnpm run dev`
+- 单文件产物：`pnpm run build` 生成的 `dist/index.html` 可直接用浏览器打开，仍是零依赖、零后端（字体走 Google Fonts 外链）
 
 ## 当前状态
 
@@ -17,15 +17,18 @@
 
 单猫视觉样板：启动开发服务后访问 `/?preview=cat`，可试用底色、浓淡、虎斑、白斑和毛长控件。不带参数仍进入当前主界面；样板尚未接入亲缘节点。构建产物也支持在 `index.html` 后加 `?preview=cat` 打开样板。
 
+视觉验证素材按项目约定存于仓库外。首次构建前需按[外置素材说明](docs/visual-validation-assets.md)恢复素材并运行 `node tools/link-visual-assets.mjs`；只克隆代码不能构建全部预览。当前仅归档实验，整体美术尚未通过验收。
+
 - 环境：Node 24 LTS（见 `.nvmrc`）
-- 开发：`npm run dev`
-- 构建：`npm run build` → 单个 `dist/index.html`（字体走 Google Fonts 外链，与迁移前一致）
-- 验证：`npm run check`（类型检查 + 测试 + 构建）
-- 行为基线：`tests/fixtures/legacy-golden.json` 已冻结；`npm run drift` 查看当前引擎相对基线的差异
+- 开发：`pnpm run dev`
+- 构建：`pnpm run build` → 单个 `dist/index.html`（字体走 Google Fonts 外链，与迁移前一致）
+- 验证：`pnpm run check`（类型检查 + 测试 + 构建）
+- 行为基线：`tests/fixtures/legacy-golden.json` 已冻结；`pnpm run drift` 查看当前引擎相对基线的差异
+- `pnpm-workspace.yaml`：声明允许 `esbuild` 跑安装脚本——pnpm 默认拦截依赖的 postinstall（安全默认值），Vite 构建要靠这一步生效；删掉这个文件会让全新 clone 的 `pnpm install` 直接失败
 
 `legacy/index.legacy.html` 是迁移前的原始单文件，保留作为行为参照，不再维护。
 
-**遗留项**：阶段 1A 的验收还差一项人工步骤：用浏览器对照迁移前后的页面。自动化验证覆盖了引擎输出与主图 SVG（360 状态 × 7 字段逐字节比对），但**不覆盖 React 渲染出的 DOM**——画廊 chip、控件布局、页头页脚只能靠人眼确认。`legacy/index.legacy.html` 可直接用浏览器打开与 `npm run dev` 对照。
+**遗留项**：阶段 1A 的验收还差一项人工步骤：用浏览器对照迁移前后的页面。自动化验证覆盖了引擎输出与主图 SVG（360 状态 × 7 字段逐字节比对），但**不覆盖 React 渲染出的 DOM**——画廊 chip、控件布局、页头页脚只能靠人眼确认。`legacy/index.legacy.html` 可直接用浏览器打开与 `pnpm run dev` 对照。
 
 （更正：迁移计划里的人工核对清单曾写「点三花 → 在妈妈行点橘猫 → 爸爸行的黑猫、狸花猫应正常」，实测有误——三花的亲代必须至少一方带白，黑猫与狸花猫都不带白，同样会被灰掉；正确应为「奶牛猫、狸花白猫仍正常」。）
 

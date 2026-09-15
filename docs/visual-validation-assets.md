@@ -12,7 +12,7 @@
 
 ```sh
 node tools/link-visual-assets.mjs /absolute/path/to/visual-validation-2026-09-11
-npm run check
+pnpm run check
 ```
 
 在本机可省略参数；也可通过 `MEOWNDEL_ASSET_ROOT` 指定归档根目录。脚本不会覆盖已有目录或指向其他地方的软链。

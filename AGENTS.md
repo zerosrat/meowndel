@@ -9,7 +9,7 @@
 
 ## 开发与验证
 
-- 使用 Node 24（见 `.nvmrc`）。开发用 `npm run dev`；完整检查用 `npm run check`；单独检查类型用 `npm run typecheck`，测试用 `npm test`。
+- 使用 Node 24（见 `.nvmrc`）及 pnpm 11.5.2。开发用 `pnpm run dev`；完整检查用 `pnpm run check`；单独检查类型用 `pnpm run typecheck`，测试用 `pnpm test`。
 - 计划入口为 `docs/plans/README.md`，总体规划为 `docs/plans/2026-09-06-cat-color-v2-design.md`；局部计划须说明与总纲阶段及依赖的关系。
 - `tests/fixtures/legacy-golden.json` 是冻结的行为基线，不以重录或宽泛豁免掩盖回归。预期变化须有针对性的 NORMALIZER 或精确 INVARIANT 及独立验证。
 - SVG 的直接等价测试不经过 drift 的 NORMALIZERS。渲染器升级需说明测试迁移策略；单猫样板保留旧渲染器和旧基线，独立验证新图。
