@@ -15,3 +15,6 @@ legacy/engine.legacy.mjs
 /docs/references/cat-visual/*.png
 # Cat illustration demo binaries are restored from an external archive.
 /demos/cat-portrait/**/*.png
+
+# Local pnpm package cache.
+.pnpm-store/

@@ -47,4 +47,4 @@ node tools/restore-cat-demo-assets.mjs /Users/zeroyu/.local/share/meowndel/cat-2
 pnpm dev
 ```
 
-浏览器打开 Vite 的 `/demos/cat-portrait/domestic-coverage.html` 可重跑 100 图像检查。主应用为 `/`。构建只内联两张底稿，最终 `dist/index.html` 不依赖归档目录。外部归档须单独备份/传递，Git 克隆本身不含 PNG。
+浏览器打开 Vite 的 `/demos/cat-portrait/domestic-coverage.html` 可重跑 100 图像检查。主应用为 `/`。田园猫模块只内联两张底稿（完整包还保留主分支历史实验素材），最终 `dist/index.html` 不依赖归档目录。外部归档须单独备份/传递，Git 克隆本身不含 PNG。
