@@ -17,7 +17,7 @@
 
 单猫视觉样板：启动开发服务后访问 `/?preview=cat`，可试用底色、浓淡、虎斑、白斑和毛长控件。不带参数仍进入当前主界面；样板尚未接入亲缘节点。构建产物也支持在 `index.html` 后加 `?preview=cat` 打开样板。
 
-视觉验证素材按项目约定存于仓库外。首次构建前需按[外置素材说明](docs/visual-validation-assets.md)恢复素材并运行 `node tools/link-visual-assets.mjs`；只克隆代码不能构建全部预览。这些旧实验保留为历史验证。田园猫纯 2D 插画现已接入主界面，支持当前模型的 100 种外观组合。构建前还需恢复 [田园猫素材归档](demos/cat-portrait/README.md)，运行 `node tools/restore-cat-demo-assets.mjs /path/to/cat-2d-validation-2026-09-16`；PNG 不随 Git 分发。页面交互重做与英短接入见 [后续计划](docs/plans/2026-09-16-product-next-steps.md)。
+视觉验证素材按项目约定存于仓库外。首次构建前需按[外置素材说明](docs/visual-validation-assets.md)恢复素材并运行 `node tools/link-visual-assets.mjs`；只克隆代码不能构建全部预览。这些旧实验保留为历史验证。田园猫纯 2D 插画现已接入主界面，支持当前模型的 100 种外观组合。构建前还需恢复 [田园猫素材归档](demos/cat-portrait/README.md)，运行 `node tools/restore-cat-demo-assets.mjs /path/to/cat-2d-validation-2026-09-16`；PNG 不随 Git 分发。下一步先验证 3D 猫展示并与当前 2D 对比，页面交互重做及英短接入顺延，见 [后续计划](docs/plans/2026-09-16-product-next-steps.md)。
 
 - 环境：Node 24 LTS（见 `.nvmrc`）
 - 开发：`pnpm run dev`
