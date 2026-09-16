@@ -19,3 +19,5 @@ legacy/engine.legacy.mjs
 # Local pnpm package cache.
 .pnpm-store/
 /demos/tripo-cat/*.glb
+
+/demos/tripo-cat/reference-*.png

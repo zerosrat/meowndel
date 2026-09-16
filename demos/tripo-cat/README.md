@@ -57,3 +57,17 @@ Blender 5.2.1，Decimate 到约 80,000 三角面，纹理缩至 2K / JPEG 90。�
 - 浏览器验证：快速切换停在三花无串图、2D 模式下换猫再启用 3D、临时缺失模型自动降级并恢复后重试成功；390px 布局目视检查通过。未做真实手机性能或禁用 WebGL 的设备测试。
 
 本轮无生成服务调用、无新增积分消费。用户已选主图优先 3D、2D 后备。正式构建目前仍保留原 2D，主体接入待实施；小卡片展示方式未定。
+
+## 11 花色切换样板（部分完成）
+
+入口 `/demos/tripo-cat/coat-switcher.html`，支持六类纹路和正常 / 稀释色配对。现有四套真实 3D 已接入；其余七张为新生成的参考图，明确标注待制作且禁用旋转。Tripo 504 阻塞新增模型制作，本轮未消费 Tripo 积分。范围、恢复步骤和验证见 [田园猫 3D 常见花色计划](../../docs/plans/2026-09-16-domestic-3d-coats.md)。
+
+从本地外部归档恢复四个轻量 GLB 和七张参考图（逐个校验 SHA-256，不覆盖不同文件）：
+
+```sh
+node tools/cat3d/restore-tripo.mjs
+# 也可传入已复制的归档目录
+node tools/cat3d/restore-tripo.mjs /absolute/path/to/archive
+```
+
+素材归档仍为 `~/.local/share/meowndel/soft-low-poly-cat-2026-09-16/`，需另外备份；Git 提交只有清单、提示词、代码和恢复工具，不包含这些二进制文件。

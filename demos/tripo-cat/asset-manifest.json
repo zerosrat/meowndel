@@ -45,5 +45,49 @@
       "images": 2,
       "skins": 0
     }
+  ],
+  "references": [
+    {
+      "key": "cream",
+      "file": "reference-cream.png",
+      "bytes": 1405272,
+      "sha256": "20208baedd6b5d7a06221ff10c45adfa33207ee1f35a12c43e7451cb8fe8e08d"
+    },
+    {
+      "key": "blueTabby",
+      "file": "reference-blueTabby.png",
+      "bytes": 1562427,
+      "sha256": "7652f60aaac3bd6f52fbbb7352eae76fe8abef210cfb6e01f8a9f217d3aa8851"
+    },
+    {
+      "key": "black",
+      "file": "reference-black.png",
+      "bytes": 1322155,
+      "sha256": "a6c579f6c7276016a24d6761d0693838625f9100b30e91d4f519aeb24328e094"
+    },
+    {
+      "key": "blue",
+      "file": "reference-blue.png",
+      "bytes": 1414388,
+      "sha256": "f233ac19e620cfebf7225223e4d7a0e4226923622a663911c7c0f37c218a456e"
+    },
+    {
+      "key": "blueWhite",
+      "file": "reference-blueWhite.png",
+      "bytes": 1477371,
+      "sha256": "68eb6e5d69a70ce482ba6475605c2aa4138537aac570b86f2506010b92184841"
+    },
+    {
+      "key": "diluteCalico",
+      "file": "reference-diluteCalico.png",
+      "bytes": 1491449,
+      "sha256": "c308b3488f4f8856dd461f4da0dab0ffe8c0e3ea61244ebc42ad33adcdc43037"
+    },
+    {
+      "key": "tortie",
+      "file": "reference-tortie.png",
+      "bytes": 1648967,
+      "sha256": "3726d27c8f5d0a784f2c73b156e9bb9005cad602ddf31a9890f9697ebc0a21ca"
+    }
   ]
 }

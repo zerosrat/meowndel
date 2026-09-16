@@ -1,0 +1,42 @@
+{
+  "tool": "built-in imagegen",
+  "source": "concept.png",
+  "instruction": "Preserve silhouette, seated pose, head tilt, framing, soft faceted low-poly 3D art style and cream backdrop. Edit only coat and matching eye/nose details. One cat, no text or collage.",
+  "variants": [
+    {
+      "key": "cream",
+      "reference": "reference-cream.png",
+      "prompt": "CREAM TABBY: pale warm cream fur with softly contrasting beige tabby stripes, no saturated orange. Ivory warm muzzle and bib, cream paws. Pink nose. Golden eyes."
+    },
+    {
+      "key": "blueTabby",
+      "reference": "reference-blueTabby.png",
+      "prompt": "BLUE MACKEREL TABBY: cool soft blue-gray base fur with clearly defined darker slate gray mackerel stripes, forehead M, cheek stripes, limb bars and ringed tail. Pale gray-buff muzzle. Slate pink nose. Green-gold eyes. NO orange/brown fur, no white socks or bib."
+    },
+    {
+      "key": "black",
+      "reference": "reference-black.png",
+      "prompt": "SOLID BLACK CAT: entirely rich charcoal-black coat including muzzle, chest, belly, all paws and tail. Absolutely no white patches, no white socks, no orange, no stripes. Subtle faceted shading retains shape. Black nose, warm golden eyes, muted rosy ear interiors."
+    },
+    {
+      "key": "blue",
+      "reference": "reference-blue.png",
+      "prompt": "SOLID BLUE CAT: entirely even cool slate blue-gray coat including muzzle, chest, belly, paws and tail. No white patches or socks, no tabby stripes, no orange. Slate nose, copper-gold eyes, muted rosy ear interiors. Same slim domestic cat body, NOT British shorthair."
+    },
+    {
+      "key": "blueWhite",
+      "reference": "reference-blueWhite.png",
+      "prompt": "BLUE AND WHITE BICOLOR: soft blue-gray crown ears eye surrounds back flanks tail. Natural white inverted-V muzzle blaze and white chest bib, belly, white socks. Gray-pink nose, golden eyes, muted pink ears. No orange, no stripes."
+    },
+    {
+      "key": "diluteCalico",
+      "reference": "reference-diluteCalico.png",
+      "prompt": "DILUTE CALICO: large natural irregular islands of BLUE-GRAY and pale CREAM over an ivory WHITE base. Face asymmetric: viewer-left eye surround blue-gray, viewer-right cheek cream, white muzzle blaze. White chest belly paws. Large blue-gray and cream patches on flanks, blue-cream tail. Pink nose, golden eyes. No black, no saturated orange, no overall tabby stripes."
+    },
+    {
+      "key": "tortie",
+      "reference": "reference-tortie.png",
+      "prompt": "TORTOISESHELL CAT: black and warm orange irregular naturally intermingled patches across entire face, body, muzzle, chest, belly, paws, tail. Absolutely NO WHITE or cream bib or white paws. Black base with visible ginger-orange islands and flecks, asymmetric face. Black-pink mottled nose, golden eyes, muted pink inner ears. No uniform tiger stripes."
+    }
+  ]
+}
