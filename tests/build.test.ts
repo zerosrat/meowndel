@@ -10,7 +10,8 @@ const FONT_ALLOWLIST = [
 
 describe("单文件交付", () => {
   it("build 产出单个 index.html，无任何本地 JS/CSS 资源", () => {
-    execSync("pnpm run build", { stdio: "pipe" });
+    // Vitest sets NODE_ENV=test; the delivery check must build React in production mode.
+    execSync("pnpm run build", { stdio: "pipe", env: { ...process.env, NODE_ENV: "production" } });
     expect(existsSync("dist/index.html")).toBe(true);
 
     const files = readdirSync("dist", { recursive: true }) as string[];
@@ -37,5 +38,14 @@ describe("单文件交付", () => {
     const html = readFileSync("dist/index.html", "utf8");
     expect(html).toMatch(/fonts\.googleapis\.com\/css2\?family=IBM\+Plex\+Mono/);
     expect(html).toMatch(/Noto\+Serif\+SC/);
+  });
+
+  it("长短毛底稿内联，不依赖本机路径或额外图片文件", () => {
+    const html = readFileSync("dist/index.html", "utf8");
+    const files = readdirSync("dist", { recursive: true }) as string[];
+    expect(files.filter((f) => /\.(png|webp|jpe?g)$/.test(f))).toEqual([]);
+    expect((html.match(/data:image\/png;base64,/g) || []).length).toBeGreaterThanOrEqual(2);
+    expect(/\/(?:Users|home)\//.test(html), "交付包不应包含开发机绝对路径").toBe(false);
+    expect(html).not.toMatch(/(?:src|href)=["'][^"']*flat-assets\//);
   });
 });

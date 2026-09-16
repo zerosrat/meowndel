@@ -1,0 +1,17 @@
+{
+  "status": "audit-proposal-not-production-mapping",
+  "assets": [
+    {"breed":"domestic","coat":"black","category":"candidate","spec":{"series":"black","dilute":false,"tabby":false,"white":0,"long":false}},
+    {"breed":"domestic","coat":"white","category":"missing-model","reason":"现有 white=4 是高白，不是显性全白；没有全白字段。"},
+    {"breed":"domestic","coat":"orange","category":"candidate","spec":{"series":"orange","dilute":false,"tabby":true,"white":0,"long":false}},
+    {"breed":"domestic","coat":"tabby","category":"candidate","spec":{"series":"black","dilute":false,"tabby":true,"white":0,"long":false}},
+    {"breed":"domestic","coat":"bicolor","category":"white-calibration","spec":{"series":"orange","dilute":false,"tabby":true,"white":2,"long":false},"reason":"固定橘白遮罩尚未标定五档白斑，只作为 white=2 的候选。"},
+    {"breed":"domestic","coat":"calico","category":"white-calibration","spec":{"series":"tortie","dilute":false,"tabby":false,"white":2,"long":false},"reason":"固定三花遮罩尚未标定五档白斑；不能直接关掉白斑当作玳瑁。"},
+    {"breed":"british","coat":"blue","category":"missing-context","reason":"底色可用现有黑色系+稀释表达，但没有个体品种字段；蓝猫不能推出英短。"},
+    {"breed":"british","coat":"blue-white","category":"missing-context","reason":"底色和有白可表达，但缺个体品种上下文及白斑档位标定。"},
+    {"breed":"american","coat":"silver","category":"missing-model","reason":"缺少品种上下文、银色和虎斑纹型字段。"},
+    {"breed":"american","coat":"brown","category":"missing-model","reason":"棕虎斑底色可表达，但缺少品种上下文和古典纹型字段。"},
+    {"breed":"ragdoll","coat":"seal-bicolor","category":"missing-model","reason":"缺少品种上下文、重点色字段及布偶双色表达；long=true 不能推出布偶。"},
+    {"breed":"ragdoll","coat":"blue-bicolor","category":"missing-model","reason":"稀释可表达，但缺少品种上下文、重点色及布偶双色表达。"}
+  ]
+}

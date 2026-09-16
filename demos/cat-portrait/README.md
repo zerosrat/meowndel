@@ -35,3 +35,16 @@ The restore script checks every archived file before copying, skips identical lo
 | `index.html` | Preserved 3D-looking 2D Plan B |
 
 Prompt logs, implementation notes, and validation limits are kept alongside each preview. Main application source remains unchanged.
+
+## 田园猫正式接入（2026-09-16）
+
+主应用现在复用短毛、长毛两张中性底稿，通过完整 `CoatSpec` 合成 100 种外观；历史 Demo 和覆盖报告保留为验证基线。
+
+首次开发或构建前，从外部素材归档恢复（19 个文件逐个校验）：
+
+```sh
+node tools/restore-cat-demo-assets.mjs /Users/zeroyu/.local/share/meowndel/cat-2d-validation-2026-09-16
+pnpm dev
+```
+
+浏览器打开 Vite 的 `/demos/cat-portrait/domestic-coverage.html` 可重跑 100 图像检查。主应用为 `/`。构建只内联两张底稿，最终 `dist/index.html` 不依赖归档目录。外部归档须单独备份/传递，Git 克隆本身不含 PNG。

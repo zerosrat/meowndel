@@ -1,6 +1,6 @@
 import type { CoatSpec, UiState } from "../genetics";
 import { QUICK } from "./types";
-import { catSVG } from "../render/catSVG";
+import CatPortrait from "./CatPortrait";
 
 // legacy 614-624: renderPicks()
 export default function QuickPicks({
@@ -24,7 +24,6 @@ export default function QuickPicks({
           q.ui.white === ui.white &&
           q.ui.long === ui.long &&
           (q.ui.series === "orange" || q.ui.tabby === ui.tabby);
-        const svg = catSVG(sp, i + 3, 34);
         return (
           <button
             key={i}
@@ -33,7 +32,7 @@ export default function QuickPicks({
             style={{ color: "var(--cat-line)" }}
             onClick={() => onPick({ ...q.ui })}
           >
-            <div dangerouslySetInnerHTML={{ __html: svg }} />
+            <CatPortrait spec={sp} seed={i + 3} size={34} />
             <span>{q.label}</span>
           </button>
         );

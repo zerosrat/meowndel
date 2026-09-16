@@ -1,7 +1,7 @@
 import { Fragment, type ReactNode } from "react";
 import type { CoatSpec, UiState } from "../genetics";
 import { coatName, WHITE_LABEL, WHITE_S, WHITE_TENDENCY } from "../genetics";
-import { catSVG } from "../render/catSVG";
+import CatPortrait from "./CatPortrait";
 
 // legacy 666-700: renderSelf(t) —— 注意 t（Target）在 legacy 里实际未被使用。
 export default function SelfPanel({ ui, seed }: { ui: UiState; seed: number }) {
@@ -44,7 +44,6 @@ export default function SelfPanel({ ui, seed }: { ui: UiState; seed: number }) {
     ["L", "毛长", ui.long ? "l/l" : "L/L 或 L/l", ui.long ? "两份长毛基因" : "至少一份短毛基因"],
   ];
 
-  const svg = catSVG(sp, seed, 190);
   const catsub = sexTxt + " · " + (sp.dilute ? "淡色" : "浓色") + " · " + (sp.tabby ? "有虎斑纹" : "无虎斑纹") + " · " + WHITE_LABEL[ui.white];
   const platecap = WHITE_LABEL[ui.white] + " · seed " + seed;
 
@@ -53,7 +52,7 @@ export default function SelfPanel({ ui, seed }: { ui: UiState; seed: number }) {
       <div className="paneltop"><span className="dir">●</span><span className="paneltitle">这一只</span><span className="panelrule"></span></div>
       <div className="specimen">
         <div className="plate">
-          <div dangerouslySetInnerHTML={{ __html: svg }} />
+          <CatPortrait spec={sp} seed={seed} size={190} />
           <div className="platecap">{platecap}</div>
         </div>
         <div className="spec-info">

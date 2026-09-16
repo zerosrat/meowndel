@@ -90,6 +90,11 @@
       "path": "flat-assets/ragdoll-coats.png",
       "bytes": 1564115,
       "sha256": "6c635b252d17cb1fb0a7650e59904b29226d9d4c669ffe61ea8bb4af48f62128"
+    },
+    {
+      "path": "flat-assets/domestic-long-neutral.png",
+      "bytes": 942967,
+      "sha256": "ff2ce8bc7e9ac9b80d589741208ee54017ac0ba2fdadc025d4681f18aa15560c"
     }
   ]
 }
