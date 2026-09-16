@@ -44,6 +44,30 @@
       "materials": 1,
       "images": 2,
       "skins": 0
+    },
+    {
+      "key": "cream",
+      "file": "cat-cream-80k-2k.glb",
+      "sourceTask": "86d1d94a-0e7a-463b-b1a4-57f568d6b5eb",
+      "sourceSite": "https://tripostudio.com",
+      "bytes": 2684668,
+      "sha256": "2ced744e5e4bd86a79b947e0209615d78368eb70ff7a994617729910852f8e26",
+      "triangles": 79999,
+      "materials": 1,
+      "images": 2,
+      "skins": 0
+    },
+    {
+      "key": "blueTabby",
+      "file": "cat-blueTabby-80k-2k.glb",
+      "sourceTask": "123f802e-baef-4548-8e79-cc1b3feaa45f",
+      "sourceSite": "https://tripostudio.com",
+      "bytes": 2739456,
+      "sha256": "7d79789570a535f3243c9dc89c378bc2da86c1e0aced436756c432f9d2b0b183",
+      "triangles": 79999,
+      "materials": 1,
+      "images": 2,
+      "skins": 0
     }
   ],
   "references": [

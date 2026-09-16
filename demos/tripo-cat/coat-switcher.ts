@@ -19,7 +19,7 @@ async function select(key:string){
  const asset=ready.get(key);kind.className='badge'+(asset?'':' pending');
  if(!asset){
   kind.textContent='参考图 · 3D 待制作';photo.alt=active.name+'设计参考图，尚非可旋转模型';photo.src='./reference-'+key+'.png';photo.hidden=false;
-  status.textContent='配色参考已完成，尚未生成 3D 贴图。目前 Tripo 服务超时，模型制作待恢复。';return;
+  status.textContent='配色参考已完成，尚未生成 3D 贴图。新增贴图正在制作与检查，完成后将替换为可旋转模型。';return;
  }
  kind.textContent='3D 载入中';status.textContent='正在载入'+active.name+'…';const canvas=document.createElement('canvas');canvas.setAttribute('aria-label',active.name+'可旋转 3D 模型');stage.prepend(canvas);
  try{const instance=scene=createComparisonScene(canvas,stage);const result=await instance.load('./'+asset.file);if(turn!==serial||!result)return;kind.textContent='可旋转 3D';angles.forEach(b=>b.disabled=false);status.textContent='拖动转身 · 双指或滚轮缩放';}
