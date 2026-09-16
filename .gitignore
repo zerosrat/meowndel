@@ -6,6 +6,11 @@ node_modules/
 dist/
 legacy/engine.legacy.mjs
 /.worktree/
+# Local visual-validation assets, restored by tools/link-visual-assets.mjs.
+/art
+/references
+/src/preview2d/assets
+/src/preview3d/assets
 # Local reference images are archived outside the repository.
 /docs/references/cat-visual/*.png
 # Cat illustration demo binaries are restored from an external archive.
