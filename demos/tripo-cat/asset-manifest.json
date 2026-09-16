@@ -1,0 +1,49 @@
+{
+  "archive": "~/.local/share/meowndel/soft-low-poly-cat-2026-09-16",
+  "assets": [
+    {
+      "key": "orange",
+      "file": "cat-80k-2k.glb",
+      "sourceTask": "f56e7624-71e7-46fe-8504-28de165b4584",
+      "bytes": 2874140,
+      "sha256": "5d9c67ff6dc1ea88602660468fc0716a89ce162388b4625c978498b603902a75",
+      "triangles": 79999,
+      "materials": 1,
+      "images": 3,
+      "skins": 0
+    },
+    {
+      "key": "tabby",
+      "file": "cat-tabby-80k-2k.glb",
+      "sourceTask": "28ae9fb6-a673-4358-a09b-059094f5313a",
+      "bytes": 2916360,
+      "sha256": "ca7bf9bd1b33e2f4bdafa219b525baff308d335fc6ef6f99f2b8f2e239ea6a7e",
+      "triangles": 79999,
+      "materials": 1,
+      "images": 2,
+      "skins": 0
+    },
+    {
+      "key": "tuxedo",
+      "file": "cat-tuxedo-80k-2k.glb",
+      "sourceTask": "be478f63-7f6f-46e7-8043-87919ae16699",
+      "bytes": 2862076,
+      "sha256": "25e86c8251956ad11e4bafde463cddb09e746aacb91848c719630d7478a9cb24",
+      "triangles": 79999,
+      "materials": 1,
+      "images": 2,
+      "skins": 0
+    },
+    {
+      "key": "calico",
+      "file": "cat-calico-80k-2k.glb",
+      "sourceTask": "d1bab082-2e09-47ad-9cd2-99b7b2fec5ee",
+      "bytes": 2734016,
+      "sha256": "e2d6b117265f6ee463a529f60b210c425111da5743b10c3b80b59cc6dc14ba62",
+      "triangles": 80000,
+      "materials": 1,
+      "images": 2,
+      "skins": 0
+    }
+  ]
+}
