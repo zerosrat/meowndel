@@ -1,0 +1,900 @@
+{
+  "baseCommit": "d889d1cf2c678271c7d254c31fd9e04de02d2493",
+  "qualification": "Candidate counts are manually declared semantic matches, not implemented coverage or population coverage. No production renderer is connected.",
+  "rawUiStates": 360,
+  "normalizedUiStates": 220,
+  "distinctCoatSpecs": 100,
+  "rawStateMateEvaluations": 1800,
+  "nonNullPairs": 1800,
+  "distinctChildCoatSpecs": 48,
+  "assets": [
+    {
+      "id": "domestic/black",
+      "name": "中华田园猫 · 黑猫",
+      "breed": "domestic",
+      "coat": "black",
+      "category": "candidate",
+      "spec": {
+        "series": "black",
+        "dilute": false,
+        "tabby": false,
+        "white": 0,
+        "long": false
+      }
+    },
+    {
+      "id": "domestic/white",
+      "name": "中华田园猫 · 白猫",
+      "breed": "domestic",
+      "coat": "white",
+      "category": "missing-model",
+      "reason": "现有 white=4 是高白，不是显性全白；没有全白字段。"
+    },
+    {
+      "id": "domestic/orange",
+      "name": "中华田园猫 · 橘猫",
+      "breed": "domestic",
+      "coat": "orange",
+      "category": "candidate",
+      "spec": {
+        "series": "orange",
+        "dilute": false,
+        "tabby": true,
+        "white": 0,
+        "long": false
+      }
+    },
+    {
+      "id": "domestic/tabby",
+      "name": "中华田园猫 · 狸花",
+      "breed": "domestic",
+      "coat": "tabby",
+      "category": "candidate",
+      "spec": {
+        "series": "black",
+        "dilute": false,
+        "tabby": true,
+        "white": 0,
+        "long": false
+      }
+    },
+    {
+      "id": "domestic/bicolor",
+      "name": "中华田园猫 · 橘白",
+      "breed": "domestic",
+      "coat": "bicolor",
+      "category": "white-calibration",
+      "spec": {
+        "series": "orange",
+        "dilute": false,
+        "tabby": true,
+        "white": 2,
+        "long": false
+      },
+      "reason": "固定橘白遮罩尚未标定五档白斑，只作为 white=2 的候选。"
+    },
+    {
+      "id": "domestic/calico",
+      "name": "中华田园猫 · 三花",
+      "breed": "domestic",
+      "coat": "calico",
+      "category": "white-calibration",
+      "spec": {
+        "series": "tortie",
+        "dilute": false,
+        "tabby": false,
+        "white": 2,
+        "long": false
+      },
+      "reason": "固定三花遮罩尚未标定五档白斑；不能直接关掉白斑当作玳瑁。"
+    },
+    {
+      "id": "british/blue",
+      "name": "英国短毛猫 · 纯蓝",
+      "breed": "british",
+      "coat": "blue",
+      "category": "missing-context",
+      "reason": "底色可用现有黑色系+稀释表达，但没有个体品种字段；蓝猫不能推出英短。"
+    },
+    {
+      "id": "british/blue-white",
+      "name": "英国短毛猫 · 蓝白",
+      "breed": "british",
+      "coat": "blue-white",
+      "category": "missing-context",
+      "reason": "底色和有白可表达，但缺个体品种上下文及白斑档位标定。"
+    },
+    {
+      "id": "american/silver",
+      "name": "美国短毛猫 · 银虎斑",
+      "breed": "american",
+      "coat": "silver",
+      "category": "missing-model",
+      "reason": "缺少品种上下文、银色和虎斑纹型字段。"
+    },
+    {
+      "id": "american/brown",
+      "name": "美国短毛猫 · 棕虎斑",
+      "breed": "american",
+      "coat": "brown",
+      "category": "missing-model",
+      "reason": "棕虎斑底色可表达，但缺少品种上下文和古典纹型字段。"
+    },
+    {
+      "id": "ragdoll/seal-bicolor",
+      "name": "布偶猫 · 海豹双色",
+      "breed": "ragdoll",
+      "coat": "seal-bicolor",
+      "category": "missing-model",
+      "reason": "缺少品种上下文、重点色字段及布偶双色表达；long=true 不能推出布偶。"
+    },
+    {
+      "id": "ragdoll/blue-bicolor",
+      "name": "布偶猫 · 蓝双色",
+      "breed": "ragdoll",
+      "coat": "blue-bicolor",
+      "category": "missing-model",
+      "reason": "稀释可表达，但缺少品种上下文、重点色及布偶双色表达。"
+    }
+  ],
+  "surfaces": {
+    "self": {
+      "total": 100,
+      "candidate": 3,
+      "whiteCalibration": 2,
+      "noCandidate": 95
+    },
+    "quick": {
+      "total": 12,
+      "candidate": 3,
+      "whiteCalibration": 2,
+      "noCandidate": 7
+    },
+    "catalog": {
+      "total": 16,
+      "candidate": 3,
+      "whiteCalibration": 2,
+      "noCandidate": 11
+    },
+    "children": {
+      "total": 48,
+      "candidate": 3,
+      "whiteCalibration": 2,
+      "noCandidate": 43
+    }
+  },
+  "nameCollisions": [
+    {
+      "name": "短毛狸花猫",
+      "keys": [
+        "black/D/tabby/0/short",
+        "black/D/tabby/1/short"
+      ]
+    },
+    {
+      "name": "长毛狸花猫",
+      "keys": [
+        "black/D/tabby/0/long",
+        "black/D/tabby/1/long"
+      ]
+    },
+    {
+      "name": "短毛狸花白猫",
+      "keys": [
+        "black/D/tabby/2/short",
+        "black/D/tabby/3/short"
+      ]
+    },
+    {
+      "name": "长毛狸花白猫",
+      "keys": [
+        "black/D/tabby/2/long",
+        "black/D/tabby/3/long"
+      ]
+    },
+    {
+      "name": "短毛黑猫",
+      "keys": [
+        "black/D/solid/0/short",
+        "black/D/solid/1/short"
+      ]
+    },
+    {
+      "name": "长毛黑猫",
+      "keys": [
+        "black/D/solid/0/long",
+        "black/D/solid/1/long"
+      ]
+    },
+    {
+      "name": "短毛奶牛猫",
+      "keys": [
+        "black/D/solid/2/short",
+        "black/D/solid/3/short"
+      ]
+    },
+    {
+      "name": "长毛奶牛猫",
+      "keys": [
+        "black/D/solid/2/long",
+        "black/D/solid/3/long"
+      ]
+    },
+    {
+      "name": "短毛蓝虎斑猫",
+      "keys": [
+        "black/d/tabby/0/short",
+        "black/d/tabby/1/short"
+      ]
+    },
+    {
+      "name": "长毛蓝虎斑猫",
+      "keys": [
+        "black/d/tabby/0/long",
+        "black/d/tabby/1/long"
+      ]
+    },
+    {
+      "name": "短毛蓝虎斑白猫",
+      "keys": [
+        "black/d/tabby/2/short",
+        "black/d/tabby/3/short"
+      ]
+    },
+    {
+      "name": "长毛蓝虎斑白猫",
+      "keys": [
+        "black/d/tabby/2/long",
+        "black/d/tabby/3/long"
+      ]
+    },
+    {
+      "name": "短毛蓝猫",
+      "keys": [
+        "black/d/solid/0/short",
+        "black/d/solid/1/short"
+      ]
+    },
+    {
+      "name": "长毛蓝猫",
+      "keys": [
+        "black/d/solid/0/long",
+        "black/d/solid/1/long"
+      ]
+    },
+    {
+      "name": "短毛蓝白猫",
+      "keys": [
+        "black/d/solid/2/short",
+        "black/d/solid/3/short"
+      ]
+    },
+    {
+      "name": "长毛蓝白猫",
+      "keys": [
+        "black/d/solid/2/long",
+        "black/d/solid/3/long"
+      ]
+    },
+    {
+      "name": "短毛橘猫",
+      "keys": [
+        "orange/D/tabby/0/short",
+        "orange/D/tabby/1/short"
+      ]
+    },
+    {
+      "name": "长毛橘猫",
+      "keys": [
+        "orange/D/tabby/0/long",
+        "orange/D/tabby/1/long"
+      ]
+    },
+    {
+      "name": "短毛橘白猫",
+      "keys": [
+        "orange/D/tabby/2/short",
+        "orange/D/tabby/3/short"
+      ]
+    },
+    {
+      "name": "长毛橘白猫",
+      "keys": [
+        "orange/D/tabby/2/long",
+        "orange/D/tabby/3/long"
+      ]
+    },
+    {
+      "name": "短毛奶油猫",
+      "keys": [
+        "orange/d/tabby/0/short",
+        "orange/d/tabby/1/short"
+      ]
+    },
+    {
+      "name": "长毛奶油猫",
+      "keys": [
+        "orange/d/tabby/0/long",
+        "orange/d/tabby/1/long"
+      ]
+    },
+    {
+      "name": "短毛奶油白猫",
+      "keys": [
+        "orange/d/tabby/2/short",
+        "orange/d/tabby/3/short"
+      ]
+    },
+    {
+      "name": "长毛奶油白猫",
+      "keys": [
+        "orange/d/tabby/2/long",
+        "orange/d/tabby/3/long"
+      ]
+    },
+    {
+      "name": "短毛玳瑁虎斑猫",
+      "keys": [
+        "tortie/D/tabby/0/short",
+        "tortie/D/tabby/1/short"
+      ]
+    },
+    {
+      "name": "长毛玳瑁虎斑猫",
+      "keys": [
+        "tortie/D/tabby/0/long",
+        "tortie/D/tabby/1/long"
+      ]
+    },
+    {
+      "name": "短毛三花猫",
+      "keys": [
+        "tortie/D/tabby/2/short",
+        "tortie/D/tabby/3/short",
+        "tortie/D/tabby/4/short",
+        "tortie/D/solid/2/short",
+        "tortie/D/solid/3/short",
+        "tortie/D/solid/4/short"
+      ]
+    },
+    {
+      "name": "长毛三花猫",
+      "keys": [
+        "tortie/D/tabby/2/long",
+        "tortie/D/tabby/3/long",
+        "tortie/D/tabby/4/long",
+        "tortie/D/solid/2/long",
+        "tortie/D/solid/3/long",
+        "tortie/D/solid/4/long"
+      ]
+    },
+    {
+      "name": "短毛玳瑁猫",
+      "keys": [
+        "tortie/D/solid/0/short",
+        "tortie/D/solid/1/short"
+      ]
+    },
+    {
+      "name": "长毛玳瑁猫",
+      "keys": [
+        "tortie/D/solid/0/long",
+        "tortie/D/solid/1/long"
+      ]
+    },
+    {
+      "name": "短毛淡玳瑁虎斑猫",
+      "keys": [
+        "tortie/d/tabby/0/short",
+        "tortie/d/tabby/1/short"
+      ]
+    },
+    {
+      "name": "长毛淡玳瑁虎斑猫",
+      "keys": [
+        "tortie/d/tabby/0/long",
+        "tortie/d/tabby/1/long"
+      ]
+    },
+    {
+      "name": "短毛淡三花猫",
+      "keys": [
+        "tortie/d/tabby/2/short",
+        "tortie/d/tabby/3/short",
+        "tortie/d/tabby/4/short",
+        "tortie/d/solid/2/short",
+        "tortie/d/solid/3/short",
+        "tortie/d/solid/4/short"
+      ]
+    },
+    {
+      "name": "长毛淡三花猫",
+      "keys": [
+        "tortie/d/tabby/2/long",
+        "tortie/d/tabby/3/long",
+        "tortie/d/tabby/4/long",
+        "tortie/d/solid/2/long",
+        "tortie/d/solid/3/long",
+        "tortie/d/solid/4/long"
+      ]
+    },
+    {
+      "name": "短毛淡玳瑁猫",
+      "keys": [
+        "tortie/d/solid/0/short",
+        "tortie/d/solid/1/short"
+      ]
+    },
+    {
+      "name": "长毛淡玳瑁猫",
+      "keys": [
+        "tortie/d/solid/0/long",
+        "tortie/d/solid/1/long"
+      ]
+    }
+  ],
+  "missingSpecs": [
+    {
+      "key": "black/D/tabby/0/long",
+      "name": "长毛狸花猫"
+    },
+    {
+      "key": "black/D/tabby/1/short",
+      "name": "短毛狸花猫"
+    },
+    {
+      "key": "black/D/tabby/1/long",
+      "name": "长毛狸花猫"
+    },
+    {
+      "key": "black/D/tabby/2/short",
+      "name": "短毛狸花白猫"
+    },
+    {
+      "key": "black/D/tabby/2/long",
+      "name": "长毛狸花白猫"
+    },
+    {
+      "key": "black/D/tabby/3/short",
+      "name": "短毛狸花白猫"
+    },
+    {
+      "key": "black/D/tabby/3/long",
+      "name": "长毛狸花白猫"
+    },
+    {
+      "key": "black/D/tabby/4/short",
+      "name": "短毛高白狸花猫"
+    },
+    {
+      "key": "black/D/tabby/4/long",
+      "name": "长毛高白狸花猫"
+    },
+    {
+      "key": "black/D/solid/0/long",
+      "name": "长毛黑猫"
+    },
+    {
+      "key": "black/D/solid/1/short",
+      "name": "短毛黑猫"
+    },
+    {
+      "key": "black/D/solid/1/long",
+      "name": "长毛黑猫"
+    },
+    {
+      "key": "black/D/solid/2/short",
+      "name": "短毛奶牛猫"
+    },
+    {
+      "key": "black/D/solid/2/long",
+      "name": "长毛奶牛猫"
+    },
+    {
+      "key": "black/D/solid/3/short",
+      "name": "短毛奶牛猫"
+    },
+    {
+      "key": "black/D/solid/3/long",
+      "name": "长毛奶牛猫"
+    },
+    {
+      "key": "black/D/solid/4/short",
+      "name": "短毛高白黑猫"
+    },
+    {
+      "key": "black/D/solid/4/long",
+      "name": "长毛高白黑猫"
+    },
+    {
+      "key": "black/d/tabby/0/short",
+      "name": "短毛蓝虎斑猫"
+    },
+    {
+      "key": "black/d/tabby/0/long",
+      "name": "长毛蓝虎斑猫"
+    },
+    {
+      "key": "black/d/tabby/1/short",
+      "name": "短毛蓝虎斑猫"
+    },
+    {
+      "key": "black/d/tabby/1/long",
+      "name": "长毛蓝虎斑猫"
+    },
+    {
+      "key": "black/d/tabby/2/short",
+      "name": "短毛蓝虎斑白猫"
+    },
+    {
+      "key": "black/d/tabby/2/long",
+      "name": "长毛蓝虎斑白猫"
+    },
+    {
+      "key": "black/d/tabby/3/short",
+      "name": "短毛蓝虎斑白猫"
+    },
+    {
+      "key": "black/d/tabby/3/long",
+      "name": "长毛蓝虎斑白猫"
+    },
+    {
+      "key": "black/d/tabby/4/short",
+      "name": "短毛高白蓝虎斑猫"
+    },
+    {
+      "key": "black/d/tabby/4/long",
+      "name": "长毛高白蓝虎斑猫"
+    },
+    {
+      "key": "black/d/solid/0/short",
+      "name": "短毛蓝猫"
+    },
+    {
+      "key": "black/d/solid/0/long",
+      "name": "长毛蓝猫"
+    },
+    {
+      "key": "black/d/solid/1/short",
+      "name": "短毛蓝猫"
+    },
+    {
+      "key": "black/d/solid/1/long",
+      "name": "长毛蓝猫"
+    },
+    {
+      "key": "black/d/solid/2/short",
+      "name": "短毛蓝白猫"
+    },
+    {
+      "key": "black/d/solid/2/long",
+      "name": "长毛蓝白猫"
+    },
+    {
+      "key": "black/d/solid/3/short",
+      "name": "短毛蓝白猫"
+    },
+    {
+      "key": "black/d/solid/3/long",
+      "name": "长毛蓝白猫"
+    },
+    {
+      "key": "black/d/solid/4/short",
+      "name": "短毛高白蓝猫"
+    },
+    {
+      "key": "black/d/solid/4/long",
+      "name": "长毛高白蓝猫"
+    },
+    {
+      "key": "orange/D/tabby/0/long",
+      "name": "长毛橘猫"
+    },
+    {
+      "key": "orange/D/tabby/1/short",
+      "name": "短毛橘猫"
+    },
+    {
+      "key": "orange/D/tabby/1/long",
+      "name": "长毛橘猫"
+    },
+    {
+      "key": "orange/D/tabby/2/long",
+      "name": "长毛橘白猫"
+    },
+    {
+      "key": "orange/D/tabby/3/short",
+      "name": "短毛橘白猫"
+    },
+    {
+      "key": "orange/D/tabby/3/long",
+      "name": "长毛橘白猫"
+    },
+    {
+      "key": "orange/D/tabby/4/short",
+      "name": "短毛高白橘猫"
+    },
+    {
+      "key": "orange/D/tabby/4/long",
+      "name": "长毛高白橘猫"
+    },
+    {
+      "key": "orange/d/tabby/0/short",
+      "name": "短毛奶油猫"
+    },
+    {
+      "key": "orange/d/tabby/0/long",
+      "name": "长毛奶油猫"
+    },
+    {
+      "key": "orange/d/tabby/1/short",
+      "name": "短毛奶油猫"
+    },
+    {
+      "key": "orange/d/tabby/1/long",
+      "name": "长毛奶油猫"
+    },
+    {
+      "key": "orange/d/tabby/2/short",
+      "name": "短毛奶油白猫"
+    },
+    {
+      "key": "orange/d/tabby/2/long",
+      "name": "长毛奶油白猫"
+    },
+    {
+      "key": "orange/d/tabby/3/short",
+      "name": "短毛奶油白猫"
+    },
+    {
+      "key": "orange/d/tabby/3/long",
+      "name": "长毛奶油白猫"
+    },
+    {
+      "key": "orange/d/tabby/4/short",
+      "name": "短毛高白奶油猫"
+    },
+    {
+      "key": "orange/d/tabby/4/long",
+      "name": "长毛高白奶油猫"
+    },
+    {
+      "key": "tortie/D/tabby/0/short",
+      "name": "短毛玳瑁虎斑猫"
+    },
+    {
+      "key": "tortie/D/tabby/0/long",
+      "name": "长毛玳瑁虎斑猫"
+    },
+    {
+      "key": "tortie/D/tabby/1/short",
+      "name": "短毛玳瑁虎斑猫"
+    },
+    {
+      "key": "tortie/D/tabby/1/long",
+      "name": "长毛玳瑁虎斑猫"
+    },
+    {
+      "key": "tortie/D/tabby/2/short",
+      "name": "短毛三花猫"
+    },
+    {
+      "key": "tortie/D/tabby/2/long",
+      "name": "长毛三花猫"
+    },
+    {
+      "key": "tortie/D/tabby/3/short",
+      "name": "短毛三花猫"
+    },
+    {
+      "key": "tortie/D/tabby/3/long",
+      "name": "长毛三花猫"
+    },
+    {
+      "key": "tortie/D/tabby/4/short",
+      "name": "短毛三花猫"
+    },
+    {
+      "key": "tortie/D/tabby/4/long",
+      "name": "长毛三花猫"
+    },
+    {
+      "key": "tortie/D/solid/0/short",
+      "name": "短毛玳瑁猫"
+    },
+    {
+      "key": "tortie/D/solid/0/long",
+      "name": "长毛玳瑁猫"
+    },
+    {
+      "key": "tortie/D/solid/1/short",
+      "name": "短毛玳瑁猫"
+    },
+    {
+      "key": "tortie/D/solid/1/long",
+      "name": "长毛玳瑁猫"
+    },
+    {
+      "key": "tortie/D/solid/2/long",
+      "name": "长毛三花猫"
+    },
+    {
+      "key": "tortie/D/solid/3/short",
+      "name": "短毛三花猫"
+    },
+    {
+      "key": "tortie/D/solid/3/long",
+      "name": "长毛三花猫"
+    },
+    {
+      "key": "tortie/D/solid/4/short",
+      "name": "短毛三花猫"
+    },
+    {
+      "key": "tortie/D/solid/4/long",
+      "name": "长毛三花猫"
+    },
+    {
+      "key": "tortie/d/tabby/0/short",
+      "name": "短毛淡玳瑁虎斑猫"
+    },
+    {
+      "key": "tortie/d/tabby/0/long",
+      "name": "长毛淡玳瑁虎斑猫"
+    },
+    {
+      "key": "tortie/d/tabby/1/short",
+      "name": "短毛淡玳瑁虎斑猫"
+    },
+    {
+      "key": "tortie/d/tabby/1/long",
+      "name": "长毛淡玳瑁虎斑猫"
+    },
+    {
+      "key": "tortie/d/tabby/2/short",
+      "name": "短毛淡三花猫"
+    },
+    {
+      "key": "tortie/d/tabby/2/long",
+      "name": "长毛淡三花猫"
+    },
+    {
+      "key": "tortie/d/tabby/3/short",
+      "name": "短毛淡三花猫"
+    },
+    {
+      "key": "tortie/d/tabby/3/long",
+      "name": "长毛淡三花猫"
+    },
+    {
+      "key": "tortie/d/tabby/4/short",
+      "name": "短毛淡三花猫"
+    },
+    {
+      "key": "tortie/d/tabby/4/long",
+      "name": "长毛淡三花猫"
+    },
+    {
+      "key": "tortie/d/solid/0/short",
+      "name": "短毛淡玳瑁猫"
+    },
+    {
+      "key": "tortie/d/solid/0/long",
+      "name": "长毛淡玳瑁猫"
+    },
+    {
+      "key": "tortie/d/solid/1/short",
+      "name": "短毛淡玳瑁猫"
+    },
+    {
+      "key": "tortie/d/solid/1/long",
+      "name": "长毛淡玳瑁猫"
+    },
+    {
+      "key": "tortie/d/solid/2/short",
+      "name": "短毛淡三花猫"
+    },
+    {
+      "key": "tortie/d/solid/2/long",
+      "name": "长毛淡三花猫"
+    },
+    {
+      "key": "tortie/d/solid/3/short",
+      "name": "短毛淡三花猫"
+    },
+    {
+      "key": "tortie/d/solid/3/long",
+      "name": "长毛淡三花猫"
+    },
+    {
+      "key": "tortie/d/solid/4/short",
+      "name": "短毛淡三花猫"
+    },
+    {
+      "key": "tortie/d/solid/4/long",
+      "name": "长毛淡三花猫"
+    }
+  ],
+  "catalog": [
+    {
+      "name": "黑猫",
+      "key": "black/D/solid/0/short",
+      "category": "candidate"
+    },
+    {
+      "name": "狸花猫",
+      "key": "black/D/tabby/0/short",
+      "category": "candidate"
+    },
+    {
+      "name": "蓝猫",
+      "key": "black/d/solid/0/short",
+      "category": "no-candidate"
+    },
+    {
+      "name": "蓝虎斑猫",
+      "key": "black/d/tabby/0/short",
+      "category": "no-candidate"
+    },
+    {
+      "name": "橘猫",
+      "key": "orange/D/tabby/0/short",
+      "category": "candidate"
+    },
+    {
+      "name": "奶油猫",
+      "key": "orange/d/tabby/0/short",
+      "category": "no-candidate"
+    },
+    {
+      "name": "玳瑁猫",
+      "key": "tortie/D/solid/0/short",
+      "category": "no-candidate"
+    },
+    {
+      "name": "三花猫",
+      "key": "tortie/D/solid/2/short",
+      "category": "white-calibration"
+    },
+    {
+      "name": "奶牛猫",
+      "key": "black/D/solid/2/short",
+      "category": "no-candidate"
+    },
+    {
+      "name": "蓝白猫",
+      "key": "black/d/solid/2/short",
+      "category": "no-candidate"
+    },
+    {
+      "name": "橘白猫",
+      "key": "orange/D/tabby/2/short",
+      "category": "white-calibration"
+    },
+    {
+      "name": "狸花白猫",
+      "key": "black/D/tabby/2/short",
+      "category": "no-candidate"
+    },
+    {
+      "name": "长毛狸花猫",
+      "key": "black/D/tabby/0/long",
+      "category": "no-candidate"
+    },
+    {
+      "name": "长毛橘猫",
+      "key": "orange/D/tabby/0/long",
+      "category": "no-candidate"
+    },
+    {
+      "name": "淡玳瑁猫",
+      "key": "tortie/d/solid/0/short",
+      "category": "no-candidate"
+    },
+    {
+      "name": "淡三花猫",
+      "key": "tortie/d/solid/2/short",
+      "category": "no-candidate"
+    }
+  ]
+}

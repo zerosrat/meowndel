@@ -1,5 +1,5 @@
 import type { CoatSpec } from "../genetics";
-import { catSVG } from "../render/catSVG";
+import CatPortrait from "./CatPortrait";
 
 // legacy 702-703: catChip(spec,name,no,sd)
 // 被 ParentsPanel（画廊）与 KidsPanel（后代结果）共用。
@@ -11,11 +11,10 @@ export default function CatChip({
 }: {
   spec: CoatSpec; name: string; no: boolean; seed: number; onClick?: () => void;
 }) {
-  const svg = catSVG(spec, seed, 46);
   const className = "catchip" + (no ? " no" : "");
   const inner = (
     <>
-      <div dangerouslySetInnerHTML={{ __html: svg }} />
+      <CatPortrait spec={spec} seed={seed} size={46} />
       <span className="cname">{name}</span>
     </>
   );

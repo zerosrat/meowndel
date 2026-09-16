@@ -1,0 +1,100 @@
+{
+  "version": 1,
+  "assets": [
+    {
+      "path": "assets/british-blue.png",
+      "bytes": 1463641,
+      "sha256": "b9072acfe60c1af580b09869104e488a58260fa72f8bee847cc1fc73f33378f2"
+    },
+    {
+      "path": "assets/british-neutral.png",
+      "bytes": 1347476,
+      "sha256": "f1d4f773521830a0cdac95a45293bd83981b7623c59bf6d821f37257ff18841c"
+    },
+    {
+      "path": "assets/domestic-neutral.png",
+      "bytes": 1157626,
+      "sha256": "049bad323241700dd6889917dedf89df347524a86e27b4aaa452d1052447d9f1"
+    },
+    {
+      "path": "assets/domestic-orange.png",
+      "bytes": 1263377,
+      "sha256": "5affaf310aaa3d644ff52cb16712c84fccada67f67f7e4a2bbb2cd7b6f51a555"
+    },
+    {
+      "path": "design-sheets/four-breeds-v1.png",
+      "bytes": 2159721,
+      "sha256": "6654921c8ec3fcf1d53c146cd1be1489352f0c37ee90dfb4dd20aa8207365be0"
+    },
+    {
+      "path": "flat-assets/american-coats.png",
+      "bytes": 1552025,
+      "sha256": "bb56c063e2551cb82f0a5fb5eba3485c97c4fe244aeaacd6cfeebd02c9fb62f2"
+    },
+    {
+      "path": "flat-assets/british-bicolor.png",
+      "bytes": 1069536,
+      "sha256": "700f60050bda574cfe79b39d523c4bb1c210dacaa337c7d4c7500ab9068504e7"
+    },
+    {
+      "path": "flat-assets/british-shape-v2.png",
+      "bytes": 1235651,
+      "sha256": "5a7ab24dbde56858f58377f6d621dc7d6396960a299f5cab8704d3f04d3575ab"
+    },
+    {
+      "path": "flat-assets/british.png",
+      "bytes": 1199240,
+      "sha256": "37bb7ebb48a47f210b5667f034c4569f24559074718784e07a2794bdb1d08635"
+    },
+    {
+      "path": "flat-assets/domestic-calico.png",
+      "bytes": 1194524,
+      "sha256": "51ce472fe5e0753ed66e23379c9819be757d68b25f198099cd0d017c23990751"
+    },
+    {
+      "path": "flat-assets/domestic-neutral-master.png",
+      "bytes": 831764,
+      "sha256": "d35873c407f12a899dbf40c7810621bbc69dc5a0801af4c40770e1b16c400909"
+    },
+    {
+      "path": "flat-assets/domestic-shape-v2.png",
+      "bytes": 843798,
+      "sha256": "ae4ff93bef0cf02018791f3a1d88da7d5884bf369935aea99518bd34fb7aa253"
+    },
+    {
+      "path": "flat-assets/domestic-shape-v3.png",
+      "bytes": 766253,
+      "sha256": "3060cf3ffc90f7824d1019cd9a33dc926817884fb3a18dc56a57d89e6ac8f878"
+    },
+    {
+      "path": "flat-assets/domestic-shape-v4.png",
+      "bytes": 944379,
+      "sha256": "edbd69c265e11ed87ca58863962114c33dadbb528536a6665eca0956a59c9ea3"
+    },
+    {
+      "path": "flat-assets/domestic-tabby.png",
+      "bytes": 1245962,
+      "sha256": "54e9b7d1f7a757752df1bd8ce64980bd42e273e85583858d2e2b538433594b17"
+    },
+    {
+      "path": "flat-assets/domestic-v4-coats.png",
+      "bytes": 1309369,
+      "sha256": "d3a51fad6e7428fb40f5f96466395e8ed7f142175b27a0f6dedac799ee799932"
+    },
+    {
+      "path": "flat-assets/domestic.png",
+      "bytes": 1165666,
+      "sha256": "e0a1a9f5e69b29b2e468385fdbf87d7ce607cdc9be7a10477f203fa76d259a2e"
+    },
+    {
+      "path": "flat-assets/ragdoll-coats.png",
+      "bytes": 1564115,
+      "sha256": "6c635b252d17cb1fb0a7650e59904b29226d9d4c669ffe61ea8bb4af48f62128"
+    },
+    {
+      "path": "flat-assets/domestic-long-neutral.png",
+      "bytes": 942967,
+      "sha256": "ff2ce8bc7e9ac9b80d589741208ee54017ac0ba2fdadc025d4681f18aa15560c"
+    }
+  ]
+}

@@ -5,7 +5,7 @@ import {
 } from "../genetics";
 import Claims from "./Claims";
 import CatChip from "./CatChip";
-import { catSVG } from "../render/catSVG";
+import CatPortrait from "./CatPortrait";
 
 // legacy 733-754: renderKids(t)
 export default function KidsPanel({
@@ -27,10 +27,9 @@ export default function KidsPanel({
       <p className="gallabel">要是让它配一只……</p>
       <div className="tabs">
         {list.map((m, i) => {
-          const svg = catSVG(canonSpec(m), i * 13 + 2, 26);
           return (
             <button key={m.name} className="tab" aria-pressed={i === idx} onClick={() => onMate(i)}>
-              <div dangerouslySetInnerHTML={{ __html: svg }} />{m.name}
+              <CatPortrait spec={canonSpec(m)} seed={i * 13 + 2} size={26} />{m.name}
             </button>
           );
         })}
