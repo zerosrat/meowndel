@@ -81,3 +81,9 @@ node tools/cat3d/restore-tripo.mjs /absolute/path/to/archive
 ## 11 花色分组复用与白斑试验
 
 入口 `grouped-coats.html`，11 套按五组共享身体，保留原版对照；纯黑和狸花支持五档示意白斑。`python3 tools/cat3d/build-grouped-coats.py` 从已校验的外部源 GLB 重建，输出位于外部归档 `grouped-coats/`，项目内链接不进 Git。全量实际资源 15.39 MB，原独立档合计 30.47 MB；白斑尚未映射正式遗传档位。见 [验收计划](../../docs/plans/2026-09-17-grouped-coats-white-study.md)。
+
+## 狸花加白完整材质验收
+
+`natural-white.html`：新完整材质 / 旧程序白斑 / 原狸花三档对照。程序白斑已被用户否决，保留只为比较；新材质仍待美术验收。
+
+新增原件 `cat-tabbyWhite-4k.glb`、优化件 `cat-tabbyWhite-80k-2k.glb` 在同一外置归档目录。运行 `python3 tools/cat3d/build-natural-white.py` 拆分完整材质并校验身体复用；清单 `natural-white-manifest.json` 记录来源、哈希与匹配结果。`natural-assets/` 是忽略的外置链接，Git 不包含模型二进制。

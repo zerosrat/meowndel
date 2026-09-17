@@ -1,0 +1,49 @@
+{
+  "taskId": "c4b8c823-16bf-4c3d-a254-d37677d12b82",
+  "original": {
+    "file": "cat-tabbyWhite-4k.glb",
+    "sha256": "db5b794c891fa8cfcd6786756530bd44aebfca3fedccf634be00d71956181c54",
+    "bytes": 61252700
+  },
+  "source": {
+    "file": "cat-tabbyWhite-80k-2k.glb",
+    "bytes": 2713104,
+    "sha256": "c431bd959df95db72150b0e580dd585b4fd573c24f3ef9f413e1a51da460bb8b"
+  },
+  "body": "grouped-assets/body-black.glb",
+  "rotationY": -1.5707963267948966,
+  "material": "natural-assets/tabbyWhite.gltf",
+  "sharedWith": [
+    "black",
+    "blue"
+  ],
+  "bodyAsset": {
+    "key": "black",
+    "file": "body-black.glb",
+    "bytes": 2365792,
+    "sha256": "94a6f2039438801cc2b018b117abe2c297a3c1553da6f57c95604f7788ae6d21",
+    "rotationY": -1.5707963267948966,
+    "coats": [
+      "black",
+      "blue"
+    ]
+  },
+  "materialAsset": {
+    "file": "tabbyWhite.gltf",
+    "bytes": 663,
+    "sha256": "e08e8475256e03fc5e43e38510649867d3f67ab25042b9fedd97eaac16f95f85"
+  },
+  "images": [
+    {
+      "file": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58.jpg",
+      "bytes": 97841,
+      "sha256": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58"
+    },
+    {
+      "file": "f035f52a7e50e6796e5510ec42a932ecf298688e1daa2166980bb4c57df7e586.jpg",
+      "bytes": 248879,
+      "sha256": "f035f52a7e50e6796e5510ec42a932ecf298688e1daa2166980bb4c57df7e586"
+    }
+  ],
+  "note": "几何、UV 与已有 纯黑 / 纯蓝灰 完全匹配，复用该组身体；新增独立完整材质。"
+}
