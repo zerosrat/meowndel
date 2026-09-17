@@ -1,0 +1,28 @@
+{
+  "taskId": "1c8bcf45-8018-43a3-8064-9bd79b6c9188",
+  "archive": "~/.local/share/meowndel/soft-low-poly-cat-2026-09-16",
+  "file": "cat-blocky-tabby-2k.glb",
+  "rotationY": -2.0943951023931953,
+  "triangles": 4899,
+  "assets": [
+    {
+      "file": "cat-blocky-tabby-4k.glb",
+      "bytes": 2731728,
+      "sha256": "4fd5bf003b7e9bd34ca7ddb1106e631155bb95dbc5d728e647092f9cb4f83cff",
+      "link": false
+    },
+    {
+      "file": "cat-blocky-tabby-2k.glb",
+      "bytes": 470264,
+      "sha256": "501fa131ad7f69a05aca1372dde400bcd167f0cc8f21c510c4b6e6bacc013759",
+      "link": true
+    },
+    {
+      "file": "reference-blocky-tabby.png",
+      "bytes": 1519482,
+      "sha256": "5845ece98229e08828c3664962f1975d0f81cd34796b0d224e32398e07c1f1e9",
+      "link": true
+    }
+  ],
+  "note": "新版为独立生成的 4,899 三角面身体，整只猫含 2K 贴图约 470 KB；本轮只验证单一花色，不使用旧身体或旧贴图。"
+}

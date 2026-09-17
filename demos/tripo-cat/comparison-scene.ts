@@ -64,13 +64,19 @@ export function createComparisonScene(canvas: HTMLCanvasElement, host: HTMLEleme
       for(const m of old)release(new THREE.Mesh(new THREE.BufferGeometry(),m));
       holder.geometry.dispose();render();return true;
     },
-    async load(url:string, rotationY=0) {
+    async load(url:string, rotationY=0, style?: {flatShading:boolean;roughness:number}) {
       const ticket=++generation;
       if(current){scene.remove(current);release(current);current=undefined;}render();
       const started=performance.now();
       const gltf=await new GLTFLoader().loadAsync(url);
       if(dead||ticket!==generation){release(gltf.scene);return null;}
       current=gltf.scene;
+      if(style)current.traverse(object=>{
+        if(!(object instanceof THREE.Mesh))return;
+        for(const material of Array.isArray(object.material)?object.material:[object.material]){
+          if(material instanceof THREE.MeshStandardMaterial){material.flatShading=style.flatShading;material.roughness=style.roughness;material.needsUpdate=true;}
+        }
+      });
       current.rotation.y+=rotationY;
       const box=new THREE.Box3().setFromObject(current), size=box.getSize(new THREE.Vector3()), center=box.getCenter(new THREE.Vector3()), scale=2.7/size.y;
       current.scale.setScalar(scale);current.position.set(-center.x*scale,-box.min.y*scale,-center.z*scale);scene.add(current);angle(0);

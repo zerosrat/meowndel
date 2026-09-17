@@ -87,3 +87,9 @@ node tools/cat3d/restore-tripo.mjs /absolute/path/to/archive
 `natural-white.html`：新完整材质 / 旧程序白斑 / 原狸花三档对照。程序白斑已被用户否决，保留只为比较；新材质仍待美术验收。
 
 新增原件 `cat-tabbyWhite-4k.glb`、优化件 `cat-tabbyWhite-80k-2k.glb` 在同一外置归档目录。运行 `python3 tools/cat3d/build-natural-white.py` 拆分完整材质并校验身体复用；清单 `natural-white-manifest.json` 记录来源、哈希与匹配结果。`natural-assets/` 是忽略的外置链接，Git 不包含模型二进制。
+
+## 块状卡通风格样板
+
+`blocky-cat.html`：新块状卡通造型 / 上一版混合风格，同一场景切换。参考图另设链接，明确区别于真正可旋转的模型。
+
+运行 `node tools/cat3d/restore-blocky.mjs` 核验外置资源并恢复链接。此前的 grouped / natural 资源仍按对应脚本恢复。源文件、网页件与参考图均未加入 Git；`blocky-manifest.json` 保存哈希及来源。
