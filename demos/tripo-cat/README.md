@@ -73,3 +73,7 @@ node tools/cat3d/restore-tripo.mjs /absolute/path/to/archive
 ```
 
 素材归档仍为 `~/.local/share/meowndel/soft-low-poly-cat-2026-09-16/`，需另外备份；Git 提交只有清单、提示词、代码和恢复工具，不包含这些二进制文件。
+
+## 五花色共用身体
+
+入口 `shared-coats.html`：奶油、蓝狸花、蓝白、淡三花、玳瑁共用 geometry，仅换原始材质和贴图。支持原始整套模型对照。运行 `python3 tools/cat3d/build-shared-coats.py` 从外部已归档 GLB 重建素材；来源校验和几何一致性检查不通过则停止。详见 [验证记录](../../docs/plans/2026-09-17-shared-cat-body-study.md)。

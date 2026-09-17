@@ -21,3 +21,5 @@ legacy/engine.legacy.mjs
 /demos/tripo-cat/*.glb
 
 /demos/tripo-cat/reference-*.png
+
+/demos/tripo-cat/shared-assets

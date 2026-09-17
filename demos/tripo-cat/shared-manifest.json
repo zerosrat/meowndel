@@ -1,0 +1,114 @@
+{
+  "body": {
+    "file": "body.glb",
+    "bytes": 2365824,
+    "sha256": "c7b5a4773eb8f4b8325808e8b8d388b723a9e9a0f5781654236438484c896ce6"
+  },
+  "coats": [
+    {
+      "key": "cream",
+      "material": {
+        "file": "cream.gltf",
+        "bytes": 545,
+        "sha256": "d721d442b3db4d847268aed21f96ae9d44662accf34604e33975c2ba1a1925c6"
+      },
+      "images": [
+        {
+          "file": "cream-0.jpg",
+          "bytes": 97841,
+          "sha256": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58"
+        },
+        {
+          "file": "cream-1.jpg",
+          "bytes": 220413,
+          "sha256": "5b94895e2e20e7cca8c707fb18cf51b44002520c42317ad5f2e9f36f77a698b8"
+        }
+      ],
+      "originalBytes": 2684668
+    },
+    {
+      "key": "blueTabby",
+      "material": {
+        "file": "blueTabby.gltf",
+        "bytes": 561,
+        "sha256": "fea68cf85d56f0a39ae8b50dc19eee9cb5cbfff072778491b9a52bca0af7b067"
+      },
+      "images": [
+        {
+          "file": "blueTabby-0.jpg",
+          "bytes": 97841,
+          "sha256": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58"
+        },
+        {
+          "file": "blueTabby-1.jpg",
+          "bytes": 275196,
+          "sha256": "c45b9a48ad94b4de94dfe9c2f782c6f2c5ddd205fab38ae85b7a991b20dbd46a"
+        }
+      ],
+      "originalBytes": 2739456
+    },
+    {
+      "key": "blueWhite",
+      "material": {
+        "file": "blueWhite.gltf",
+        "bytes": 561,
+        "sha256": "7fedb7852a94cca005bba6390f2f6a0d1d5e1bd0050a417702b302947e931ade"
+      },
+      "images": [
+        {
+          "file": "blueWhite-0.jpg",
+          "bytes": 97841,
+          "sha256": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58"
+        },
+        {
+          "file": "blueWhite-1.jpg",
+          "bytes": 233698,
+          "sha256": "a615c5ec99e359fbba76f2bf18820cc0a4b1f6c85581548cf950f69fcf9e90ec"
+        }
+      ],
+      "originalBytes": 2697960
+    },
+    {
+      "key": "diluteCalico",
+      "material": {
+        "file": "diluteCalico.gltf",
+        "bytes": 573,
+        "sha256": "caeaa51ba231a94e30fbdd93abeaeb14b53815cfdb9d5ee77f4aa1666de75bed"
+      },
+      "images": [
+        {
+          "file": "diluteCalico-0.jpg",
+          "bytes": 97841,
+          "sha256": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58"
+        },
+        {
+          "file": "diluteCalico-1.jpg",
+          "bytes": 257953,
+          "sha256": "1841c0afbb3e19788c6c006944fbe3d5e00f0545f71c20e4be3b8d590a019eaa"
+        }
+      ],
+      "originalBytes": 2722220
+    },
+    {
+      "key": "tortie",
+      "material": {
+        "file": "tortie.gltf",
+        "bytes": 549,
+        "sha256": "2de6d314948fe5df06c069da0c84c4c4ed337a7f7751f94b735827f597847cd6"
+      },
+      "images": [
+        {
+          "file": "tortie-0.jpg",
+          "bytes": 97841,
+          "sha256": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58"
+        },
+        {
+          "file": "tortie-1.jpg",
+          "bytes": 279385,
+          "sha256": "2c93ffed81e5ce97d4749c5657b417a678ba8b9e002120f9036f51b4fcafb28f"
+        }
+      ],
+      "originalBytes": 2743640
+    }
+  ]
+}

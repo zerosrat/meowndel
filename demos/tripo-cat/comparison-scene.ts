@@ -42,6 +42,20 @@ export function createComparisonScene(canvas: HTMLCanvasElement, host: HTMLEleme
   resize.observe(host);angle(0);
   return {
     angle,
+    async replaceMaterial(url: string) {
+      const ticket=++generation;
+      const gltf=await new GLTFLoader().loadAsync(url);
+      const material: THREE.Material=await gltf.parser.getDependency('material',0);
+      const holder=new THREE.Mesh(new THREE.BufferGeometry(),material);
+      if(dead||ticket!==generation||!current){release(holder);return false;}
+      const old=new Set<THREE.Material>();
+      current.traverse(object=>{if(object instanceof THREE.Mesh){
+        for(const m of Array.isArray(object.material)?object.material:[object.material])old.add(m);
+        object.material=material;
+      }});
+      for(const m of old)release(new THREE.Mesh(new THREE.BufferGeometry(),m));
+      holder.geometry.dispose();render();return true;
+    },
     async load(url:string, rotationY=0) {
       const ticket=++generation;
       if(current){scene.remove(current);release(current);current=undefined;}render();
