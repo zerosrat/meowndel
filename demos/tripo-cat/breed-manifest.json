@@ -4,12 +4,12 @@
     {
       "key": "domestic",
       "name": "中华田园猫",
-      "taskId": "d389bbda-dc01-4cc5-9aa7-b1e0dd5eb18e",
-      "description": "修长身形、较大尖耳、收窄的脸颊与细长四肢。",
-      "file": "cat-breed-domestic-2k.glb",
+      "taskId": "a717a9fa-4ad3-46ef-8bdc-fd944ae63715",
+      "description": "头脸稍圆润、身体更紧凑；保留尖耳、收窄下巴和轻巧身形。",
+      "file": "cat-breed-domestic-cute-2k.glb",
       "rotationY": -2.0943951023931953,
-      "triangles": 4726,
-      "bytes": 479484
+      "triangles": 4761,
+      "bytes": 363552
     },
     {
       "key": "british",
@@ -58,7 +58,35 @@
       "link": true,
       "bytes": 1640333,
       "sha256": "cac5728cccb45db0698c7cdcfa6e1e27062af1d65c5c28ddf0423bf28e06a610"
+    },
+    {
+      "file": "cat-breed-domestic-cute-4k.glb",
+      "link": false,
+      "bytes": 2071524,
+      "sha256": "24f64de07c34ec1e0c15610fdbd15f6e4ee66d255dbf3025419e6b6b0aab49aa"
+    },
+    {
+      "file": "cat-breed-domestic-cute-2k.glb",
+      "link": true,
+      "bytes": 363552,
+      "sha256": "375b9e4f680e4494648d89c4b988f736249612d70b16a3024caf124758579e74"
+    },
+    {
+      "file": "reference-breed-domestic-cute.png",
+      "link": true,
+      "bytes": 1481301,
+      "sha256": "34f3a7fd0940dded0ecfb797c137445db94c3f879036090ef0f53f1ea352bc15"
     }
   ],
-  "note": "两个独立身体，田园猫 4,726 面、英短 4,757 面；两只含 2K 贴图合计约 921 KB。灰模仅隐藏材质，不改造型、不重新下载。"
+  "note": "默认圆润版田园猫与英短合计约 805 KB（含 2K 贴图）；上一版田园猫按需加载，另约 479 KB。灰模隐藏材质，不改变身体。",
+  "domesticPrevious": {
+    "key": "domestic",
+    "name": "中华田园猫",
+    "taskId": "d389bbda-dc01-4cc5-9aa7-b1e0dd5eb18e",
+    "description": "修长身形、较大尖耳、收窄的脸颊与细长四肢。",
+    "file": "cat-breed-domestic-2k.glb",
+    "rotationY": -2.0943951023931953,
+    "triangles": 4726,
+    "bytes": 479484
+  }
 }

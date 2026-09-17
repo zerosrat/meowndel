@@ -47,3 +47,25 @@ Redesign the cat as a typical adult BRITISH SHORTHAIR, visibly unmistakably broa
 - 样板严格 TypeScript 检查通过；完整 `pnpm run check` 通过，28 文件 / 2268 测试及正式单 HTML 构建。
 - 已知限制：背部条纹偏少，眼睛与参考图仍有差异；灰模中眼睛轮廓较粗。本轮确认品种外形路线，未完成批量花色制作或正式产品接入。
 - 积分余额从 3090 到 2980，合计 110，无额外购买。原始与派生二进制在外置目录，Git 提交不替代独立素材备份。
+
+## 田园猫圆润版迭代
+
+用户要求田园猫更可爱，英短不改。保留田园猫上一版作直接对照。新版在块状风格内提高头身比例、稍加脸颊、缩短过长的躯干与前腿、稍收过大的耳朵，仍保持尖耳和较轻巧的体型。
+
+英短花色核对：CFA 英短标准列出 TABBY AND WHITE，因此虎斑加白可用于英短；本样板的条纹属于卡通表达，不宣称具体纹路符合赛级标准。来源：https://cfa.org/wp-content/uploads/2024/03/british-shorthair-standard.pdf 。
+
+内置 imagegen 参考编辑提示词：
+
+Edit this specific cat into a CUTER, friendlier Chinese domestic shorthair while preserving the exact clean chunky low-poly papercraft style, muted brown tabby and white bib socks, seated pose, ivory background, golden eyes, full-body framing. The current body is too long skinny and the ears too huge. Enlarge the head relative to body moderately by about 18 percent; add slightly fuller soft cheeks while keeping a gently tapering chin, NOT British shorthair jowls. Shorten the torso and forelegs moderately about 15 percent and make chest and paws a little fuller, still slender graceful not cobby or fat. Reduce the oversized tall ears about 12 percent while keeping pointed triangular ears distinctly larger than a British shorthair. Make eyes a touch rounder and friendlier, softly uplifted tiny mouth. Slightly tilt head with warm curious expression. Tail remains long relatively slim. Keep crisp sculptural facets and flat clean coat shapes, no realistic fur, no glossy plastic, no noisy triangle-painted texture. Single polished charming cartoon 3D character reference, not a comparison sheet. No text.
+
+提示词中的百分比仅为美术指导，不是测量承诺。新版参考归档 `reference-breed-domestic-cute.png`。
+
+圆润版 Tripo 任务：`a717a9fa-4ad3-46ef-8bdc-fd944ae63715`，实际 4761 面；35 几何 + 20 材质，余额 2980 → 2925。新旧切换只重载田园猫，英短资源保持原件。快速切换有过期请求防护。
+
+圆润版验证结果：
+
+- 新网页件 363,552 字节、4,761 三角面；默认与英短合计 804,696 字节。上一版田园猫仅切换时加载，另 479,484 字节。
+- 清单扩展为九个外置文件并通过哈希恢复校验；英短文件未修改。
+- 网页验证圆润版 → 上一版 → 灰模 → 圆润版 → 花色，均正常就绪；灰模状态在模型切换后保留。最终停留新版彩色正面供验收。
+- 样板严格 TypeScript 检查及完整 `pnpm run check` 通过，28 文件 / 2268 测试及正式单 HTML 构建。
+- 本轮完成可交互美术样板，仍待用户审美验收；不代表正式遗传渲染接入或完整花纹还原。
