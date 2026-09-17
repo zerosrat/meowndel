@@ -29,6 +29,7 @@ export function createComparisonScene(canvas: HTMLCanvasElement, host: HTMLEleme
   const controls=new OrbitControls(camera,canvas);
   controls.enablePan=false; controls.minDistance=4; controls.maxDistance=10;
   const whiteLevel={value:0};
+  let clay: THREE.MeshStandardMaterial|undefined;
   let dead=false, generation=0, current: THREE.Object3D|undefined;
   const render=()=>{if(!dead)renderer.render(scene,camera);};
   controls.addEventListener('change',render);
@@ -44,6 +45,10 @@ export function createComparisonScene(canvas: HTMLCanvasElement, host: HTMLEleme
   resize.observe(host);angle(0);
   return {
     angle,
+    setClay(enabled:boolean){
+      if(enabled&&!clay)clay=new THREE.MeshStandardMaterial({color:0xbcb4a8,roughness:1,flatShading:true});
+      scene.overrideMaterial=enabled?clay!:null;render();
+    },
     setWhiteLevel(value:number){
       if(!current)return;
       whiteLevel.value=Math.max(0,Math.min(4,value));
@@ -85,6 +90,6 @@ export function createComparisonScene(canvas: HTMLCanvasElement, host: HTMLEleme
       const thumbnail=canvas.toDataURL('image/png');
       return {thumbnail, milliseconds:Math.round(performance.now()-started), triangles:renderer.info.render.triangles};
     },
-    dispose(){if(dead)return;dead=true;generation++;resize.disconnect();controls.dispose();if(current)release(current);env.dispose();renderer.dispose();renderer.forceContextLoss();},
+    dispose(){if(dead)return;dead=true;generation++;resize.disconnect();controls.dispose();if(current)release(current);clay?.dispose();env.dispose();renderer.dispose();renderer.forceContextLoss();},
   };
 }

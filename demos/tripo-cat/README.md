@@ -93,3 +93,9 @@ node tools/cat3d/restore-tripo.mjs /absolute/path/to/archive
 `blocky-cat.html`：新块状卡通造型 / 上一版混合风格，同一场景切换。参考图另设链接，明确区别于真正可旋转的模型。
 
 运行 `node tools/cat3d/restore-blocky.mjs` 核验外置资源并恢复链接。此前的 grouped / natural 资源仍按对应脚本恢复。源文件、网页件与参考图均未加入 Git；`blocky-manifest.json` 保存哈希及来源。
+
+## 块状田园猫 / 英短对照
+
+`breed-study.html`：并排两只独立生成的猫，花色/灰模、隐藏名称、同步标准视角，拖动单独旋转。尺寸按相同展示高度归一化，只比较比例。英短和田园猫同属棕虎斑加白，具体斑块并非完全一致。
+
+恢复：`node tools/cat3d/restore-blocky.mjs breed-manifest.json`，核验六个外置文件并链接两个网页 GLB 和两张参考图。二进制仍在项目外归档，Git 提交不包含它们。

@@ -6,7 +6,9 @@ import os from 'node:os';
 import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
 const demo=path.join(root,'demos/tripo-cat');
-const manifest=JSON.parse(await readFile(path.join(demo,'blocky-manifest.json'),'utf8'));
+const manifestName=process.argv[2]??'blocky-manifest.json';
+if(!['blocky-manifest.json','breed-manifest.json'].includes(manifestName))throw new Error('Unknown study manifest');
+const manifest=JSON.parse(await readFile(path.join(demo,manifestName),'utf8'));
 const archive=manifest.archive.replace(/^~/,os.homedir());
 for(const asset of manifest.assets){
  const file=path.join(archive,asset.file), bytes=await readFile(file);
@@ -16,4 +18,4 @@ for(const asset of manifest.assets){
  try{await lstat(target);if(createHash('sha256').update(await readFile(target)).digest('hex')!==asset.sha256)throw new Error(`Refuse different local asset: ${target}`);}
  catch(error){if(error.code!=='ENOENT')throw error;await symlink(file,target);}
 }
-console.log('Blocky cat study assets verified and restored.');
+console.log('Cat study assets verified and restored.');

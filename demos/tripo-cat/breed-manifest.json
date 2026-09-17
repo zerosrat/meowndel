@@ -1,0 +1,64 @@
+{
+  "archive": "~/.local/share/meowndel/soft-low-poly-cat-2026-09-16",
+  "cats": [
+    {
+      "key": "domestic",
+      "name": "中华田园猫",
+      "taskId": "d389bbda-dc01-4cc5-9aa7-b1e0dd5eb18e",
+      "description": "修长身形、较大尖耳、收窄的脸颊与细长四肢。",
+      "file": "cat-breed-domestic-2k.glb",
+      "rotationY": -2.0943951023931953,
+      "triangles": 4726,
+      "bytes": 479484
+    },
+    {
+      "key": "british",
+      "name": "英国短毛猫",
+      "taskId": "547e839f-bc17-4884-9a2c-ce246fc46806",
+      "description": "宽圆脸、小耳朵、厚实胸口与短粗四肢。",
+      "file": "cat-breed-british-2k.glb",
+      "rotationY": -2.0943951023931953,
+      "triangles": 4757,
+      "bytes": 441144
+    }
+  ],
+  "assets": [
+    {
+      "file": "cat-breed-domestic-4k.glb",
+      "link": false,
+      "bytes": 2623084,
+      "sha256": "e44da7e5b4b50584e496af90d4732ef9b89d7fe03599475b1e91684b08c22911"
+    },
+    {
+      "file": "cat-breed-domestic-2k.glb",
+      "link": true,
+      "bytes": 479484,
+      "sha256": "c1ef834b82dbbec27655326c18d8ace34d9500a356981fde9929ecd0130e87ae"
+    },
+    {
+      "file": "reference-breed-domestic.png",
+      "link": true,
+      "bytes": 1510302,
+      "sha256": "dbd531bafbde8bef76d57d3d15a5917255bf69ae683d5c9113d9b1e3f54bc7ed"
+    },
+    {
+      "file": "cat-breed-british-4k.glb",
+      "link": false,
+      "bytes": 2394928,
+      "sha256": "78e21b34268e226e7bc67d0c8fe74d5858818a880dcb2f5a0f45e0af98257f7e"
+    },
+    {
+      "file": "cat-breed-british-2k.glb",
+      "link": true,
+      "bytes": 441144,
+      "sha256": "b5ff52e95e5d503abce6395052f06f43a64d3eddb6362b92b3a263ee5173d413"
+    },
+    {
+      "file": "reference-breed-british.png",
+      "link": true,
+      "bytes": 1640333,
+      "sha256": "cac5728cccb45db0698c7cdcfa6e1e27062af1d65c5c28ddf0423bf28e06a610"
+    }
+  ],
+  "note": "两个独立身体，田园猫 4,726 面、英短 4,757 面；两只含 2K 贴图合计约 921 KB。灰模仅隐藏材质，不改造型、不重新下载。"
+}
