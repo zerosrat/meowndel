@@ -6,10 +6,10 @@ let reloadDomestic=()=>{};
 const cards=manifest.cats.map((cat,index)=>{
  const card=document.createElement('section');card.className='card';
  const name=document.createElement('h2');name.className='identity';name.textContent=cat.name;
- const blindName=document.createElement('h2');blindName.className='blind-name';blindName.textContent=`猫 ${index===0?'A':'B'}`;
+ const blindName=document.createElement('h2');blindName.className='blind-name';blindName.textContent=`猫 ${String.fromCharCode(65+index)}`;
  const desc=document.createElement('p');desc.className='note identity';desc.textContent=cat.description;
  const host=document.createElement('div');host.className='portrait';host.dataset.loading='true';
- const canvas=document.createElement('canvas');canvas.setAttribute('aria-label',`可旋转的猫 ${index===0?'A':'B'}`);host.append(canvas);
+ const canvas=document.createElement('canvas');canvas.setAttribute('aria-label',`可旋转的猫 ${String.fromCharCode(65+index)}`);host.append(canvas);
  const status=document.createElement('p');status.className='status';status.setAttribute('role','status');
  const retry=document.createElement('button');retry.textContent='重新加载';retry.hidden=true;
  card.append(name,blindName,desc,host,status,retry);root.append(card);

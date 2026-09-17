@@ -20,6 +20,26 @@
       "rotationY": -2.0943951023931953,
       "triangles": 4757,
       "bytes": 441144
+    },
+    {
+      "key": "american",
+      "name": "美国短毛猫",
+      "taskId": "bf730ceb-bf9d-47ea-96c2-0ffc84e6c91e",
+      "description": "结实匀称的体格、方圆口鼻；银色古典虎斑。",
+      "file": "cat-breed-american-2k.glb",
+      "rotationY": -2.0943951023931953,
+      "triangles": 4906,
+      "bytes": 544812
+    },
+    {
+      "key": "ragdoll",
+      "name": "布偶猫",
+      "taskId": "bcffc3b8-fdde-4f72-ab85-0ca64f8dd45b",
+      "description": "半长毛围脖、蓬松尾巴与蓝眼睛；蓝双色。",
+      "file": "cat-breed-ragdoll-2k.glb",
+      "rotationY": -1.5707963267948966,
+      "triangles": 4899,
+      "bytes": 473956
     }
   ],
   "assets": [
@@ -76,9 +96,45 @@
       "link": true,
       "bytes": 1481301,
       "sha256": "34f3a7fd0940dded0ecfb797c137445db94c3f879036090ef0f53f1ea352bc15"
+    },
+    {
+      "file": "cat-breed-american-4k.glb",
+      "link": false,
+      "bytes": 2878528,
+      "sha256": "23b13ee7dc1e6841902d4d4e717e5f105bb9a0664d306b8958001701b563e0aa"
+    },
+    {
+      "file": "cat-breed-american-2k.glb",
+      "link": true,
+      "bytes": 544812,
+      "sha256": "3cb194eed943a6c5e917da3f61d5bc3d92124212a55b0286623d41d1805cbcf7"
+    },
+    {
+      "file": "reference-breed-american.png",
+      "link": true,
+      "bytes": 1618346,
+      "sha256": "826b527b9b1faad8403df48ce1d11369cfef7160d12ad811714e0a2fd608f575"
+    },
+    {
+      "file": "cat-breed-ragdoll-4k.glb",
+      "link": false,
+      "bytes": 2290420,
+      "sha256": "9b2267c0eec521c8b8aa23b4a7a112c2561fd4df1544ae5dd286df34442ae6c7"
+    },
+    {
+      "file": "cat-breed-ragdoll-2k.glb",
+      "link": true,
+      "bytes": 473956,
+      "sha256": "9f758119415e24133f225dbb38b8201bfa2cb763a512001edd04e9e4dc2a25e4"
+    },
+    {
+      "file": "reference-breed-ragdoll.png",
+      "link": true,
+      "bytes": 1482170,
+      "sha256": "1ed075e04fea56da67a398808f27823723f94045b4bdb00dd31e49110dd3b591"
     }
   ],
-  "note": "默认圆润版田园猫与英短合计约 805 KB（含 2K 贴图）；上一版田园猫按需加载，另约 479 KB。灰模隐藏材质，不改变身体。",
+  "note": "四只默认模型合计约 1.82 MB（含 2K 贴图）；上一版田园猫按需加载，另约 479 KB。灰模隐藏材质，不改变身体。",
   "domesticPrevious": {
     "key": "domestic",
     "name": "中华田园猫",
