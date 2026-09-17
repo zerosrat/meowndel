@@ -55,7 +55,8 @@
       "triangles": 79999,
       "materials": 1,
       "images": 2,
-      "skins": 0
+      "skins": 0,
+      "rotationY": -1.5707963267948966
     },
     {
       "key": "blueTabby",
@@ -67,7 +68,73 @@
       "triangles": 79999,
       "materials": 1,
       "images": 2,
-      "skins": 0
+      "skins": 0,
+      "rotationY": -1.5707963267948966
+    },
+    {
+      "key": "black",
+      "file": "cat-black-80k-2k.glb",
+      "sourceTask": "62079d5e-e1b7-4494-b9d8-2dbe79474ea1",
+      "sourceSite": "https://tripostudio.com",
+      "bytes": 2815092,
+      "sha256": "7414ea92216a2243c04bc5d8fb746d9a8d2659d7805e24a6cc96a58b256939ed",
+      "triangles": 79999,
+      "materials": 1,
+      "images": 2,
+      "skins": 0,
+      "rotationY": -1.5707963267948966
+    },
+    {
+      "key": "blue",
+      "file": "cat-blue-80k-2k.glb",
+      "sourceTask": "d54af7fd-217f-490b-94ee-cc488af20c8b",
+      "sourceSite": "https://tripostudio.com",
+      "bytes": 2681604,
+      "sha256": "0fe7b765054967242ad439aafdd9a5de8da71e29cbc77bc307f0a961128a1e14",
+      "triangles": 79999,
+      "materials": 1,
+      "images": 2,
+      "skins": 0,
+      "rotationY": -1.5707963267948966
+    },
+    {
+      "key": "blueWhite",
+      "file": "cat-blueWhite-80k-2k.glb",
+      "sourceTask": "14b57347-c483-4d5f-a63c-b060acd6c48a",
+      "sourceSite": "https://tripostudio.com",
+      "bytes": 2697960,
+      "sha256": "cd916bf07b6b5b7eb115680b5851469dfbb2af11dee4e2c9791c075050ca912d",
+      "triangles": 79999,
+      "materials": 1,
+      "images": 2,
+      "skins": 0,
+      "rotationY": -1.5707963267948966
+    },
+    {
+      "key": "diluteCalico",
+      "file": "cat-diluteCalico-80k-2k.glb",
+      "sourceTask": "285a5355-2eb7-41c6-8600-40e85c6b8889",
+      "sourceSite": "https://tripostudio.com",
+      "bytes": 2722220,
+      "sha256": "cbf989424327e679ace9c09d3198838552edec091f8b35ac57e78da67420d84c",
+      "triangles": 79999,
+      "materials": 1,
+      "images": 2,
+      "skins": 0,
+      "rotationY": -1.5707963267948966
+    },
+    {
+      "key": "tortie",
+      "file": "cat-tortie-80k-2k.glb",
+      "sourceTask": "b6e2852f-5d45-4d49-b2f8-9047be83eb61",
+      "sourceSite": "https://tripostudio.com",
+      "bytes": 2743640,
+      "sha256": "d91d2166857166b2113adae87264da91c23046ee3f60766a9dd7412e7cbbc553",
+      "triangles": 79999,
+      "materials": 1,
+      "images": 2,
+      "skins": 0,
+      "rotationY": -1.5707963267948966
     }
   ],
   "references": [

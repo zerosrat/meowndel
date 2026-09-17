@@ -42,13 +42,14 @@ export function createComparisonScene(canvas: HTMLCanvasElement, host: HTMLEleme
   resize.observe(host);angle(0);
   return {
     angle,
-    async load(url:string) {
+    async load(url:string, rotationY=0) {
       const ticket=++generation;
       if(current){scene.remove(current);release(current);current=undefined;}render();
       const started=performance.now();
       const gltf=await new GLTFLoader().loadAsync(url);
       if(dead||ticket!==generation){release(gltf.scene);return null;}
       current=gltf.scene;
+      current.rotation.y+=rotationY;
       const box=new THREE.Box3().setFromObject(current), size=box.getSize(new THREE.Vector3()), center=box.getCenter(new THREE.Vector3()), scale=2.7/size.y;
       current.scale.setScalar(scale);current.position.set(-center.x*scale,-box.min.y*scale,-center.z*scale);scene.add(current);angle(0);
       // Render synchronously before reading the canvas; no permanent drawing-buffer retention.
