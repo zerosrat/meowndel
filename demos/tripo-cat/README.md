@@ -98,4 +98,4 @@ node tools/cat3d/restore-tripo.mjs /absolute/path/to/archive
 
 `breed-study.html`：田园猫、英短、美短、布偶四只独立模型，花色/灰模、隐藏名称、同步标准视角，拖动单独旋转。尺寸按相同展示高度归一化，只比较比例。田园猫和英短为棕虎斑加白，美短为银色古典虎斑、布偶为蓝双色；美短背面纹路仍偏少，待美术验收。四只默认网页件合计 1,823,464 字节。
 
-恢复：`node tools/cat3d/restore-blocky.mjs breed-manifest.json`，核验十五个外置文件并链接五个网页 GLB 和五张参考图。默认显示圆润版田园猫，可切回上一版；英短保持原件。二进制仍在项目外归档，Git 提交不包含它们。
+恢复：`node tools/cat3d/restore-blocky.mjs breed-manifest.json`，核验十七个外置文件并链接五个网页 GLB 和七张参考图（其中两张为待制作的新花色参考）。默认显示圆润版田园猫，可切回上一版；英短保持原件。二进制仍在项目外归档，Git 提交不包含它们。

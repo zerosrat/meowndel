@@ -132,6 +132,18 @@
       "link": true,
       "bytes": 1482170,
       "sha256": "1ed075e04fea56da67a398808f27823723f94045b4bdb00dd31e49110dd3b591"
+    },
+    {
+      "file": "reference-breed-american-brown.png",
+      "link": true,
+      "bytes": 1564590,
+      "sha256": "1ea83cf26939f263c52487fe548ca9c746a73c6e780aa79a159d25b99fc6980f"
+    },
+    {
+      "file": "reference-breed-ragdoll-seal.png",
+      "link": true,
+      "bytes": 1405270,
+      "sha256": "536d62aeb7e5699ca86658a8db1698abd4d474281491261c720fc859c3bcc594"
     }
   ],
   "note": "四只默认模型合计约 1.82 MB（含 2K 贴图）；上一版田园猫按需加载，另约 479 KB。灰模隐藏材质，不改变身体。",
