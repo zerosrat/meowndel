@@ -14,13 +14,23 @@ const cards=manifest.cats.map((cat,index)=>{
  const retry=document.createElement('button');retry.textContent='重新加载';retry.hidden=true;
  card.append(name,blindName,desc,host,status,retry);root.append(card);
  const scene=createComparisonScene(canvas,host);
+ const coats=manifest.coats.filter(coat=>coat.breed===cat.key);
+ let selected=coats[0];
+ const choices=document.createElement('div');choices.className='controls coat-controls';choices.setAttribute('aria-label',`${cat.name}花色`);
+ const buttons=coats.map(coat=>{
+  const button=document.createElement('button');button.textContent=coat.label;button.setAttribute('aria-pressed',String(coat===selected));
+  button.addEventListener('click',()=>{selected=coat;void load();});choices.append(button);return button;
+ });
+ card.insertBefore(choices,host);
  let version=0;
  async function load(){
   const current=++version;
   host.dataset.loading='true';retry.hidden=true;status.textContent='正在准备模型…';
-  const active=index===0&&oldDomestic?manifest.domesticPrevious:cat;
+  const isPrevious=index===0&&oldDomestic;
+  const active=isPrevious?manifest.domesticPrevious:{...cat,file:selected?.file??cat.file};
+  buttons.forEach((button,i)=>{button.disabled=isPrevious;button.setAttribute('aria-pressed',String(!isPrevious&&coats[i]===selected));});
   desc.textContent=active.description;
-  try{const result=await scene.load(active.file,active.rotationY,{flatShading:true,roughness:1});if(!result||dead||current!==version)return;scene.setClay(clay);scene.angle(angle);status.textContent='已就绪 · 可旋转查看';}
+  try{const result=await scene.load(active.file,active.rotationY,{flatShading:true,roughness:1});if(!result||dead||current!==version)return;scene.setClay(clay);scene.angle(angle);status.textContent=`${isPrevious?'上一版 · 棕虎斑加白':selected?.label??'棕虎斑加白'} · 已就绪，可旋转查看`;}
   catch(error){if(dead||current!==version)return;status.textContent='素材加载失败，请重试。';retry.hidden=false;console.error(error);}
   finally{if(current===version)host.dataset.loading='false';}
  }

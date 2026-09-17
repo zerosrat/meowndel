@@ -98,4 +98,9 @@ node tools/cat3d/restore-tripo.mjs /absolute/path/to/archive
 
 `breed-study.html`：田园猫、英短、美短、布偶四只独立模型，花色/灰模、隐藏名称、同步标准视角，拖动单独旋转。尺寸按相同展示高度归一化，只比较比例。田园猫和英短为棕虎斑加白，美短为银色古典虎斑、布偶为蓝双色；美短背面纹路仍偏少，待美术验收。四只默认网页件合计 1,823,464 字节。
 
-恢复：`node tools/cat3d/restore-blocky.mjs breed-manifest.json`，核验十七个外置文件并链接五个网页 GLB 和七张参考图（其中两张为待制作的新花色参考）。默认显示圆润版田园猫，可切回上一版；英短保持原件。二进制仍在项目外归档，Git 提交不包含它们。
+恢复：`node tools/cat3d/restore-blocky.mjs breed-manifest.json`，核验三十个外置文件并链接十个网页 GLB 和十张参考图。默认显示圆润版田园猫，可切回上一版；英短保持原件。二进制仍在项目外归档，Git 提交不包含它们。
+
+
+### 块状猫花色切换（2026-09-18）
+
+同一 `breed-study.html` 新增田园黑白、三花、无白狸花，美短棕虎斑、布偶海豹双色。默认原花色保留，英短未改。五套完整 GLB 共 2.12 MB，单款 317–541 KB，点击时加载；本轮未拆分仅材质下载。`python3 tools/cat3d/verify-breed-coats.py` 核对同品种三角形/UV/节点变换复用。狸花及美短背面花纹偏弱，待用户验收。参考图由内置 imagegen 编辑，图纸及生成约束与任务记录见 [花色计划](../../docs/plans/2026-09-17-blocky-breed-coats.md)。

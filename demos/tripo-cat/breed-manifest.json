@@ -25,7 +25,7 @@
       "key": "american",
       "name": "美国短毛猫",
       "taskId": "bf730ceb-bf9d-47ea-96c2-0ffc84e6c91e",
-      "description": "结实匀称的体格、方圆口鼻；银色古典虎斑。",
+      "description": "结实匀称的体格、方圆口鼻；经典虎斑。",
       "file": "cat-breed-american-2k.glb",
       "rotationY": -2.0943951023931953,
       "triangles": 4906,
@@ -35,7 +35,7 @@
       "key": "ragdoll",
       "name": "布偶猫",
       "taskId": "bcffc3b8-fdde-4f72-ab85-0ca64f8dd45b",
-      "description": "半长毛围脖、蓬松尾巴与蓝眼睛；蓝双色。",
+      "description": "半长毛围脖、蓬松尾巴与蓝眼睛；双色。",
       "file": "cat-breed-ragdoll-2k.glb",
       "rotationY": -1.5707963267948966,
       "triangles": 4899,
@@ -144,9 +144,87 @@
       "link": true,
       "bytes": 1405270,
       "sha256": "536d62aeb7e5699ca86658a8db1698abd4d474281491261c720fc859c3bcc594"
+    },
+    {
+      "file": "cat-breed-american-brown-4k.glb",
+      "link": false,
+      "bytes": 2675436,
+      "sha256": "26e2d2146ef521336f85c809c79678591ed9e959ce45b63fc439b6eacaf5f74d"
+    },
+    {
+      "file": "cat-breed-american-brown-2k.glb",
+      "link": true,
+      "bytes": 541304,
+      "sha256": "5ad4719bf85487d5dc0b3776a742de9d7cf92aff18f35b301782f7a83aff20da"
+    },
+    {
+      "file": "cat-breed-ragdoll-seal-4k.glb",
+      "link": false,
+      "bytes": 2470388,
+      "sha256": "6d2a703dfa803acc97fc59f06ac0e8e4e5a3eee88a20b1fe25acd63bf73658be"
+    },
+    {
+      "file": "cat-breed-ragdoll-seal-2k.glb",
+      "link": true,
+      "bytes": 516580,
+      "sha256": "e8d47a96fa9baf91e230b970b3ea2d4b203c8e7a8b023b7e47e7d04bcf05eaf7"
+    },
+    {
+      "file": "cat-breed-domestic-black-white-4k.glb",
+      "link": false,
+      "bytes": 1671896,
+      "sha256": "9f8f2f969b9356a7aa83c255d655f4ac3cfabc4cf3956b6c6c47a097a0c303a0"
+    },
+    {
+      "file": "cat-breed-domestic-black-white-2k.glb",
+      "link": true,
+      "bytes": 317052,
+      "sha256": "b590e4b8682f3dbd30593632dd8476d053b42b8e662b9943290a5f366685190f"
+    },
+    {
+      "file": "cat-breed-domestic-calico-4k.glb",
+      "link": false,
+      "bytes": 1975904,
+      "sha256": "0f6c71ada4b09a9c9e51c25f21d4c9814b9a79f3663eea3207fea2814463e7a1"
+    },
+    {
+      "file": "cat-breed-domestic-calico-2k.glb",
+      "link": true,
+      "bytes": 364836,
+      "sha256": "0dd8a6e6b6514fef9861dd70b49a16584b58ee820a360f016930dc174899c096"
+    },
+    {
+      "file": "cat-breed-domestic-tabby-4k.glb",
+      "link": false,
+      "bytes": 2227392,
+      "sha256": "a336783a1fdca047c672ed392c9b4e862ef0f3a12879b21976fe448dfc6fc83d"
+    },
+    {
+      "file": "cat-breed-domestic-tabby-2k.glb",
+      "link": true,
+      "bytes": 379676,
+      "sha256": "ab0f876490621ef5464caadfb2670cfa5fad7dac4af2ddbbf2440bc991094c6b"
+    },
+    {
+      "file": "reference-breed-domestic-black-white.png",
+      "link": true,
+      "bytes": 1335146,
+      "sha256": "52ce4e33e30f23292e0b2b3a7aa0617eebd92bd2171f22c8c8b5880ddccef639"
+    },
+    {
+      "file": "reference-breed-domestic-calico.png",
+      "link": true,
+      "bytes": 1396679,
+      "sha256": "a4c89feb7e76b52d1f6101bc22ff4a0e0ba68bc0c1653e1f3514e4a9cbbbf913"
+    },
+    {
+      "file": "reference-breed-domestic-tabby.png",
+      "link": true,
+      "bytes": 1541180,
+      "sha256": "0b58e6633d4f7398f338a92bb9af939ea7fc69b259d969261a69dbb1f6e208b1"
     }
   ],
-  "note": "四只默认模型合计约 1.82 MB（含 2K 贴图）；上一版田园猫按需加载，另约 479 KB。灰模隐藏材质，不改变身体。",
+  "note": "默认四只模型合计约 1.82 MB；新增花色点击时按需加载，每款约 317–541 KB，五款合计 2.12 MB。此验收版使用完整 GLB 变体，已核对同品种身体和 UV 一致；尚未拆分材质下载。上一版田园猫另约 479 KB。",
   "domesticPrevious": {
     "key": "domestic",
     "name": "中华田园猫",
@@ -156,5 +234,57 @@
     "rotationY": -2.0943951023931953,
     "triangles": 4726,
     "bytes": 479484
-  }
+  },
+  "coats": [
+    {
+      "breed": "domestic",
+      "label": "棕虎斑加白",
+      "file": "cat-breed-domestic-cute-2k.glb"
+    },
+    {
+      "breed": "domestic",
+      "label": "黑白",
+      "file": "cat-breed-domestic-black-white-2k.glb",
+      "taskId": "7afc6e46-10a4-413f-9ab9-cc175c93a212",
+      "bytes": 317052
+    },
+    {
+      "breed": "domestic",
+      "label": "三花",
+      "file": "cat-breed-domestic-calico-2k.glb",
+      "taskId": "902652e9-bcb1-4ebd-9810-419c34b7bdf0",
+      "bytes": 364836
+    },
+    {
+      "breed": "domestic",
+      "label": "狸花 · 无白",
+      "file": "cat-breed-domestic-tabby-2k.glb",
+      "taskId": "ff4bbe88-bc5d-4262-b377-91cdb6cf63fe",
+      "bytes": 379676
+    },
+    {
+      "breed": "american",
+      "label": "银色经典虎斑",
+      "file": "cat-breed-american-2k.glb"
+    },
+    {
+      "breed": "american",
+      "label": "棕色经典虎斑",
+      "file": "cat-breed-american-brown-2k.glb",
+      "taskId": "3fc0c0d0-34a5-4c37-bc77-725299f9c639",
+      "bytes": 541304
+    },
+    {
+      "breed": "ragdoll",
+      "label": "蓝双色",
+      "file": "cat-breed-ragdoll-2k.glb"
+    },
+    {
+      "breed": "ragdoll",
+      "label": "海豹双色",
+      "file": "cat-breed-ragdoll-seal-2k.glb",
+      "taskId": "a107760a-1b1c-4646-873f-9bc131ca8510",
+      "bytes": 516580
+    }
+  ]
 }
