@@ -77,3 +77,7 @@ node tools/cat3d/restore-tripo.mjs /absolute/path/to/archive
 ## 五花色共用身体
 
 入口 `shared-coats.html`：奶油、蓝狸花、蓝白、淡三花、玳瑁共用 geometry，仅换原始材质和贴图。支持原始整套模型对照。运行 `python3 tools/cat3d/build-shared-coats.py` 从外部已归档 GLB 重建素材；来源校验和几何一致性检查不通过则停止。详见 [验证记录](../../docs/plans/2026-09-17-shared-cat-body-study.md)。
+
+## 11 花色分组复用与白斑试验
+
+入口 `grouped-coats.html`，11 套按五组共享身体，保留原版对照；纯黑和狸花支持五档示意白斑。`python3 tools/cat3d/build-grouped-coats.py` 从已校验的外部源 GLB 重建，输出位于外部归档 `grouped-coats/`，项目内链接不进 Git。全量实际资源 15.39 MB，原独立档合计 30.47 MB；白斑尚未映射正式遗传档位。见 [验收计划](../../docs/plans/2026-09-17-grouped-coats-white-study.md)。

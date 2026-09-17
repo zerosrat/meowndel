@@ -1,0 +1,333 @@
+{
+  "bodies": [
+    {
+      "key": "orange",
+      "file": "body-orange.glb",
+      "bytes": 2375448,
+      "sha256": "774180cd1758a14d59e2ab810f5302183075f74e57588439193895d2338b678e",
+      "rotationY": 0,
+      "coats": [
+        "orange"
+      ]
+    },
+    {
+      "key": "tabby",
+      "file": "body-tabby.glb",
+      "bytes": 2369880,
+      "sha256": "1f9ea75eb323c3cf9132a69a43a9a2d4e40c5fc4ec9b1f4a7f54cabba5a97d53",
+      "rotationY": 0,
+      "coats": [
+        "tabby",
+        "tuxedo"
+      ]
+    },
+    {
+      "key": "calico",
+      "file": "body-calico.glb",
+      "bytes": 2369120,
+      "sha256": "d985aa6a49e2caaca41c3c1f74bc27d1f04c4abb96dadcca2bd982d01a7e8bbb",
+      "rotationY": 0,
+      "coats": [
+        "calico"
+      ]
+    },
+    {
+      "key": "cream",
+      "file": "body-cream.glb",
+      "bytes": 2365824,
+      "sha256": "c7b5a4773eb8f4b8325808e8b8d388b723a9e9a0f5781654236438484c896ce6",
+      "rotationY": -1.5707963267948966,
+      "coats": [
+        "cream",
+        "blueTabby",
+        "blueWhite",
+        "diluteCalico",
+        "tortie"
+      ]
+    },
+    {
+      "key": "black",
+      "file": "body-black.glb",
+      "bytes": 2365792,
+      "sha256": "94a6f2039438801cc2b018b117abe2c297a3c1553da6f57c95604f7788ae6d21",
+      "rotationY": -1.5707963267948966,
+      "coats": [
+        "black",
+        "blue"
+      ]
+    }
+  ],
+  "coats": [
+    {
+      "key": "orange",
+      "body": "orange",
+      "material": {
+        "file": "orange.gltf",
+        "bytes": 844,
+        "sha256": "f2e7f3e5f75f1c83872ee0081c35ba945d9eb4e52a38f07508adf96fc31ef946"
+      },
+      "images": [
+        {
+          "file": "898f2ebb3aa43be1b243eab14818372c0685d933a5efb282eb4b0f6b98648cbb.jpg",
+          "bytes": 97677,
+          "sha256": "898f2ebb3aa43be1b243eab14818372c0685d933a5efb282eb4b0f6b98648cbb"
+        },
+        {
+          "file": "9933d0731ff50d37bb94816356369326c699c22e64db1d927c1483ccd4b4f1c7.jpg",
+          "bytes": 216620,
+          "sha256": "9933d0731ff50d37bb94816356369326c699c22e64db1d927c1483ccd4b4f1c7"
+        },
+        {
+          "file": "abc6afefe8e6d1829617fc282db01e6d5ffd3fe6576bd62e3ea5cbbc1025d709.jpg",
+          "bytes": 183632,
+          "sha256": "abc6afefe8e6d1829617fc282db01e6d5ffd3fe6576bd62e3ea5cbbc1025d709"
+        }
+      ],
+      "originalFile": "cat-80k-2k.glb",
+      "originalBytes": 2874140,
+      "rotationY": 0
+    },
+    {
+      "key": "tabby",
+      "body": "tabby",
+      "material": {
+        "file": "tabby.gltf",
+        "bytes": 659,
+        "sha256": "f3bb8a77a0e1ce1ba5336251d52bae83d032f09de49d74f3ed64d7363fca7ffe"
+      },
+      "images": [
+        {
+          "file": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58.jpg",
+          "bytes": 97841,
+          "sha256": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58"
+        },
+        {
+          "file": "9a268b8b99f398abf8141006a2782cf2a1abd5266f2bf24f2d28728bfc45f2f9.jpg",
+          "bytes": 448051,
+          "sha256": "9a268b8b99f398abf8141006a2782cf2a1abd5266f2bf24f2d28728bfc45f2f9"
+        }
+      ],
+      "originalFile": "cat-tabby-80k-2k.glb",
+      "originalBytes": 2916360,
+      "rotationY": 0
+    },
+    {
+      "key": "tuxedo",
+      "body": "tabby",
+      "material": {
+        "file": "tuxedo.gltf",
+        "bytes": 661,
+        "sha256": "63f90e74a9c6fba5b97a2db5b822ed4ab60e86556d9df697f4f63284d1163bd6"
+      },
+      "images": [
+        {
+          "file": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58.jpg",
+          "bytes": 97841,
+          "sha256": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58"
+        },
+        {
+          "file": "36757e608f6e48f3d203039d5eb5fdf26b6f5b1782b00507efac73d3448dee9f.jpg",
+          "bytes": 393768,
+          "sha256": "36757e608f6e48f3d203039d5eb5fdf26b6f5b1782b00507efac73d3448dee9f"
+        }
+      ],
+      "originalFile": "cat-tuxedo-80k-2k.glb",
+      "originalBytes": 2862076,
+      "rotationY": 0
+    },
+    {
+      "key": "calico",
+      "body": "calico",
+      "material": {
+        "file": "calico.gltf",
+        "bytes": 661,
+        "sha256": "92e3248236d52f7270c0722b27320ee269fd690e8e5e171583e18e42c586dedb"
+      },
+      "images": [
+        {
+          "file": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58.jpg",
+          "bytes": 97841,
+          "sha256": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58"
+        },
+        {
+          "file": "32959250ae0758c8a104957a637ca547d70d722c8aacd20729c77089013b0c27.jpg",
+          "bytes": 266469,
+          "sha256": "32959250ae0758c8a104957a637ca547d70d722c8aacd20729c77089013b0c27"
+        }
+      ],
+      "originalFile": "cat-calico-80k-2k.glb",
+      "originalBytes": 2734016,
+      "rotationY": 0
+    },
+    {
+      "key": "cream",
+      "body": "cream",
+      "material": {
+        "file": "cream.gltf",
+        "bytes": 659,
+        "sha256": "f921818e41e49941c551f4d08f0bdbbc2af0759777e1c1239ec02f2d1a71f44e"
+      },
+      "images": [
+        {
+          "file": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58.jpg",
+          "bytes": 97841,
+          "sha256": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58"
+        },
+        {
+          "file": "5b94895e2e20e7cca8c707fb18cf51b44002520c42317ad5f2e9f36f77a698b8.jpg",
+          "bytes": 220413,
+          "sha256": "5b94895e2e20e7cca8c707fb18cf51b44002520c42317ad5f2e9f36f77a698b8"
+        }
+      ],
+      "originalFile": "cat-cream-80k-2k.glb",
+      "originalBytes": 2684668,
+      "rotationY": -1.5707963267948966
+    },
+    {
+      "key": "blueTabby",
+      "body": "cream",
+      "material": {
+        "file": "blueTabby.gltf",
+        "bytes": 667,
+        "sha256": "167194327d3b0e3019fdc6350bf7dd1ca95e7e1efed878c5bec92dd0c8c5bea0"
+      },
+      "images": [
+        {
+          "file": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58.jpg",
+          "bytes": 97841,
+          "sha256": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58"
+        },
+        {
+          "file": "c45b9a48ad94b4de94dfe9c2f782c6f2c5ddd205fab38ae85b7a991b20dbd46a.jpg",
+          "bytes": 275196,
+          "sha256": "c45b9a48ad94b4de94dfe9c2f782c6f2c5ddd205fab38ae85b7a991b20dbd46a"
+        }
+      ],
+      "originalFile": "cat-blueTabby-80k-2k.glb",
+      "originalBytes": 2739456,
+      "rotationY": -1.5707963267948966
+    },
+    {
+      "key": "blueWhite",
+      "body": "cream",
+      "material": {
+        "file": "blueWhite.gltf",
+        "bytes": 667,
+        "sha256": "b3c401114080ea31a7f774a77a80799b952a10a86a007e73db79f92d61a3c358"
+      },
+      "images": [
+        {
+          "file": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58.jpg",
+          "bytes": 97841,
+          "sha256": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58"
+        },
+        {
+          "file": "a615c5ec99e359fbba76f2bf18820cc0a4b1f6c85581548cf950f69fcf9e90ec.jpg",
+          "bytes": 233698,
+          "sha256": "a615c5ec99e359fbba76f2bf18820cc0a4b1f6c85581548cf950f69fcf9e90ec"
+        }
+      ],
+      "originalFile": "cat-blueWhite-80k-2k.glb",
+      "originalBytes": 2697960,
+      "rotationY": -1.5707963267948966
+    },
+    {
+      "key": "diluteCalico",
+      "body": "cream",
+      "material": {
+        "file": "diluteCalico.gltf",
+        "bytes": 673,
+        "sha256": "50cd979c27f370be07bd39c6e292f8218d30b26d65dfa3a6c67f8ef471a81f1a"
+      },
+      "images": [
+        {
+          "file": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58.jpg",
+          "bytes": 97841,
+          "sha256": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58"
+        },
+        {
+          "file": "1841c0afbb3e19788c6c006944fbe3d5e00f0545f71c20e4be3b8d590a019eaa.jpg",
+          "bytes": 257953,
+          "sha256": "1841c0afbb3e19788c6c006944fbe3d5e00f0545f71c20e4be3b8d590a019eaa"
+        }
+      ],
+      "originalFile": "cat-diluteCalico-80k-2k.glb",
+      "originalBytes": 2722220,
+      "rotationY": -1.5707963267948966
+    },
+    {
+      "key": "tortie",
+      "body": "cream",
+      "material": {
+        "file": "tortie.gltf",
+        "bytes": 661,
+        "sha256": "91439bd7d10051146136bf5e57e9d55356838e19d2c3bba3cfdd54d7c5313edb"
+      },
+      "images": [
+        {
+          "file": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58.jpg",
+          "bytes": 97841,
+          "sha256": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58"
+        },
+        {
+          "file": "2c93ffed81e5ce97d4749c5657b417a678ba8b9e002120f9036f51b4fcafb28f.jpg",
+          "bytes": 279385,
+          "sha256": "2c93ffed81e5ce97d4749c5657b417a678ba8b9e002120f9036f51b4fcafb28f"
+        }
+      ],
+      "originalFile": "cat-tortie-80k-2k.glb",
+      "originalBytes": 2743640,
+      "rotationY": -1.5707963267948966
+    },
+    {
+      "key": "black",
+      "body": "black",
+      "material": {
+        "file": "black.gltf",
+        "bytes": 663,
+        "sha256": "1e9280b8094a8700cc931f4bcb33ca939f1ad33a64d7fd916a8fb1a1488959dc"
+      },
+      "images": [
+        {
+          "file": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58.jpg",
+          "bytes": 97841,
+          "sha256": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58"
+        },
+        {
+          "file": "8c1f64f9f69e6ebea07db638788fb2d79fc3e8d217778a19cecc96d79c1a9be2.jpg",
+          "bytes": 350866,
+          "sha256": "8c1f64f9f69e6ebea07db638788fb2d79fc3e8d217778a19cecc96d79c1a9be2"
+        }
+      ],
+      "originalFile": "cat-black-80k-2k.glb",
+      "originalBytes": 2815092,
+      "rotationY": -1.5707963267948966
+    },
+    {
+      "key": "blue",
+      "body": "black",
+      "material": {
+        "file": "blue.gltf",
+        "bytes": 661,
+        "sha256": "1a6bada33783605048e75f2664e2979d19cf8c3e63cdf15b3a596c24589f0af3"
+      },
+      "images": [
+        {
+          "file": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58.jpg",
+          "bytes": 97841,
+          "sha256": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58"
+        },
+        {
+          "file": "c540978b3278d703106869f1ea043e908a3646ceabb1659b84699ad1f904b8c4.jpg",
+          "bytes": 217383,
+          "sha256": "c540978b3278d703106869f1ea043e908a3646ceabb1659b84699ad1f904b8c4"
+        }
+      ],
+      "originalFile": "cat-blue-80k-2k.glb",
+      "originalBytes": 2681604,
+      "rotationY": -1.5707963267948966
+    }
+  ],
+  "totalBytes": 15392492,
+  "originalBytes": 30471232
+}

@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {attachWhiteStudy} from './white-study';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
@@ -27,6 +28,7 @@ export function createComparisonScene(canvas: HTMLCanvasElement, host: HTMLEleme
   const scene=new THREE.Scene(), camera=new THREE.PerspectiveCamera(32,1,.01,100);
   const controls=new OrbitControls(camera,canvas);
   controls.enablePan=false; controls.minDistance=4; controls.maxDistance=10;
+  const whiteLevel={value:0};
   let dead=false, generation=0, current: THREE.Object3D|undefined;
   const render=()=>{if(!dead)renderer.render(scene,camera);};
   controls.addEventListener('change',render);
@@ -42,6 +44,12 @@ export function createComparisonScene(canvas: HTMLCanvasElement, host: HTMLEleme
   resize.observe(host);angle(0);
   return {
     angle,
+    setWhiteLevel(value:number){
+      if(!current)return;
+      whiteLevel.value=Math.max(0,Math.min(4,value));
+      current.traverse(object=>{if(object instanceof THREE.Mesh){for(const material of Array.isArray(object.material)?object.material:[object.material])attachWhiteStudy(material,whiteLevel);}});
+      render();
+    },
     async replaceMaterial(url: string) {
       const ticket=++generation;
       const gltf=await new GLTFLoader().loadAsync(url);
