@@ -1,6 +1,6 @@
 # 喵德尔
 
-**猫色溯源实验室。**一个猫毛色遗传的交互式科普工具：给定一只猫的花色，反推它爸妈可能长什么样、它孩子会长什么样。
+选出自家猫的花色，看看可能的父母和后代。一个面向普通养猫人的中文遗传探索工具。
 
 起因：楼下有一只长毛橘色狸花猫和一只灰白相间的短毛狸花猫，好奇它们的来历。顺带发现一件事——**「狸花」不是品种，是花色**。
 
@@ -8,29 +8,33 @@
 - 本地开发：`pnpm install && pnpm run dev`
 - 单文件产物：`pnpm run build` 生成的 `dist/index.html` 可直接用浏览器打开，仍是零依赖、零后端（字体走 Google Fonts 外链）
 
-## 当前状态
+## 当前状态（2026-10-04）
 
-阶段 1A / 1B 完成：已迁移为 Vite + React + TypeScript 工程，遗传引擎抽为
-零 DOM 依赖的纯模块并有全量测试覆盖；[总体规划](docs/plans/2026-09-06-cat-color-v2-design.md)第 12 节的 7 项缺陷已修复。
+正式页面采用已确认的田园猫 2D 插画：选猫与细调 → 猫咪档案 → 父母筛选 / 自由配对 → 后代结果。支持未知观察、昵称、浏览器保存、图片导出和状态分享链接。3D 实验暂停保留，见 [恢复交接](docs/plans/2026-10-04-3d-pause-and-resume.md)。
 
-规划文档入口见 [docs/plans/README.md](docs/plans/README.md)。
+- 新流程与验收：[2D 产品计划](docs/plans/2026-10-04-2d-product-flow.md)。
+- 概率：父母只判断兼容性；后代仅在所有符合观察的遗传情景都得到同一概率时标百分比并降序。其余分组显示“有可能”，不平均未知携带情况。概率基于当前五位点独立、后代性别各半的模型，不预测白斑面积位置。
+- 代码：`src/product/model.ts` 新观察/概率接口；旧 `src/genetics` 接口和冻结 golden 保留。新版 UI 断言替代旧三面板布局断言，未豁免旧引擎/SVG 行为基线。
+- Node 24（`.nvmrc`）、pnpm 11.5.2；开发 `pnpm run dev`，完整检查 `pnpm run check`。
+- 正式构建 `pnpm run build` 输出单个 `dist/index.html`；除既有字体外链外无运行时网络依赖，无后端。通过本地文件打开时可保存图片，分享网址需要发布后的 HTTP(S) 地址。
 
-单猫视觉样板：启动开发服务后访问 `/?preview=cat`，可试用底色、浓淡、虎斑、白斑和毛长控件。不带参数仍进入当前主界面；样板尚未接入亲缘节点。构建产物也支持在 `index.html` 后加 `?preview=cat` 打开样板。
+### 必需素材恢复
 
-视觉验证素材按项目约定存于仓库外。首次构建前需按[外置素材说明](docs/visual-validation-assets.md)恢复素材并运行 `node tools/link-visual-assets.mjs`；只克隆代码不能构建全部预览。这些旧实验保留为历史验证。田园猫纯 2D 插画现已接入主界面，支持当前模型的 100 种外观组合。构建前还需恢复 [田园猫素材归档](demos/cat-portrait/README.md)，运行 `node tools/restore-cat-demo-assets.mjs /path/to/cat-2d-validation-2026-09-16`；PNG 不随 Git 分发。下一步先验证 3D 猫展示并与当前 2D 对比，页面交互重做及英短接入顺延，见 [后续计划](docs/plans/2026-09-16-product-next-steps.md)。
+正式产品只使用两张底稿，二进制仍在 Git 外。构建前恢复：
 
-- 环境：Node 24 LTS（见 `.nvmrc`）
-- 开发：`pnpm run dev`
-- 构建：`pnpm run build` → 单个 `dist/index.html`（字体走 Google Fonts 外链，与迁移前一致）
-- 验证：`pnpm run check`（类型检查 + 测试 + 构建）
-- 行为基线：`tests/fixtures/legacy-golden.json` 已冻结；`pnpm run drift` 查看当前引擎相对基线的差异
-- `pnpm-workspace.yaml`：声明允许 `esbuild` 跑安装脚本——pnpm 默认拦截依赖的 postinstall（安全默认值），Vite 构建要靠这一步生效；删掉这个文件会让全新 clone 的 `pnpm install` 直接失败
+```sh
+node tools/restore-product-art.mjs /path/to/cat-2d-validation-2026-09-16
+pnpm install --frozen-lockfile
+pnpm run build
+```
 
-`legacy/index.legacy.html` 是迁移前的原始单文件，保留作为行为参照，不再维护。
+默认归档位置为 `~/.local/share/meowndel/cat-2d-validation-2026-09-16`，省略参数时从这里恢复。脚本先核验两张图的大小/SHA-256，再恢复缺失文件，拒绝覆盖不同文件。新机器/CI 必须提供归档或受控的素材下载步骤；本轮没有新增远程存储，也不宣称纯克隆可构建。
 
-**遗留项**：阶段 1A 的验收还差一项人工步骤：用浏览器对照迁移前后的页面。自动化验证覆盖了引擎输出与主图 SVG（360 状态 × 7 字段逐字节比对），但**不覆盖 React 渲染出的 DOM**——画廊 chip、控件布局、页头页脚只能靠人眼确认。`legacy/index.legacy.html` 可直接用浏览器打开与 `pnpm run dev` 对照。
+旧实验 `/?preview=cat|cat2d|cat3d|catlayers` 仅开发环境加载，不再进入正式 HTML。运行全量历史测试/实验还需按 [旧外置素材说明](docs/visual-validation-assets.md) 和 [2D Demo 说明](demos/cat-portrait/README.md) 恢复历史素材。演示源码与 3D 模型清单均保留。
 
-（更正：迁移计划里的人工核对清单曾写「点三花 → 在妈妈行点橘猫 → 爸爸行的黑猫、狸花猫应正常」，实测有误——三花的亲代必须至少一方带白，黑猫与狸花猫都不带白，同样会被灰掉；正确应为「奶牛猫、狸花白猫仍正常」。）
+### 历史背景
+
+以下为初版调研与模型设计记录，包含旧的“只给三态、不做导出”定位；当前范围、概率规则和交付状态以上文及 2026-10-04 计划为准。
 
 ## 市场定位
 
