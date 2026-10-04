@@ -1,0 +1,718 @@
+{
+  "date": "2026-10-04",
+  "archive": "/Users/zeroyu/.local/share/meowndel/soft-low-poly-cat-2026-09-16",
+  "note": "Local inventory only; not an off-device backup. Includes historical and derived assets.",
+  "totalBytes": 849915811,
+  "files": [
+    {
+      "file": "calico-reference.png",
+      "bytes": 1470549,
+      "sha256": "20414cef4f475f6b9e8d7d5f4bfb1dbe1c1cd2e3fcd4f69cd8fe7abbdd0b0307"
+    },
+    {
+      "file": "cat-80k-2k.glb",
+      "bytes": 2874140,
+      "sha256": "5d9c67ff6dc1ea88602660468fc0716a89ce162388b4625c978498b603902a75"
+    },
+    {
+      "file": "cat-black-4k.glb",
+      "bytes": 62482004,
+      "sha256": "8bdb9ebaaa79fba53cff7152d191cf93ca130284567da1826d0a1a284cb03993"
+    },
+    {
+      "file": "cat-black-80k-2k.glb",
+      "bytes": 2815092,
+      "sha256": "7414ea92216a2243c04bc5d8fb746d9a8d2659d7805e24a6cc96a58b256939ed"
+    },
+    {
+      "file": "cat-black-80k-2k.json",
+      "bytes": 107,
+      "sha256": "712f8a5e5a7037fb67e48316066f1c6998f5ff8e7fafc1cdf3feb20742866ac0"
+    },
+    {
+      "file": "cat-blocky-tabby-2k.glb",
+      "bytes": 470264,
+      "sha256": "501fa131ad7f69a05aca1372dde400bcd167f0cc8f21c510c4b6e6bacc013759"
+    },
+    {
+      "file": "cat-blocky-tabby-2k.json",
+      "bytes": 101,
+      "sha256": "9853df5c4e41b709d537c9072cc8ebf06334b4d240393a0acb640b23bf7e22bb"
+    },
+    {
+      "file": "cat-blocky-tabby-4k.glb",
+      "bytes": 2731728,
+      "sha256": "4fd5bf003b7e9bd34ca7ddb1106e631155bb95dbc5d728e647092f9cb4f83cff"
+    },
+    {
+      "file": "cat-blue-4k.glb",
+      "bytes": 60991172,
+      "sha256": "8f5d147b8b1bf19231f46394a19b2e1985915d4ac1b9bbd8ec1f69cc82137b9a"
+    },
+    {
+      "file": "cat-blue-80k-2k.glb",
+      "bytes": 2681604,
+      "sha256": "0fe7b765054967242ad439aafdd9a5de8da71e29cbc77bc307f0a961128a1e14"
+    },
+    {
+      "file": "cat-blue-80k-2k.json",
+      "bytes": 107,
+      "sha256": "9d7fe55355003b29c88f1b87cff6b6b23550329bdb5e25ef7789559ad46ec9c3"
+    },
+    {
+      "file": "cat-blueTabby-4k.glb",
+      "bytes": 61103304,
+      "sha256": "a583640083b52ccf2ac578d3410be605c6652a580e7fb93ed1684766a7d6fe1b"
+    },
+    {
+      "file": "cat-blueTabby-80k-2k.glb",
+      "bytes": 2739456,
+      "sha256": "7d79789570a535f3243c9dc89c378bc2da86c1e0aced436756c432f9d2b0b183"
+    },
+    {
+      "file": "cat-blueTabby-80k-2k.json",
+      "bytes": 106,
+      "sha256": "a03875b6efc2dd8f6c81ff1ee51b78a3795ab69cf0b5678136e562973805ff1a"
+    },
+    {
+      "file": "cat-blueWhite-4k.glb",
+      "bytes": 60831060,
+      "sha256": "2cc5b64518c65eaf46c23e96394b189d1e274060b11aba916739601d9818fef2"
+    },
+    {
+      "file": "cat-blueWhite-80k-2k.glb",
+      "bytes": 2697960,
+      "sha256": "cd916bf07b6b5b7eb115680b5851469dfbb2af11dee4e2c9791c075050ca912d"
+    },
+    {
+      "file": "cat-blueWhite-80k-2k.json",
+      "bytes": 107,
+      "sha256": "ca2725412cf9ba37090b34f10fa4702b8c6392b229b773017b78e4e86967ad39"
+    },
+    {
+      "file": "cat-breed-american-2k.glb",
+      "bytes": 544812,
+      "sha256": "3cb194eed943a6c5e917da3f61d5bc3d92124212a55b0286623d41d1805cbcf7"
+    },
+    {
+      "file": "cat-breed-american-2k.json",
+      "bytes": 101,
+      "sha256": "b8d4d0652f9cc8e9fb8c88126f6fe0dad3793c2442d49c41529c62461f84290e"
+    },
+    {
+      "file": "cat-breed-american-4k.glb",
+      "bytes": 2878528,
+      "sha256": "23b13ee7dc1e6841902d4d4e717e5f105bb9a0664d306b8958001701b563e0aa"
+    },
+    {
+      "file": "cat-breed-american-brown-2k.glb",
+      "bytes": 541304,
+      "sha256": "5ad4719bf85487d5dc0b3776a742de9d7cf92aff18f35b301782f7a83aff20da"
+    },
+    {
+      "file": "cat-breed-american-brown-2k.json",
+      "bytes": 101,
+      "sha256": "48e3cebb5bb312ba4ffe6a9adfe72b5cae58039d3a1dea5c2e4d61587abbd916"
+    },
+    {
+      "file": "cat-breed-american-brown-4k.glb",
+      "bytes": 2675436,
+      "sha256": "26e2d2146ef521336f85c809c79678591ed9e959ce45b63fc439b6eacaf5f74d"
+    },
+    {
+      "file": "cat-breed-british-2k.glb",
+      "bytes": 441144,
+      "sha256": "b5ff52e95e5d503abce6395052f06f43a64d3eddb6362b92b3a263ee5173d413"
+    },
+    {
+      "file": "cat-breed-british-2k.json",
+      "bytes": 101,
+      "sha256": "b6859f724fd751e6b78d9c1e0d39c549200ffbc637177f5f533a590ebe3216de"
+    },
+    {
+      "file": "cat-breed-british-4k.glb",
+      "bytes": 2394928,
+      "sha256": "78e21b34268e226e7bc67d0c8fe74d5858818a880dcb2f5a0f45e0af98257f7e"
+    },
+    {
+      "file": "cat-breed-domestic-2k.glb",
+      "bytes": 479484,
+      "sha256": "c1ef834b82dbbec27655326c18d8ace34d9500a356981fde9929ecd0130e87ae"
+    },
+    {
+      "file": "cat-breed-domestic-2k.json",
+      "bytes": 101,
+      "sha256": "d4477481172876f3d228a113b9e469d53fdbffbfff8b45b4a01828e76aa6c5c5"
+    },
+    {
+      "file": "cat-breed-domestic-4k.glb",
+      "bytes": 2623084,
+      "sha256": "e44da7e5b4b50584e496af90d4732ef9b89d7fe03599475b1e91684b08c22911"
+    },
+    {
+      "file": "cat-breed-domestic-black-white-2k.glb",
+      "bytes": 317052,
+      "sha256": "b590e4b8682f3dbd30593632dd8476d053b42b8e662b9943290a5f366685190f"
+    },
+    {
+      "file": "cat-breed-domestic-black-white-2k.json",
+      "bytes": 100,
+      "sha256": "7b79b55d62f9cde655c226b5674d35d257325cb4f7a40517c1de1a4361b235d0"
+    },
+    {
+      "file": "cat-breed-domestic-black-white-4k.glb",
+      "bytes": 1671896,
+      "sha256": "9f8f2f969b9356a7aa83c255d655f4ac3cfabc4cf3956b6c6c47a097a0c303a0"
+    },
+    {
+      "file": "cat-breed-domestic-calico-2k.glb",
+      "bytes": 364836,
+      "sha256": "0dd8a6e6b6514fef9861dd70b49a16584b58ee820a360f016930dc174899c096"
+    },
+    {
+      "file": "cat-breed-domestic-calico-2k.json",
+      "bytes": 101,
+      "sha256": "804c8b09ed9e90a30544c73331d71e4119a99cefb148e6b40cce52be95e38f93"
+    },
+    {
+      "file": "cat-breed-domestic-calico-4k.glb",
+      "bytes": 1975904,
+      "sha256": "0f6c71ada4b09a9c9e51c25f21d4c9814b9a79f3663eea3207fea2814463e7a1"
+    },
+    {
+      "file": "cat-breed-domestic-cute-2k.glb",
+      "bytes": 363552,
+      "sha256": "375b9e4f680e4494648d89c4b988f736249612d70b16a3024caf124758579e74"
+    },
+    {
+      "file": "cat-breed-domestic-cute-2k.json",
+      "bytes": 101,
+      "sha256": "d1e965ea8aea855f838c67587251490bfc30da83edfd99bcfc7c8874d6a35526"
+    },
+    {
+      "file": "cat-breed-domestic-cute-4k.glb",
+      "bytes": 2071524,
+      "sha256": "24f64de07c34ec1e0c15610fdbd15f6e4ee66d255dbf3025419e6b6b0aab49aa"
+    },
+    {
+      "file": "cat-breed-domestic-tabby-2k.glb",
+      "bytes": 379676,
+      "sha256": "ab0f876490621ef5464caadfb2670cfa5fad7dac4af2ddbbf2440bc991094c6b"
+    },
+    {
+      "file": "cat-breed-domestic-tabby-2k.json",
+      "bytes": 101,
+      "sha256": "a8b3b2025f3986c73b22749336b22a7ad5e87e531f0b87538306448c532a99c2"
+    },
+    {
+      "file": "cat-breed-domestic-tabby-4k.glb",
+      "bytes": 2227392,
+      "sha256": "a336783a1fdca047c672ed392c9b4e862ef0f3a12879b21976fe448dfc6fc83d"
+    },
+    {
+      "file": "cat-breed-ragdoll-2k.glb",
+      "bytes": 473956,
+      "sha256": "9f758119415e24133f225dbb38b8201bfa2cb763a512001edd04e9e4dc2a25e4"
+    },
+    {
+      "file": "cat-breed-ragdoll-2k.json",
+      "bytes": 101,
+      "sha256": "df6ce38e2be069265e77d7f099ff1e343f8e2c4a3e93ffe55c1c18e5d3f41792"
+    },
+    {
+      "file": "cat-breed-ragdoll-4k.glb",
+      "bytes": 2290420,
+      "sha256": "9b2267c0eec521c8b8aa23b4a7a112c2561fd4df1544ae5dd286df34442ae6c7"
+    },
+    {
+      "file": "cat-breed-ragdoll-seal-2k.glb",
+      "bytes": 516580,
+      "sha256": "e8d47a96fa9baf91e230b970b3ea2d4b203c8e7a8b023b7e47e7d04bcf05eaf7"
+    },
+    {
+      "file": "cat-breed-ragdoll-seal-2k.json",
+      "bytes": 101,
+      "sha256": "da3f18aab2013203e6087af23faf532574a38ecce1aecc39b51b7fa6fe0ba778"
+    },
+    {
+      "file": "cat-breed-ragdoll-seal-4k.glb",
+      "bytes": 2470388,
+      "sha256": "6d2a703dfa803acc97fc59f06ac0e8e4e5a3eee88a20b1fe25acd63bf73658be"
+    },
+    {
+      "file": "cat-calico-4k.glb",
+      "bytes": 61025112,
+      "sha256": "9701f7faefecfba0a2a1b582c9a8895ad1ba2105998aa71cbf921363bb27ede1"
+    },
+    {
+      "file": "cat-calico-80k-2k.glb",
+      "bytes": 2734016,
+      "sha256": "e2d6b117265f6ee463a529f60b210c425111da5743b10c3b80b59cc6dc14ba62"
+    },
+    {
+      "file": "cat-calico-80k-2k.json",
+      "bytes": 107,
+      "sha256": "4bb9a70f02421dd87de4bfbcbbb7de0a4ced587ce8eb3bbe7f8fe44a31998e5d"
+    },
+    {
+      "file": "cat-cream-4k.glb",
+      "bytes": 60769900,
+      "sha256": "45b5d0a8ca24bdbf85f581e6e18174269be31181ab75caa54ac7276f5d0cc46a"
+    },
+    {
+      "file": "cat-cream-80k-2k.glb",
+      "bytes": 2684668,
+      "sha256": "2ced744e5e4bd86a79b947e0209615d78368eb70ff7a994617729910852f8e26"
+    },
+    {
+      "file": "cat-cream-80k-2k.json",
+      "bytes": 107,
+      "sha256": "3ad233094050f109a297642954577540728ba9851ff81516f960824648cbbefb"
+    },
+    {
+      "file": "cat-diluteCalico-4k.glb",
+      "bytes": 61029880,
+      "sha256": "2877320fc3bf43eb9cb37c324a2587c3e25972e8a41d3f61ecfcb1800117d8cf"
+    },
+    {
+      "file": "cat-diluteCalico-80k-2k.glb",
+      "bytes": 2722220,
+      "sha256": "cbf989424327e679ace9c09d3198838552edec091f8b35ac57e78da67420d84c"
+    },
+    {
+      "file": "cat-diluteCalico-80k-2k.json",
+      "bytes": 107,
+      "sha256": "92f65604de7b61558fdd22931b0956a19f5036859aab9312d07880251686a098"
+    },
+    {
+      "file": "cat-original-4k.glb",
+      "bytes": 57990124,
+      "sha256": "3d644e102f2f1fd63ac660677e9cdff0be68fcf7ba1b45f27169e05e2567cbb5"
+    },
+    {
+      "file": "cat-tabby-4k.glb",
+      "bytes": 63050148,
+      "sha256": "7ae868e1e9cd3ede013ff93fc1d7c6d2ba5f3e2d60a50783dc154c42249faa23"
+    },
+    {
+      "file": "cat-tabby-80k-2k.glb",
+      "bytes": 2916360,
+      "sha256": "ca7bf9bd1b33e2f4bdafa219b525baff308d335fc6ef6f99f2b8f2e239ea6a7e"
+    },
+    {
+      "file": "cat-tabby-80k-2k.json",
+      "bytes": 107,
+      "sha256": "408083b54a310e7e436e09f3f63721e7f6a341510e586c21fbe355f8baaa81df"
+    },
+    {
+      "file": "cat-tabbyWhite-4k.glb",
+      "bytes": 61252700,
+      "sha256": "db5b794c891fa8cfcd6786756530bd44aebfca3fedccf634be00d71956181c54"
+    },
+    {
+      "file": "cat-tabbyWhite-80k-2k.glb",
+      "bytes": 2713104,
+      "sha256": "c431bd959df95db72150b0e580dd585b4fd573c24f3ef9f413e1a51da460bb8b"
+    },
+    {
+      "file": "cat-tabbyWhite-80k-2k.json",
+      "bytes": 107,
+      "sha256": "311114cda2c272fb394154f5c6b4543c060bbb655301331fbdd268729695a8af"
+    },
+    {
+      "file": "cat-tortie-4k.glb",
+      "bytes": 61207772,
+      "sha256": "fc58742d26bff0ac69d44521c8d8f14b58024fd2bce13ad36630eb3392d97169"
+    },
+    {
+      "file": "cat-tortie-80k-2k.glb",
+      "bytes": 2743640,
+      "sha256": "d91d2166857166b2113adae87264da91c23046ee3f60766a9dd7412e7cbbc553"
+    },
+    {
+      "file": "cat-tortie-80k-2k.json",
+      "bytes": 107,
+      "sha256": "3097852f3b2597bb22dd60786fd5ac6e0eb59473ab9e6e376e027567fbb14a66"
+    },
+    {
+      "file": "cat-tuxedo-4k.glb",
+      "bytes": 62602036,
+      "sha256": "f3333c39cc4f61bf4a098dd6b5c89a71425a29b6d5ea60d7e2be3feb6cf29a51"
+    },
+    {
+      "file": "cat-tuxedo-80k-2k.glb",
+      "bytes": 2862076,
+      "sha256": "25e86c8251956ad11e4bafde463cddb09e746aacb91848c719630d7478a9cb24"
+    },
+    {
+      "file": "cat-tuxedo-80k-2k.json",
+      "bytes": 107,
+      "sha256": "89afcf8ede9c9457fb4a446fd7d6d3d90528cdbfb167f78834f92ef88608cf9c"
+    },
+    {
+      "file": "coat-task-ids-2026-09-17.json",
+      "bytes": 374,
+      "sha256": "9762a093110ba51fc09401c19c980a823154f567835ee97820a933ea282f7be2"
+    },
+    {
+      "file": "concept.png",
+      "bytes": 1497919,
+      "sha256": "24223c9672169933c3cb4b44686c2179eae417d7706bcb80030a67c59e1d674b"
+    },
+    {
+      "file": "grouped-coats/1841c0afbb3e19788c6c006944fbe3d5e00f0545f71c20e4be3b8d590a019eaa.jpg",
+      "bytes": 257953,
+      "sha256": "1841c0afbb3e19788c6c006944fbe3d5e00f0545f71c20e4be3b8d590a019eaa"
+    },
+    {
+      "file": "grouped-coats/2c93ffed81e5ce97d4749c5657b417a678ba8b9e002120f9036f51b4fcafb28f.jpg",
+      "bytes": 279385,
+      "sha256": "2c93ffed81e5ce97d4749c5657b417a678ba8b9e002120f9036f51b4fcafb28f"
+    },
+    {
+      "file": "grouped-coats/32959250ae0758c8a104957a637ca547d70d722c8aacd20729c77089013b0c27.jpg",
+      "bytes": 266469,
+      "sha256": "32959250ae0758c8a104957a637ca547d70d722c8aacd20729c77089013b0c27"
+    },
+    {
+      "file": "grouped-coats/36757e608f6e48f3d203039d5eb5fdf26b6f5b1782b00507efac73d3448dee9f.jpg",
+      "bytes": 393768,
+      "sha256": "36757e608f6e48f3d203039d5eb5fdf26b6f5b1782b00507efac73d3448dee9f"
+    },
+    {
+      "file": "grouped-coats/595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58.jpg",
+      "bytes": 97841,
+      "sha256": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58"
+    },
+    {
+      "file": "grouped-coats/5b94895e2e20e7cca8c707fb18cf51b44002520c42317ad5f2e9f36f77a698b8.jpg",
+      "bytes": 220413,
+      "sha256": "5b94895e2e20e7cca8c707fb18cf51b44002520c42317ad5f2e9f36f77a698b8"
+    },
+    {
+      "file": "grouped-coats/898f2ebb3aa43be1b243eab14818372c0685d933a5efb282eb4b0f6b98648cbb.jpg",
+      "bytes": 97677,
+      "sha256": "898f2ebb3aa43be1b243eab14818372c0685d933a5efb282eb4b0f6b98648cbb"
+    },
+    {
+      "file": "grouped-coats/8c1f64f9f69e6ebea07db638788fb2d79fc3e8d217778a19cecc96d79c1a9be2.jpg",
+      "bytes": 350866,
+      "sha256": "8c1f64f9f69e6ebea07db638788fb2d79fc3e8d217778a19cecc96d79c1a9be2"
+    },
+    {
+      "file": "grouped-coats/9933d0731ff50d37bb94816356369326c699c22e64db1d927c1483ccd4b4f1c7.jpg",
+      "bytes": 216620,
+      "sha256": "9933d0731ff50d37bb94816356369326c699c22e64db1d927c1483ccd4b4f1c7"
+    },
+    {
+      "file": "grouped-coats/9a268b8b99f398abf8141006a2782cf2a1abd5266f2bf24f2d28728bfc45f2f9.jpg",
+      "bytes": 448051,
+      "sha256": "9a268b8b99f398abf8141006a2782cf2a1abd5266f2bf24f2d28728bfc45f2f9"
+    },
+    {
+      "file": "grouped-coats/a615c5ec99e359fbba76f2bf18820cc0a4b1f6c85581548cf950f69fcf9e90ec.jpg",
+      "bytes": 233698,
+      "sha256": "a615c5ec99e359fbba76f2bf18820cc0a4b1f6c85581548cf950f69fcf9e90ec"
+    },
+    {
+      "file": "grouped-coats/abc6afefe8e6d1829617fc282db01e6d5ffd3fe6576bd62e3ea5cbbc1025d709.jpg",
+      "bytes": 183632,
+      "sha256": "abc6afefe8e6d1829617fc282db01e6d5ffd3fe6576bd62e3ea5cbbc1025d709"
+    },
+    {
+      "file": "grouped-coats/black.gltf",
+      "bytes": 663,
+      "sha256": "1e9280b8094a8700cc931f4bcb33ca939f1ad33a64d7fd916a8fb1a1488959dc"
+    },
+    {
+      "file": "grouped-coats/blue.gltf",
+      "bytes": 661,
+      "sha256": "1a6bada33783605048e75f2664e2979d19cf8c3e63cdf15b3a596c24589f0af3"
+    },
+    {
+      "file": "grouped-coats/blueTabby.gltf",
+      "bytes": 667,
+      "sha256": "167194327d3b0e3019fdc6350bf7dd1ca95e7e1efed878c5bec92dd0c8c5bea0"
+    },
+    {
+      "file": "grouped-coats/blueWhite.gltf",
+      "bytes": 667,
+      "sha256": "b3c401114080ea31a7f774a77a80799b952a10a86a007e73db79f92d61a3c358"
+    },
+    {
+      "file": "grouped-coats/body-black.glb",
+      "bytes": 2365792,
+      "sha256": "94a6f2039438801cc2b018b117abe2c297a3c1553da6f57c95604f7788ae6d21"
+    },
+    {
+      "file": "grouped-coats/body-calico.glb",
+      "bytes": 2369120,
+      "sha256": "d985aa6a49e2caaca41c3c1f74bc27d1f04c4abb96dadcca2bd982d01a7e8bbb"
+    },
+    {
+      "file": "grouped-coats/body-cream.glb",
+      "bytes": 2365824,
+      "sha256": "c7b5a4773eb8f4b8325808e8b8d388b723a9e9a0f5781654236438484c896ce6"
+    },
+    {
+      "file": "grouped-coats/body-orange.glb",
+      "bytes": 2375448,
+      "sha256": "774180cd1758a14d59e2ab810f5302183075f74e57588439193895d2338b678e"
+    },
+    {
+      "file": "grouped-coats/body-tabby.glb",
+      "bytes": 2369880,
+      "sha256": "1f9ea75eb323c3cf9132a69a43a9a2d4e40c5fc4ec9b1f4a7f54cabba5a97d53"
+    },
+    {
+      "file": "grouped-coats/c45b9a48ad94b4de94dfe9c2f782c6f2c5ddd205fab38ae85b7a991b20dbd46a.jpg",
+      "bytes": 275196,
+      "sha256": "c45b9a48ad94b4de94dfe9c2f782c6f2c5ddd205fab38ae85b7a991b20dbd46a"
+    },
+    {
+      "file": "grouped-coats/c540978b3278d703106869f1ea043e908a3646ceabb1659b84699ad1f904b8c4.jpg",
+      "bytes": 217383,
+      "sha256": "c540978b3278d703106869f1ea043e908a3646ceabb1659b84699ad1f904b8c4"
+    },
+    {
+      "file": "grouped-coats/calico.gltf",
+      "bytes": 661,
+      "sha256": "92e3248236d52f7270c0722b27320ee269fd690e8e5e171583e18e42c586dedb"
+    },
+    {
+      "file": "grouped-coats/cream.gltf",
+      "bytes": 659,
+      "sha256": "f921818e41e49941c551f4d08f0bdbbc2af0759777e1c1239ec02f2d1a71f44e"
+    },
+    {
+      "file": "grouped-coats/diluteCalico.gltf",
+      "bytes": 673,
+      "sha256": "50cd979c27f370be07bd39c6e292f8218d30b26d65dfa3a6c67f8ef471a81f1a"
+    },
+    {
+      "file": "grouped-coats/orange.gltf",
+      "bytes": 844,
+      "sha256": "f2e7f3e5f75f1c83872ee0081c35ba945d9eb4e52a38f07508adf96fc31ef946"
+    },
+    {
+      "file": "grouped-coats/tabby.gltf",
+      "bytes": 659,
+      "sha256": "f3bb8a77a0e1ce1ba5336251d52bae83d032f09de49d74f3ed64d7363fca7ffe"
+    },
+    {
+      "file": "grouped-coats/tortie.gltf",
+      "bytes": 661,
+      "sha256": "91439bd7d10051146136bf5e57e9d55356838e19d2c3bba3cfdd54d7c5313edb"
+    },
+    {
+      "file": "grouped-coats/tuxedo.gltf",
+      "bytes": 661,
+      "sha256": "63f90e74a9c6fba5b97a2db5b822ed4ab60e86556d9df697f4f63284d1163bd6"
+    },
+    {
+      "file": "inspection.json",
+      "bytes": 384,
+      "sha256": "f0d689ef753d46c088b6422c1cd46c49e379188915009585afff56090ec83d9c"
+    },
+    {
+      "file": "natural-white/595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58.jpg",
+      "bytes": 97841,
+      "sha256": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58"
+    },
+    {
+      "file": "natural-white/f035f52a7e50e6796e5510ec42a932ecf298688e1daa2166980bb4c57df7e586.jpg",
+      "bytes": 248879,
+      "sha256": "f035f52a7e50e6796e5510ec42a932ecf298688e1daa2166980bb4c57df7e586"
+    },
+    {
+      "file": "natural-white/tabbyWhite.gltf",
+      "bytes": 663,
+      "sha256": "e08e8475256e03fc5e43e38510649867d3f67ab25042b9fedd97eaac16f95f85"
+    },
+    {
+      "file": "optimization.json",
+      "bytes": 107,
+      "sha256": "b9cd47d4a232f7cec1a7a7b1139741a91b89f328e2b93e54b77cff561b01205d"
+    },
+    {
+      "file": "reference-black.png",
+      "bytes": 1322155,
+      "sha256": "a6c579f6c7276016a24d6761d0693838625f9100b30e91d4f519aeb24328e094"
+    },
+    {
+      "file": "reference-blocky-tabby.png",
+      "bytes": 1519482,
+      "sha256": "5845ece98229e08828c3664962f1975d0f81cd34796b0d224e32398e07c1f1e9"
+    },
+    {
+      "file": "reference-blue.png",
+      "bytes": 1414388,
+      "sha256": "f233ac19e620cfebf7225223e4d7a0e4226923622a663911c7c0f37c218a456e"
+    },
+    {
+      "file": "reference-blueTabby.png",
+      "bytes": 1562427,
+      "sha256": "7652f60aaac3bd6f52fbbb7352eae76fe8abef210cfb6e01f8a9f217d3aa8851"
+    },
+    {
+      "file": "reference-blueWhite.png",
+      "bytes": 1477371,
+      "sha256": "68eb6e5d69a70ce482ba6475605c2aa4138537aac570b86f2506010b92184841"
+    },
+    {
+      "file": "reference-breed-american-brown.png",
+      "bytes": 1564590,
+      "sha256": "1ea83cf26939f263c52487fe548ca9c746a73c6e780aa79a159d25b99fc6980f"
+    },
+    {
+      "file": "reference-breed-american.png",
+      "bytes": 1618346,
+      "sha256": "826b527b9b1faad8403df48ce1d11369cfef7160d12ad811714e0a2fd608f575"
+    },
+    {
+      "file": "reference-breed-british.png",
+      "bytes": 1640333,
+      "sha256": "cac5728cccb45db0698c7cdcfa6e1e27062af1d65c5c28ddf0423bf28e06a610"
+    },
+    {
+      "file": "reference-breed-domestic-black-white.png",
+      "bytes": 1335146,
+      "sha256": "52ce4e33e30f23292e0b2b3a7aa0617eebd92bd2171f22c8c8b5880ddccef639"
+    },
+    {
+      "file": "reference-breed-domestic-calico.png",
+      "bytes": 1396679,
+      "sha256": "a4c89feb7e76b52d1f6101bc22ff4a0e0ba68bc0c1653e1f3514e4a9cbbbf913"
+    },
+    {
+      "file": "reference-breed-domestic-cute.png",
+      "bytes": 1481301,
+      "sha256": "34f3a7fd0940dded0ecfb797c137445db94c3f879036090ef0f53f1ea352bc15"
+    },
+    {
+      "file": "reference-breed-domestic-tabby.png",
+      "bytes": 1541180,
+      "sha256": "0b58e6633d4f7398f338a92bb9af939ea7fc69b259d969261a69dbb1f6e208b1"
+    },
+    {
+      "file": "reference-breed-domestic.png",
+      "bytes": 1510302,
+      "sha256": "dbd531bafbde8bef76d57d3d15a5917255bf69ae683d5c9113d9b1e3f54bc7ed"
+    },
+    {
+      "file": "reference-breed-ragdoll-seal.png",
+      "bytes": 1405270,
+      "sha256": "536d62aeb7e5699ca86658a8db1698abd4d474281491261c720fc859c3bcc594"
+    },
+    {
+      "file": "reference-breed-ragdoll.png",
+      "bytes": 1482170,
+      "sha256": "1ed075e04fea56da67a398808f27823723f94045b4bdb00dd31e49110dd3b591"
+    },
+    {
+      "file": "reference-cream.png",
+      "bytes": 1405272,
+      "sha256": "20208baedd6b5d7a06221ff10c45adfa33207ee1f35a12c43e7451cb8fe8e08d"
+    },
+    {
+      "file": "reference-diluteCalico.png",
+      "bytes": 1491449,
+      "sha256": "c308b3488f4f8856dd461f4da0dab0ffe8c0e3ea61244ebc42ad33adcdc43037"
+    },
+    {
+      "file": "reference-tortie.png",
+      "bytes": 1648967,
+      "sha256": "3726d27c8f5d0a784f2c73b156e9bb9005cad602ddf31a9890f9697ebc0a21ca"
+    },
+    {
+      "file": "shared-coats/blueTabby-0.jpg",
+      "bytes": 97841,
+      "sha256": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58"
+    },
+    {
+      "file": "shared-coats/blueTabby-1.jpg",
+      "bytes": 275196,
+      "sha256": "c45b9a48ad94b4de94dfe9c2f782c6f2c5ddd205fab38ae85b7a991b20dbd46a"
+    },
+    {
+      "file": "shared-coats/blueTabby.gltf",
+      "bytes": 561,
+      "sha256": "fea68cf85d56f0a39ae8b50dc19eee9cb5cbfff072778491b9a52bca0af7b067"
+    },
+    {
+      "file": "shared-coats/blueWhite-0.jpg",
+      "bytes": 97841,
+      "sha256": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58"
+    },
+    {
+      "file": "shared-coats/blueWhite-1.jpg",
+      "bytes": 233698,
+      "sha256": "a615c5ec99e359fbba76f2bf18820cc0a4b1f6c85581548cf950f69fcf9e90ec"
+    },
+    {
+      "file": "shared-coats/blueWhite.gltf",
+      "bytes": 561,
+      "sha256": "7fedb7852a94cca005bba6390f2f6a0d1d5e1bd0050a417702b302947e931ade"
+    },
+    {
+      "file": "shared-coats/body.glb",
+      "bytes": 2365824,
+      "sha256": "c7b5a4773eb8f4b8325808e8b8d388b723a9e9a0f5781654236438484c896ce6"
+    },
+    {
+      "file": "shared-coats/cream-0.jpg",
+      "bytes": 97841,
+      "sha256": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58"
+    },
+    {
+      "file": "shared-coats/cream-1.jpg",
+      "bytes": 220413,
+      "sha256": "5b94895e2e20e7cca8c707fb18cf51b44002520c42317ad5f2e9f36f77a698b8"
+    },
+    {
+      "file": "shared-coats/cream.gltf",
+      "bytes": 545,
+      "sha256": "d721d442b3db4d847268aed21f96ae9d44662accf34604e33975c2ba1a1925c6"
+    },
+    {
+      "file": "shared-coats/diluteCalico-0.jpg",
+      "bytes": 97841,
+      "sha256": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58"
+    },
+    {
+      "file": "shared-coats/diluteCalico-1.jpg",
+      "bytes": 257953,
+      "sha256": "1841c0afbb3e19788c6c006944fbe3d5e00f0545f71c20e4be3b8d590a019eaa"
+    },
+    {
+      "file": "shared-coats/diluteCalico.gltf",
+      "bytes": 573,
+      "sha256": "caeaa51ba231a94e30fbdd93abeaeb14b53815cfdb9d5ee77f4aa1666de75bed"
+    },
+    {
+      "file": "shared-coats/tortie-0.jpg",
+      "bytes": 97841,
+      "sha256": "595fb156ba5598335fe09e6245dbbca5c066ec1fc0654aad118063d3258f0c58"
+    },
+    {
+      "file": "shared-coats/tortie-1.jpg",
+      "bytes": 279385,
+      "sha256": "2c93ffed81e5ce97d4749c5657b417a678ba8b9e002120f9036f51b4fcafb28f"
+    },
+    {
+      "file": "shared-coats/tortie.gltf",
+      "bytes": 549,
+      "sha256": "2de6d314948fe5df06c069da0c84c4c4ed337a7f7751f94b735827f597847cd6"
+    },
+    {
+      "file": "tabby-design.png",
+      "bytes": 1838553,
+      "sha256": "dac359f7723f200520905988b44851e91c603f0e39b27c0ee6b787cf3acfe53b"
+    },
+    {
+      "file": "trial.json",
+      "bytes": 1037,
+      "sha256": "dec5698a4aa41832a55d21f3f93eb865ac3175db598d66d5e1fa2354f3afc92c"
+    }
+  ]
+}

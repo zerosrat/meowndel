@@ -1,5 +1,7 @@
 # Tripo 四花色 3D 样板
 
+> 2026-10-04：3D 支线暂停，保留全部演示与素材。当前产品优先 2D。恢复、素材备份边界与待验收事项见 [暂停交接](../../docs/plans/2026-10-04-3d-pause-and-resume.md)。
+
 独立开发样板，不进入正式单文件构建。Node 24 / pnpm 11.5.2：运行 `pnpm run dev`，打开 `/demos/tripo-cat/index.html`。
 
 ## 当前方向
